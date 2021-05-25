@@ -4,63 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <meta name="description" content="Vanilla JS demo" />
-    <style>
-      .dot-windmill {
-        position: relative;
-        top: -10px;
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        background-color: #9880ff;
-        color: #9880ff;
-        transform-origin: 5px 15px;
-        animation: dotWindmill 2s infinite linear;
-        margin-left: 100px;
-        margin-top: -10px;
-      }
-
-      .dot-windmill::before, .dot-windmill::after {
-        content: '';
-        display: inline-block;
-        position: absolute;
-      }
-
-      .dot-windmill::before {
-        left: -8.66px;
-        top: 15px;
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        background-color: #9880ff;
-        color: #9880ff;
-      }
-
-      .dot-windmill::after {
-        left: 8.66px;
-        top: 15px;
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        background-color: #9880ff;
-        color: #9880ff;
-      }
-
-      @keyframes dotWindmill {
-        0% {
-          transform: rotateZ(0deg) translate3d(0, 0, 0);
-        }
-        100% {
-          transform: rotateZ(720deg) translate3d(0, 0, 0);
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css"  />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <h2>Extract ID Info & Liveness detection</h2>
     <div id="container"></div>
 
-    <div style="margin-bottom:10px">
+    <div style="margin-bottom: 10px">
       <label>
         Keys:
         <select id="select-api-key" onchange="onSelectKey()">
@@ -70,88 +21,91 @@
         </select>
       </label>
     </div>
-    <div style="margin-bottom:10px">
+    <div style="margin-bottom: 10px">
       <label>
         Access key
-        <input id="access-key" style="width:500px" />
+        <input id="access-key" style="width: 500px" />
       </label>
     </div>
-    <div style="margin-bottom:10px">
+    <div style="margin-bottom: 10px">
       <label>
         Secret key
-        <input id="secret-key" style="width:500px" />
+        <input id="secret-key" style="width: 500px" />
       </label>
     </div>
-    <div style="margin-bottom:10px">
+    <div style="margin-bottom: 10px">
       <label>
         API URL
-        <input id="api-url" style="width:500px" />
+        <input id="api-url" style="width: 500px" />
       </label>
     </div>
     <div>
       Api check:
       <select id="select-api-check">
-        <option value="false">false</option>
-        <option value="true" selected>true</option>
+        <option value="false" selected>false</option>
+        <option value="true">true</option>
       </select>
     </div>
 
     <hr />
-    <h4>Extract ID Info</h4>
-    <div style="margin-bottom:10px">
-      Card side:
-      <select id="select-card-side"></select>
-    </div>
-    <div style="margin-bottom:10px">
-      Front card Id:
-      <input id="input-cardInfo-front-card-id" style="width:500px" />
-    </div>
-    <button onclick="startExtractIDInfo()">Start Extract ID Info</button>
-    <pre id="result-extract-id-info"></pre>
-    <hr />
     <h4>Liveness detection</h4>
+    <div>
+      <textarea id="client-settings" rows="20" style="width: 400px;"></textarea>
+    </div>
     <div>
       Mode:
       <select id="select-mode"></select>
     </div>
-    <div>
-      Camera:
-      <select id="select-camera">
-        <option value="true">Front</option>
-        <option value="false">Back</option>
-      </select>
-    </div>
-    <div>
-      Enable Recording:
-      <select id="select-enable-recording">
-        <option value="false">false</option>
-        <!-- <option value="true">true</option> -->
-      </select>
-    </div>
-    <button onclick="startLivenessDetection()" id="start-liveness">Liveness detection</button>
+    <button onclick="startLivenessDetection()" id="start-liveness">
+      Liveness detection
+    </button>
     <div id="liveness-loading" style="padding-top: 10px; display: none;">
       Api checking
       <div class="dot-windmill"></div>
     </div>
     <div id="result-liveness-detection"></div>
-    <script src="/web-sdk/build/tvweb-sdk.standalone.min.js"></script>
+    <script src="/web-face-tracking/build/tvweb-sdk.standalone.min.js"></script>
+    <script>
+      const settings = {
+        face_tracking_setting: {
+          enable: true,
+          web_terminate_threshold: 0.0030152991993743408,
+          web_warning_threshold: 0.0017317430600108828,
+          limit_for: 'all_flow',
+          max_warning_time: 5,
+        },
+        flow_interval_time_ms: 3000,
+        limit_time_liveness_check: {
+          enable: true,
+          limit_time_second: 15,
+        },
+        terminate_if_no_face: {
+          enable: true,
+          max_invalid_frame: 5,
+          max_time_ms: 1000,
+        },
+      };
+      window.onload = function(){
+        document.getElementById('client-settings').value = JSON.stringify(settings, null, '\t');
+      };
+    </script>
     <script>
       const keys = [
         {
-          accessKey: 'f051dfd3-8a6e-4a15-a4e8-7ea8cdc84a31',
-          secretKey: 'vgiKCenoKvhPq79KABbFmxCBu6WX1tdw',
+          accessKey: "f051dfd3-8a6e-4a15-a4e8-7ea8cdc84a31",
+          secretKey: "vgiKCenoKvhPq79KABbFmxCBu6WX1tdw",
         },
         {
-          accessKey: 'db3d055f-ba7b-4177-b7e8-110068bda3b2',
-          secretKey: 'R1zjKNbTH3RkT2xgO2CarxAsFbcLCdsf',
+          accessKey: "db3d055f-ba7b-4177-b7e8-110068bda3b2",
+          secretKey: "R1zjKNbTH3RkT2xgO2CarxAsFbcLCdsf",
         },
         {
-          accessKey: '4e24c8f3-7fe0-4824-9339-9a1216a72ac4',
-          secretKey: 'CkoyKslrfBGv4m53LIlH0Q8yJYf4O56e',
-        }
+          accessKey: "4e24c8f3-7fe0-4824-9339-9a1216a72ac4",
+          secretKey: "CkoyKslrfBGv4m53LIlH0Q8yJYf4O56e",
+        },
       ];
       function onSelectKey() {
-        const selectedKey = document.getElementById('select-api-key').value;
+        const selectedKey = document.getElementById("select-api-key").value;
         const { accessKey, secretKey } = keys[selectedKey];
         inputAccessKey.value = accessKey;
         inputSecretKey.value = secretKey;
@@ -173,13 +127,12 @@
       const selectModeEl = document.getElementById("select-mode");
       const selectApiCheckEl = document.getElementById("select-api-check");
       const selectCardSideEl = document.getElementById("select-card-side");
-      const selectEnableRecordingEl = document.getElementById("select-enable-recording");
       const inputAccessKey = document.getElementById("access-key");
       const inputSecretKey = document.getElementById("secret-key");
       const inputApiUrl = document.getElementById("api-url");
-      inputAccessKey.value = "f051dfd3-8a6e-4a15-a4e8-7ea8cdc84a31"
-      inputSecretKey.value = "vgiKCenoKvhPq79KABbFmxCBu6WX1tdw"
-      inputApiUrl.value = "https://tv-testing.trustingsocial.com/api"
+      inputAccessKey.value = "f051dfd3-8a6e-4a15-a4e8-7ea8cdc84a31";
+      inputSecretKey.value = "vgiKCenoKvhPq79KABbFmxCBu6WX1tdw";
+      inputApiUrl.value = "https://tv-testing.trustingsocial.com/api";
 
       Object.keys(TVWebSDK.Constants.Mode).forEach((k) => {
         const option = document.createElement("option");
@@ -188,45 +141,13 @@
         selectModeEl.appendChild(option);
       });
 
-      Object.keys(TVWebSDK.Constants.IDCardSide).forEach((k) => {
-        const option = document.createElement("option");
-        option.appendChild(document.createTextNode(k));
-        option.setAttribute("value", TVWebSDK.Constants.IDCardSide[k]);
-        selectCardSideEl.appendChild(option);
-      });
-
-      function startExtractIDInfo() {
-        const cardSide = selectCardSideEl.value;
-        const apiCheck = selectApiCheckEl.value === "true";
-        const inputFrontIdEl = document.getElementById("input-cardInfo-front-card-id");
-        resultExtractIdInfoEl.innerHTML = "";
-
-        tv.readIDCard({
-          apiCheck: apiCheck,
-          accessKey: inputAccessKey.value,
-          secretKey: inputSecretKey.value,
-          apiUrl: inputApiUrl.value,
-          frontCamera: false,
-          cardSide: cardSide,
-          frontCardId: inputFrontIdEl.value,
-          title: cardSide === TVWebSDK.Constants.IDCardSide.FRONT ? "Mặt trước CMND/CCCD" : "Mặt sau CMND/CCCD",
-          description: cardSide === TVWebSDK.Constants.IDCardSide.FRONT ? "Căn mặt trước CMND/CCCD vào khung" : "Căn mặt sau CMND/CCCD vào khung",
-          onSuccess: handleReadIDCardResult,
-          onError: (e) => {
-            resultExtractIdInfoEl.appendChild(
-              document.createTextNode(`${JSON.stringify(e, null, "\t")}`)
-            );
-            tv.destroyView();
-          },
-        });
-      }
-
       function startLivenessDetection() {
         const livenessDetectionMode = selectModeEl.value;
         const apiCheck = selectApiCheckEl.value === "true";
-        const enableRecording = selectEnableRecordingEl.value === "true";
-        const cameraSelected = document.getElementById('select-camera');
+        const cameraSelected = document.getElementById("select-camera");
 
+        const settings = document.getElementById('client-settings').value;
+        console.log(JSON.parse(settings));
         tv.livenessDetection({
           apiCheck: apiCheck,
           mode: livenessDetectionMode,
@@ -234,26 +155,26 @@
           secretKey: inputSecretKey.value,
           apiUrl: inputApiUrl.value,
           onLivenessDetectionDone: handleLivenessDetectionDone,
-          enableRecording: enableRecording,
           captureFrameData: true,
+          enableFaceTracking: true,
+          clientSettings: JSON.parse(settings),
           onError: (e) => {
-            document.getElementById('liveness-loading').style.display = "none";
-            document.getElementById('start-liveness').disabled = false;
+            document.getElementById("liveness-loading").style.display = "none";
+            document.getElementById("start-liveness").disabled = false;
             resultLivenessDetectionEl.appendChild(
               document.createTextNode(`${JSON.stringify(e, null, "\t")}`)
             );
           },
-          frontCamera: cameraSelected.value === "true",
           onApiCheck: () => {
-            document.getElementById('liveness-loading').style.display = "block";
-            document.getElementById('start-liveness').disabled = true;
+            document.getElementById("liveness-loading").style.display = "block";
+            document.getElementById("start-liveness").disabled = true;
 
             resultLivenessDetectionEl.innerHTML = "";
 
             setTimeout(() => {
               tv.destroyView();
             }, 250);
-          }
+          },
         });
       }
 
@@ -270,7 +191,7 @@
             document.createTextNode(`${JSON.stringify(img, null, "\t")}`)
           );
         }
-        
+
         tv.destroyView();
       }
 
@@ -317,8 +238,8 @@
             }
           }, 500);
         } else {
-          document.getElementById('liveness-loading').style.display = "none";
-          document.getElementById('start-liveness').disabled = false;
+          document.getElementById("liveness-loading").style.display = "none";
+          document.getElementById("start-liveness").disabled = false;
           resultLivenessDetectionEl.appendChild(
             document.createTextNode(`apiCheckPassed: ${apiCheckPassed}`)
           );
