@@ -11151,8 +11151,8 @@
 	  return n;
 	}
 
-	var _ = Symbol("Comlink.proxy"),
-	    E$3 = Symbol("Comlink.endpoint"),
+	var E$3 = Symbol("Comlink.proxy"),
+	    _ = Symbol("Comlink.endpoint"),
 	    B$1 = Symbol("Comlink.releaseProxy"),
 	    C$1 = Symbol("Comlink.thrown"),
 	    S$1 = function S(e) {
@@ -11160,7 +11160,7 @@
 	},
 	    M$1 = new Map([["proxy", {
 	  canHandle: function canHandle(e) {
-	    return S$1(e) && e[_];
+	    return S$1(e) && e[E$3];
 	  },
 	  serialize: function serialize(e) {
 	    var _MessageChannel = new MessageChannel(),
@@ -11170,7 +11170,7 @@
 	    return O$1(e, t), [r, [r]];
 	  },
 	  deserialize: function deserialize(e) {
-	    return e.start(), k$1(e);
+	    return e.start(), Q$1(e);
 	  }
 	}], ["throw", {
 	  canHandle: function canHandle(e) {
@@ -11221,39 +11221,43 @@
 	      }, e);
 
 	      switch (o) {
-	        case 0:
+	        case "GET":
 	          u = _r;
 	          break;
 
-	        case 1:
+	        case "SET":
 	          _t2[a.slice(-1)[0]] = N$1(n.data.value), u = !0;
 	          break;
 
-	        case 2:
+	        case "APPLY":
 	          u = _r.apply(_t2, s);
 	          break;
 
-	        case 3:
+	        case "CONSTRUCT":
 	          u = function (e) {
-	            return Object.assign(e, _defineProperty({}, _, !0));
+	            return Object.assign(e, _defineProperty({}, E$3, !0));
 	          }(_construct(_r, _toConsumableArray(s)));
 
 	          break;
 
-	        case 4:
+	        case "ENDPOINT":
 	          {
 	            var _MessageChannel2 = new MessageChannel(),
 	                _t3 = _MessageChannel2.port1,
 	                _r2 = _MessageChannel2.port2;
 
 	            O$1(e, _r2), u = function (e, t) {
-	              return L$1.set(e, t), e;
+	              return D$1.set(e, t), e;
 	            }(_t3, [_t3]);
 	          }
 	          break;
 
-	        case 5:
+	        case "RELEASE":
 	          u = void 0;
+	          break;
+
+	        default:
+	          return;
 	      }
 	    } catch (e) {
 	      u = _defineProperty({
@@ -11266,46 +11270,46 @@
 	        value: e
 	      }, C$1, 0);
 	    }).then(function (e) {
-	      var _P = P$1(e),
-	          _P2 = _slicedToArray(_P, 2),
-	          n = _P2[0],
-	          a = _P2[1];
+	      var _L = L$1(e),
+	          _L2 = _slicedToArray(_L, 2),
+	          n = _L2[0],
+	          a = _L2[1];
 
 	      t.postMessage(Object.assign(Object.assign({}, n), {
 	        id: i
-	      }), a), 5 === o && (t.removeEventListener("message", r), Q$1(t));
+	      }), a), "RELEASE" === o && (t.removeEventListener("message", r), R$1(t));
 	    });
 	  }), t.start && t.start();
 	}
 
-	function Q$1(e) {
+	function R$1(e) {
 	  (function (e) {
 	    return "MessagePort" === e.constructor.name;
 	  })(e) && e.close();
 	}
 
-	function k$1(e, t) {
-	  return R$1(e, [], t);
+	function Q$1(e, t) {
+	  return x$2(e, [], t);
 	}
 
-	function x$2(e) {
+	function k$1(e) {
 	  if (e) throw new Error("Proxy has been released and is not useable");
 	}
 
-	function R$1(e) {
+	function x$2(e) {
 	  var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 	  var r = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
 	  var n = !1;
 	  var i = new Proxy(r, {
 	    get: function get(r, o) {
-	      if (x$2(n), o === B$1) return function () {
-	        return T$1(e, {
-	          type: 5,
+	      if (k$1(n), o === B$1) return function () {
+	        return P$1(e, {
+	          type: "RELEASE",
 	          path: t.map(function (e) {
 	            return e.toString();
 	          })
 	        }).then(function () {
-	          Q$1(e), n = !0;
+	          R$1(e), n = !0;
 	        });
 	      };
 
@@ -11316,8 +11320,8 @@
 	          }
 	        };
 
-	        var _r3 = T$1(e, {
-	          type: 0,
+	        var _r3 = P$1(e, {
+	          type: "GET",
 	          path: t.map(function (e) {
 	            return e.toString();
 	          })
@@ -11326,18 +11330,18 @@
 	        return _r3.then.bind(_r3);
 	      }
 
-	      return R$1(e, [].concat(_toConsumableArray(t), [o]));
+	      return x$2(e, [].concat(_toConsumableArray(t), [o]));
 	    },
 	    set: function set(r, i, o) {
-	      x$2(n);
+	      k$1(n);
 
-	      var _P3 = P$1(o),
-	          _P4 = _slicedToArray(_P3, 2),
-	          a = _P4[0],
-	          s = _P4[1];
+	      var _L3 = L$1(o),
+	          _L4 = _slicedToArray(_L3, 2),
+	          a = _L4[0],
+	          s = _L4[1];
 
-	      return T$1(e, {
-	        type: 1,
+	      return P$1(e, {
+	        type: "SET",
 	        path: [].concat(_toConsumableArray(t), [i]).map(function (e) {
 	          return e.toString();
 	        }),
@@ -11345,20 +11349,20 @@
 	      }, s).then(N$1);
 	    },
 	    apply: function apply(r, i, o) {
-	      x$2(n);
+	      k$1(n);
 	      var a = t[t.length - 1];
-	      if (a === E$3) return T$1(e, {
-	        type: 4
+	      if (a === _) return P$1(e, {
+	        type: "ENDPOINT"
 	      }).then(N$1);
-	      if ("bind" === a) return R$1(e, t.slice(0, -1));
+	      if ("bind" === a) return x$2(e, t.slice(0, -1));
 
-	      var _D = D$1(o),
-	          _D2 = _slicedToArray(_D, 2),
-	          s = _D2[0],
-	          u = _D2[1];
+	      var _T = T$1(o),
+	          _T2 = _slicedToArray(_T, 2),
+	          s = _T2[0],
+	          u = _T2[1];
 
-	      return T$1(e, {
-	        type: 2,
+	      return P$1(e, {
+	        type: "APPLY",
 	        path: t.map(function (e) {
 	          return e.toString();
 	        }),
@@ -11366,15 +11370,15 @@
 	      }, u).then(N$1);
 	    },
 	    construct: function construct(r, i) {
-	      x$2(n);
+	      k$1(n);
 
-	      var _D3 = D$1(i),
-	          _D4 = _slicedToArray(_D3, 2),
-	          o = _D4[0],
-	          a = _D4[1];
+	      var _T3 = T$1(i),
+	          _T4 = _slicedToArray(_T3, 2),
+	          o = _T4[0],
+	          a = _T4[1];
 
-	      return T$1(e, {
-	        type: 3,
+	      return P$1(e, {
+	        type: "CONSTRUCT",
 	        path: t.map(function (e) {
 	          return e.toString();
 	        }),
@@ -11385,8 +11389,8 @@
 	  return i;
 	}
 
-	function D$1(e) {
-	  var t = e.map(P$1);
+	function T$1(e) {
+	  var t = e.map(L$1);
 	  return [t.map(function (e) {
 	    return e[0];
 	  }), (r = t.map(function (e) {
@@ -11395,9 +11399,9 @@
 	  var r;
 	}
 
-	var L$1 = new WeakMap();
+	var D$1 = new WeakMap();
 
-	function P$1(e) {
+	function L$1(e) {
 	  var _iterator = _createForOfIteratorHelper(M$1),
 	      _step;
 
@@ -11414,7 +11418,7 @@
 	            _i = _r4$serialize2[1];
 
 	        return [{
-	          type: 3,
+	          type: "HANDLER",
 	          name: _t4,
 	          value: _n
 	        }, _i];
@@ -11427,22 +11431,22 @@
 	  }
 
 	  return [{
-	    type: 0,
+	    type: "RAW",
 	    value: e
-	  }, L$1.get(e) || []];
+	  }, D$1.get(e) || []];
 	}
 
 	function N$1(e) {
 	  switch (e.type) {
-	    case 3:
+	    case "HANDLER":
 	      return M$1.get(e.name).deserialize(e.value);
 
-	    case 0:
+	    case "RAW":
 	      return e.value;
 	  }
 	}
 
-	function T$1(e, t, r) {
+	function P$1(e, t, r) {
 	  return new Promise(function (n) {
 	    var i = new Array(4).fill(0).map(function () {
 	      return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(16);
@@ -11457,9 +11461,9 @@
 
 	var j$2 = function () {
 	  if (!window.Worker) return null;
-	  var e = new Blob(['const t=Symbol("Comlink.proxy"),e=Symbol("Comlink.endpoint"),r=Symbol("Comlink.releaseProxy"),n=Symbol("Comlink.thrown"),a=t=>"object"==typeof t&&null!==t||"function"==typeof t,o=new Map([["proxy",{canHandle:e=>a(e)&&e[t],serialize(t){const{port1:e,port2:r}=new MessageChannel;return u(t,e),[r,[r]]},deserialize(t){return t.start(),s(t,[],e);var e}}],["throw",{canHandle:t=>a(t)&&n in t,serialize({value:t}){let e;return e=t instanceof Error?{isError:!0,value:{message:t.message,name:t.name,stack:t.stack}}:{isError:!1,value:t},[e,[]]},deserialize(t){if(t.isError)throw Object.assign(new Error(t.value.message),t.value);throw t.value}}]]);function u(e,r=self){r.addEventListener("message",(function a(o){if(!o||!o.data)return;const{id:c,type:s,path:l}=Object.assign({path:[]},o.data),g=(o.data.argumentList||[]).map(p);let m;try{const r=l.slice(0,-1).reduce(((t,e)=>t[e]),e),n=l.reduce(((t,e)=>t[e]),e);switch(s){case 0:m=n;break;case 1:r[l.slice(-1)[0]]=p(o.data.value),m=!0;break;case 2:m=n.apply(r,g);break;case 3:m=function(e){return Object.assign(e,{[t]:!0})}(new n(...g));break;case 4:{const{port1:t,port2:r}=new MessageChannel;u(e,r),m=function(t,e){return f.set(t,e),t}(t,[t])}break;case 5:m=void 0}}catch(t){m={value:t,[n]:0}}Promise.resolve(m).catch((t=>({value:t,[n]:0}))).then((t=>{const[e,n]=h(t);r.postMessage(Object.assign(Object.assign({},e),{id:c}),n),5===s&&(r.removeEventListener("message",a),i(r))}))})),r.start&&r.start()}function i(t){(function(t){return"MessagePort"===t.constructor.name})(t)&&t.close()}function c(t){if(t)throw new Error("Proxy has been released and is not useable")}function s(t,n=[],a=function(){}){let o=!1;const u=new Proxy(a,{get(e,a){if(c(o),a===r)return()=>g(t,{type:5,path:n.map((t=>t.toString()))}).then((()=>{i(t),o=!0}));if("then"===a){if(0===n.length)return{then:()=>u};const e=g(t,{type:0,path:n.map((t=>t.toString()))}).then(p);return e.then.bind(e)}return s(t,[...n,a])},set(e,r,a){c(o);const[u,i]=h(a);return g(t,{type:1,path:[...n,r].map((t=>t.toString())),value:u},i).then(p)},apply(r,a,u){c(o);const i=n[n.length-1];if(i===e)return g(t,{type:4}).then(p);if("bind"===i)return s(t,n.slice(0,-1));const[f,h]=l(u);return g(t,{type:2,path:n.map((t=>t.toString())),argumentList:f},h).then(p)},construct(e,r){c(o);const[a,u]=l(r);return g(t,{type:3,path:n.map((t=>t.toString())),argumentList:a},u).then(p)}});return u}function l(t){const e=t.map(h);return[e.map((t=>t[0])),(r=e.map((t=>t[1])),Array.prototype.concat.apply([],r))];var r}const f=new WeakMap;function h(t){for(const[e,r]of o)if(r.canHandle(t)){const[n,a]=r.serialize(t);return[{type:3,name:e,value:n},a]}return[{type:0,value:t},f.get(t)||[]]}function p(t){switch(t.type){case 3:return o.get(t.name).deserialize(t.value);case 0:return t.value}}function g(t,e,r){return new Promise((n=>{const a=new Array(4).fill(0).map((()=>Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString(16))).join("-");t.addEventListener("message",(function e(r){r.data&&r.data.id&&r.data.id===a&&(t.removeEventListener("message",e),n(r.data))})),t.start&&t.start(),t.postMessage(Object.assign({id:a},e),r)}))}var m=[[0,1,0],[1,-4,1],[0,1,0]];function v(t,e,r,n){return t[4*(r*e+n)]}function d(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function b(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(t)))return;var r=[],n=!0,a=!1,o=void 0;try{for(var u,i=t[Symbol.iterator]();!(n=(u=i.next()).done)&&(r.push(u.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{n||null==i.return||i.return()}finally{if(a)throw o}}return r}(t,e)||function(t,e){if(!t)return;if("string"==typeof t)return y(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return y(t,e)}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance. In order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function y(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}var w="frontal",S="left",M="right",_="up",k="down",E=0,j=1,A=2;var F={code:"no_face",msg:{en:"Face not found",vi:"Không tìm thấy khuôn mặt"}},O={code:"partial_face",msg:{en:"Face out of the box",vi:"Không tìm thấy toàn bộ khuôn mặt"}},x={code:"multiple_faces",msg:{en:"Too many faces",vi:"Quá nhiều khuôn mặt"}},I={code:"face_too_small",msg:{en:"Face too small",vi:"Khuôn mặt quá nhỏ"}},L={code:"face_too_large",msg:{en:"Face too large",vi:"Khuôn mặt quá to"}},P={code:"face_out_of_box",msg:{en:"Face is out of box",vi:"Khuôn mặt nằm ngoài khung ảnh"}};function C(t){return Math.pow(Math.pow(t[0],2)+Math.pow(t[1],2),.5)}function R(t,e){return[t[0]-e[0],t[1]-e[1]]}function N(t,e,r,n){var a=r*(4*e)+4*n;return{r:t[a],g:t[a+1],b:t[a+2]}}u({calculateBlurScoreFunc:function(t){for(var e=t.data,r=t.reducedWidth,n=t.reducedHeight,a=0;a<e.length;a+=4){var o=(e[a]+e[a+1]+e[a+2])/3;e[a]=o}for(var u=0,i=0,c=n-1,s=r-1,l=1;l<c;l++)for(var f=1;f<s;f++){var h=m[0][0]*v(e,r,f-1,l-1)+m[0][1]*v(e,r,f,l-1)+m[0][2]*v(e,r,f+1,l-1)+m[1][0]*v(e,r,f-1,l)+m[1][1]*v(e,r,f,l)+m[1][2]*v(e,r,f+1,l)+m[2][0]*v(e,r,f-1,l+1)+m[2][1]*v(e,r,f,l+1)+m[2][2]*v(e,r,f+1,l+1);(h=Math.abs(h))>25&&u++,h>15&&h<25&&i++}var p=0;return u+i!==0&&(p=u/(u+i)),p},calculateFaceDirectionFunc:function(t){var e=t.landmarks,r=t.getPerfectFrontal,n=function(t){var e,r,n,a,o,u,i,c=b(t,4),s=c[0],l=c[1],f=c[2],h=c[3],p=R(l,s),g=C(p),m=(a=l,e=[(n=s)[0]+a[0],n[1]+a[1]],r=2,[e[0]/r,e[1]/r]),v=R(f,m),d=C(R(h,f)),y=R(h,m),w=C(y),S=(v[0]*y[0]+v[1]*y[1])/w,M=d/w;if(g>.5*w)o=(v[0]*p[0]+v[1]*p[1])/g/g;else{var _=C(R(v,function(t,e){return[t[0]*e,t[1]*e]}(y,S/w)));i=y,o=((u=v)[0]*i[1]-i[0]*u[1]>=0?1:-1)*_/g}return{left_right_score:o,up_down_score:M}}(e),a=n.left_right_score,o=n.up_down_score,u=b(e,3),i=u[0],c=u[1],s=u[2],l=c[0]-s[0],f=i[0]-s[0],h=r?.1:.3,p=o>.7,g=o<.42,m=a>=.35&&a<=.6,v=a<=-.35&&a>=-.6;return o>=.42&&o<=.7&&a>-h&&a<h&&l*f<0?{gesture:w,leftRightScore:a}:p&&!v&&!m?{gesture:_,leftRightScore:a}:g&&!v&&!m?{gesture:k,leftRightScore:a}:m&&!p&&!g?{gesture:M,leftRightScore:a}:v&&!p&&!g?{gesture:S,leftRightScore:a}:null},validatePredictionsFunc:function(t){var e,r,n,a,o,u,i,c,s,l,f,h,p,g=t.predictions,m=[[0,0],[t.width,t.height]],v=g.reduce((function(t,e){var r,n,a,o,u,i,c,s=e.topLeft,l=e.bottomRight,f=e.probability,h=e.landmarks;f<.9||h.length<6||(r=m,n=b([s,l],2),a=n[0],o=n[1],u=b(r,2),i=u[0],c=u[1],(o[0]-a[0])*(o[1]-a[1])/((c[0]-i[0])*(c[1]-i[1]))<=.025)?t[E].push(e):t[function(t,e){var r=b(t,2),n=r[0],a=r[1],o=b(e,2),u=o[0],i=o[1],c=[n[0],a[0]],s=[n[1],a[1]];return c[0]<=u[0]&&i[0]<=c[1]&&s[0]<=u[1]&&i[1]<=s[1]?A:c[0]<=u[0]||i[0]<=c[1]||s[0]<=u[1]||i[1]<=s[1]?j:E}(m,[s,l])].push(e);return t}),(d(e={},j,[]),d(e,A,[]),d(e,E,[]),e)),y=v[A].length,w=v[j].length;if(0===y)r=w>0?O:F;else if(y+w>1)r=x;else{var S=n=v[A][0],M=S.topLeft,_=S.bottomRight,k=(a=m,o=b([M,_],2),u=o[0],i=o[1],c=b(a,2),s=c[0],l=c[1],f=i[0]-u[0],h=i[1]-u[1],p=l[0]-s[0],f/p<h/p?f/p:h/p);k<.4&&(r=I),k>.61&&(r=L),function(t,e){var r=b(t,2),n=r[0],a=r[1],o=b(e,2),u=o[0],i=o[1],c=a[0]-n[0],s=a[1]-n[1],l=i[0]-u[0],f=Math.abs(n[0]-(l-c)/2)/l<.2,h=Math.abs(n[1]-(l-s)/2)/l<.2;return!(!f||!h)}([M,_],m)||(r=P)}return{error:r,fullFace:n}},checkCardBlur:function(t){var e=t.data,r=t.width,n=t.height,a=function(t,e,r){for(var n=0,a=[],o=1;o<r-1;o++)for(var u=1;u<e-1;u++){var i=t[o-1][u-1],c=t[o][u-1],s=t[o+1][u-1],l=t[o-1][u],f=t[o][u],h=t[o+1][u],p=t[o-1][u+1],g=t[o][u+1],m=t[o+1][u+1],v=Number.parseInt(0*i+1*c+0*s,10),d=Number.parseInt(1*l+-4*f+1*h,10),b=Number.parseInt(0*p+1*g+0*m,10),y=Number.parseInt(Math.abs(v+d+b),10);a.push(y),n+=y}var w=a.length,S=n/w,M=0;a.forEach((function(t){M+=(t-S)*(t-S)}));var _=Math.sqrt(M/w);return{lapAvg:S,lapStd:_}}(function(t,e,r){for(var n=[],a=0;a<r+2;a++)for(var o=0;o<e+2;o++){n[a]||(n[a]=[]),0!==o&&0!==a&&o!==e+1&&a!==r+1||(n[a][o]=1);var u=N(t,e,a-1,o-1),i=u.r,c=u.g,s=u.b,l=Number.parseInt(Math.round(.299*i+.587*c+.114*s),10);n[a][o]=l}n[0]=n[2],n[r+1]=n[r-1];for(var f=0;f<r+2;f++)n[f][0]=n[f][2],n[f][e+1]=n[f][e-1];return n}(e,r,n),r+2,n+2);return function(t,e){return e<=18.553622245788574?e<=11.523502826690674?t<=-.05309182405471802?1:.5:t<=.2395537868142128?.29069767441860467:.8333333333333334:e<=23.69584369659424?e<=23.6335506439209?.10606060606060606:1:e<=33.88881301879883?.03896103896103896:0}(a.lapAvg,a.lapStd)},detectGlare:function(t,e,r){return function(t,e,r){for(var n=0,a=r[1],o=r[3],u=r[0],i=r[2],c=a;c<o;c++)for(var s=u;s<i;s++){var l=N(t,e,c,s),f=l.r,h=l.g,p=l.b;f>=245&&p>=245&&h>245&&(n+=1)}return n}(t,e,function(t,e){var r=Math.floor(.025*t),n=t-r,a=Math.floor(.025*e);return[r,a,n,e-a]}(e,r))/(e*r)>=.001}});']),
+	  var e = new Blob(['const t=Symbol("Comlink.proxy"),e=Symbol("Comlink.endpoint"),r=Symbol("Comlink.releaseProxy"),n=Symbol("Comlink.thrown"),a=t=>"object"==typeof t&&null!==t||"function"==typeof t,o=new Map([["proxy",{canHandle:e=>a(e)&&e[t],serialize(t){const{port1:e,port2:r}=new MessageChannel;return u(t,e),[r,[r]]},deserialize(t){return t.start(),s(t,[],e);var e}}],["throw",{canHandle:t=>a(t)&&n in t,serialize({value:t}){let e;return e=t instanceof Error?{isError:!0,value:{message:t.message,name:t.name,stack:t.stack}}:{isError:!1,value:t},[e,[]]},deserialize(t){if(t.isError)throw Object.assign(new Error(t.value.message),t.value);throw t.value}}]]);function u(e,r=self){r.addEventListener("message",(function a(o){if(!o||!o.data)return;const{id:c,type:s,path:l}=Object.assign({path:[]},o.data),g=(o.data.argumentList||[]).map(p);let m;try{const r=l.slice(0,-1).reduce(((t,e)=>t[e]),e),n=l.reduce(((t,e)=>t[e]),e);switch(s){case"GET":m=n;break;case"SET":r[l.slice(-1)[0]]=p(o.data.value),m=!0;break;case"APPLY":m=n.apply(r,g);break;case"CONSTRUCT":m=function(e){return Object.assign(e,{[t]:!0})}(new n(...g));break;case"ENDPOINT":{const{port1:t,port2:r}=new MessageChannel;u(e,r),m=function(t,e){return f.set(t,e),t}(t,[t])}break;case"RELEASE":m=void 0;break;default:return}}catch(t){m={value:t,[n]:0}}Promise.resolve(m).catch((t=>({value:t,[n]:0}))).then((t=>{const[e,n]=h(t);r.postMessage(Object.assign(Object.assign({},e),{id:c}),n),"RELEASE"===s&&(r.removeEventListener("message",a),i(r))}))})),r.start&&r.start()}function i(t){(function(t){return"MessagePort"===t.constructor.name})(t)&&t.close()}function c(t){if(t)throw new Error("Proxy has been released and is not useable")}function s(t,n=[],a=function(){}){let o=!1;const u=new Proxy(a,{get(e,a){if(c(o),a===r)return()=>g(t,{type:"RELEASE",path:n.map((t=>t.toString()))}).then((()=>{i(t),o=!0}));if("then"===a){if(0===n.length)return{then:()=>u};const e=g(t,{type:"GET",path:n.map((t=>t.toString()))}).then(p);return e.then.bind(e)}return s(t,[...n,a])},set(e,r,a){c(o);const[u,i]=h(a);return g(t,{type:"SET",path:[...n,r].map((t=>t.toString())),value:u},i).then(p)},apply(r,a,u){c(o);const i=n[n.length-1];if(i===e)return g(t,{type:"ENDPOINT"}).then(p);if("bind"===i)return s(t,n.slice(0,-1));const[f,h]=l(u);return g(t,{type:"APPLY",path:n.map((t=>t.toString())),argumentList:f},h).then(p)},construct(e,r){c(o);const[a,u]=l(r);return g(t,{type:"CONSTRUCT",path:n.map((t=>t.toString())),argumentList:a},u).then(p)}});return u}function l(t){const e=t.map(h);return[e.map((t=>t[0])),(r=e.map((t=>t[1])),Array.prototype.concat.apply([],r))];var r}const f=new WeakMap;function h(t){for(const[e,r]of o)if(r.canHandle(t)){const[n,a]=r.serialize(t);return[{type:"HANDLER",name:e,value:n},a]}return[{type:"RAW",value:t},f.get(t)||[]]}function p(t){switch(t.type){case"HANDLER":return o.get(t.name).deserialize(t.value);case"RAW":return t.value}}function g(t,e,r){return new Promise((n=>{const a=new Array(4).fill(0).map((()=>Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString(16))).join("-");t.addEventListener("message",(function e(r){r.data&&r.data.id&&r.data.id===a&&(t.removeEventListener("message",e),n(r.data))})),t.start&&t.start(),t.postMessage(Object.assign({id:a},e),r)}))}var m=[[0,1,0],[1,-4,1],[0,1,0]];function v(t,e,r,n){return t[4*(r*e+n)]}function d(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function b(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(t)))return;var r=[],n=!0,a=!1,o=void 0;try{for(var u,i=t[Symbol.iterator]();!(n=(u=i.next()).done)&&(r.push(u.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{n||null==i.return||i.return()}finally{if(a)throw o}}return r}(t,e)||function(t,e){if(!t)return;if("string"==typeof t)return y(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return y(t,e)}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance. In order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function y(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}var E="frontal",S="left",w="right",M="up",A="down",k=0,_=1,R=2;var L={code:"no_face",msg:{en:"Face not found",vi:"Không tìm thấy khuôn mặt"}},N={code:"partial_face",msg:{en:"Face out of the box",vi:"Không tìm thấy toàn bộ khuôn mặt"}},P={code:"multiple_faces",msg:{en:"Too many faces",vi:"Quá nhiều khuôn mặt"}},O={code:"face_too_small",msg:{en:"Face too small",vi:"Khuôn mặt quá nhỏ"}},j={code:"face_too_large",msg:{en:"Face too large",vi:"Khuôn mặt quá to"}},T={code:"face_out_of_box",msg:{en:"Face is out of box",vi:"Khuôn mặt nằm ngoài khung ảnh"}};function C(t){return Math.pow(Math.pow(t[0],2)+Math.pow(t[1],2),.5)}function F(t,e){return[t[0]-e[0],t[1]-e[1]]}function I(t,e,r,n){var a=r*(4*e)+4*n;return{r:t[a],g:t[a+1],b:t[a+2]}}u({calculateBlurScoreFunc:function(t){for(var e=t.data,r=t.reducedWidth,n=t.reducedHeight,a=0;a<e.length;a+=4){var o=(e[a]+e[a+1]+e[a+2])/3;e[a]=o}for(var u=0,i=0,c=n-1,s=r-1,l=1;l<c;l++)for(var f=1;f<s;f++){var h=m[0][0]*v(e,r,f-1,l-1)+m[0][1]*v(e,r,f,l-1)+m[0][2]*v(e,r,f+1,l-1)+m[1][0]*v(e,r,f-1,l)+m[1][1]*v(e,r,f,l)+m[1][2]*v(e,r,f+1,l)+m[2][0]*v(e,r,f-1,l+1)+m[2][1]*v(e,r,f,l+1)+m[2][2]*v(e,r,f+1,l+1);(h=Math.abs(h))>25&&u++,h>15&&h<25&&i++}var p=0;return u+i!==0&&(p=u/(u+i)),p},calculateFaceDirectionFunc:function(t){var e=t.landmarks,r=t.getPerfectFrontal,n=function(t){var e,r,n,a,o,u,i,c=b(t,4),s=c[0],l=c[1],f=c[2],h=c[3],p=F(l,s),g=C(p),m=(a=l,e=[(n=s)[0]+a[0],n[1]+a[1]],r=2,[e[0]/r,e[1]/r]),v=F(f,m),d=C(F(h,f)),y=F(h,m),E=C(y),S=(v[0]*y[0]+v[1]*y[1])/E,w=d/E;if(g>.5*E)o=(v[0]*p[0]+v[1]*p[1])/g/g;else{var M=C(F(v,function(t,e){return[t[0]*e,t[1]*e]}(y,S/E)));i=y,o=((u=v)[0]*i[1]-i[0]*u[1]>=0?1:-1)*M/g}return{left_right_score:o,up_down_score:w}}(e),a=n.left_right_score,o=n.up_down_score,u=b(e,3),i=u[0],c=u[1],s=u[2],l=c[0]-s[0],f=i[0]-s[0],h=r?.1:.3,p=o>.7,g=o<.42,m=a>=.35&&a<=.6,v=a<=-.35&&a>=-.6;return o>=.42&&o<=.7&&a>-h&&a<h&&l*f<0?{gesture:E,leftRightScore:a}:p&&!v&&!m?{gesture:M,leftRightScore:a}:g&&!v&&!m?{gesture:A,leftRightScore:a}:m&&!p&&!g?{gesture:w,leftRightScore:a}:v&&!p&&!g?{gesture:S,leftRightScore:a}:null},validatePredictionsFunc:function(t){var e,r,n,a,o,u,i,c,s,l,f,h,p,g=t.predictions,m=[[0,0],[t.width,t.height]],v=g.reduce((function(t,e){var r,n,a,o,u,i,c,s=e.topLeft,l=e.bottomRight,f=e.probability,h=e.landmarks;f<.9||h.length<6||(r=m,n=b([s,l],2),a=n[0],o=n[1],u=b(r,2),i=u[0],c=u[1],(o[0]-a[0])*(o[1]-a[1])/((c[0]-i[0])*(c[1]-i[1]))<=.025)?t[k].push(e):t[function(t,e){var r=b(t,2),n=r[0],a=r[1],o=b(e,2),u=o[0],i=o[1],c=[n[0],a[0]],s=[n[1],a[1]];return c[0]<=u[0]&&i[0]<=c[1]&&s[0]<=u[1]&&i[1]<=s[1]?R:c[0]<=u[0]||i[0]<=c[1]||s[0]<=u[1]||i[1]<=s[1]?_:k}(m,[s,l])].push(e);return t}),(d(e={},_,[]),d(e,R,[]),d(e,k,[]),e)),y=v[R].length,E=v[_].length;if(0===y)r=E>0?N:L;else if(y+E>1)r=P;else{var S=n=v[R][0],w=S.topLeft,M=S.bottomRight,A=(a=m,o=b([w,M],2),u=o[0],i=o[1],c=b(a,2),s=c[0],l=c[1],f=i[0]-u[0],h=i[1]-u[1],p=l[0]-s[0],f/p<h/p?f/p:h/p);A<.4&&(r=O),A>.61&&(r=j),function(t,e){var r=b(t,2),n=r[0],a=r[1],o=b(e,2),u=o[0],i=o[1],c=a[0]-n[0],s=a[1]-n[1],l=i[0]-u[0],f=Math.abs(n[0]-(l-c)/2)/l<.2,h=Math.abs(n[1]-(l-s)/2)/l<.2;return!(!f||!h)}([w,M],m)||(r=T)}return{error:r,fullFace:n}},checkCardBlur:function(t){var e=t.data,r=t.width,n=t.height,a=function(t,e,r){for(var n=0,a=[],o=1;o<r-1;o++)for(var u=1;u<e-1;u++){var i=t[o-1][u-1],c=t[o][u-1],s=t[o+1][u-1],l=t[o-1][u],f=t[o][u],h=t[o+1][u],p=t[o-1][u+1],g=t[o][u+1],m=t[o+1][u+1],v=Number.parseInt(0*i+1*c+0*s,10),d=Number.parseInt(1*l+-4*f+1*h,10),b=Number.parseInt(0*p+1*g+0*m,10),y=Number.parseInt(Math.abs(v+d+b),10);a.push(y),n+=y}var E=a.length,S=n/E,w=0;a.forEach((function(t){w+=(t-S)*(t-S)}));var M=Math.sqrt(w/E);return{lapAvg:S,lapStd:M}}(function(t,e,r){for(var n=[],a=0;a<r+2;a++)for(var o=0;o<e+2;o++){n[a]||(n[a]=[]),0!==o&&0!==a&&o!==e+1&&a!==r+1||(n[a][o]=1);var u=I(t,e,a-1,o-1),i=u.r,c=u.g,s=u.b,l=Number.parseInt(Math.round(.299*i+.587*c+.114*s),10);n[a][o]=l}n[0]=n[2],n[r+1]=n[r-1];for(var f=0;f<r+2;f++)n[f][0]=n[f][2],n[f][e+1]=n[f][e-1];return n}(e,r,n),r+2,n+2);return function(t,e){return e<=18.553622245788574?e<=11.523502826690674?t<=-.05309182405471802?1:.5:t<=.2395537868142128?.29069767441860467:.8333333333333334:e<=23.69584369659424?e<=23.6335506439209?.10606060606060606:1:e<=33.88881301879883?.03896103896103896:0}(a.lapAvg,a.lapStd)},detectGlare:function(t,e,r){return function(t,e,r){for(var n=0,a=r[1],o=r[3],u=r[0],i=r[2],c=a;c<o;c++)for(var s=u;s<i;s++){var l=I(t,e,c,s),f=l.r,h=l.g,p=l.b;f>=245&&p>=245&&h>245&&(n+=1)}return n}(t,e,function(t,e){var r=Math.floor(.025*t),n=t-r,a=Math.floor(.025*e);return[r,a,n,e-a]}(e,r))/(e*r)>=.001}});']),
 	      t = URL.createObjectURL(e);
-	  return k$1(new Worker(t));
+	  return Q$1(new Worker(t));
 	}(),
 	    U$1 = [[0, 1, 0], [1, -4, 1], [0, 1, 0]];
 
@@ -11523,12 +11527,10 @@
 	    i.forEach(function (e) {
 	      y += (e - I) * (e - I);
 	    });
-
-	    var _ = Math.sqrt(y / v);
-
+	    var E = Math.sqrt(y / v);
 	    return {
 	      lapAvg: I,
-	      lapStd: _
+	      lapStd: E
 	    };
 	  }(function (e, t, r) {
 	    for (var n = [], i = 0; i < r + 2; i++) {
@@ -11817,11 +11819,10 @@
 	        I = (m[0] * w[0] + m[1] * w[1]) / v,
 	        y = p / v;
 	    if (g > .5 * v) o = (m[0] * f[0] + m[1] * f[1]) / g / g;else {
-	      var _ = ae(se(m, function (e, t) {
+	      var E = ae(se(m, function (e, t) {
 	        return [e[0] * t, e[1] * t];
 	      }(w, I / v)));
-
-	      s = w, o = ((a = m)[0] * s[1] - s[0] * a[1] >= 0 ? 1 : -1) * _ / g;
+	      s = w, o = ((a = m)[0] * s[1] - s[0] * a[1] >= 0 ? 1 : -1) * E / g;
 	    }
 	    return {
 	      left_right_score: o,
@@ -12113,8 +12114,8 @@
 	        i[I] /= (o - a) * w;
 	      }
 
-	      for (var y = 0, _ = 0; _ < 6; _++) {
-	        y += i[_];
+	      for (var y = 0, E = 0; E < 6; E++) {
+	        y += i[E];
 	      }
 
 	      return y /= 6, s(), {
@@ -12201,8 +12202,8 @@
 
 	  return i;
 	},
-	    _e = arguments[3],
-	    Ee = arguments[4],
+	    Ee = arguments[3],
+	    _e = arguments[4],
 	    Be = arguments[5],
 	    Ce = JSON.stringify,
 	    Se = function Se(e, t) {
@@ -12224,21 +12225,21 @@
 	      u[a = n[i]] = a;
 	    }
 
-	    Ee[r] = ["function(require,module,exports){" + e + "(self); }", u];
+	    _e[r] = ["function(require,module,exports){" + e + "(self); }", u];
 	  }
 
 	  var l = Math.floor(Math.pow(16, 8) * Math.random()).toString(16),
 	      c = {};
-	  c[r] = r, Ee[l] = ["function(require,module,exports){var f = require(" + Ce(r) + ");(f.default ? f.default : f)(self);}", c];
+	  c[r] = r, _e[l] = ["function(require,module,exports){var f = require(" + Ce(r) + ");(f.default ? f.default : f)(self);}", c];
 	  var h = {};
 	  !function e(t) {
-	    for (var r in h[t] = !0, Ee[t][1]) {
-	      var n = Ee[t][1][r];
+	    for (var r in h[t] = !0, _e[t][1]) {
+	      var n = _e[t][1][r];
 	      h[n] || e(n);
 	    }
 	  }(l);
-	  var d = "(" + _e + ")({" + Object.keys(h).map(function (e) {
-	    return Ce(e) + ":[" + Ee[e][0] + "," + Ce(Ee[e][1]) + "]";
+	  var d = "(" + Ee + ")({" + Object.keys(h).map(function (e) {
+	    return Ce(e) + ":[" + _e[e][0] + "," + Ce(_e[e][1]) + "]";
 	  }).join(",") + "},{},[" + Ce(l) + "])",
 	      f = window.URL || window.webkitURL || window.mozURL || window.msURL,
 	      g = new Blob([d], {
@@ -12263,7 +12264,7 @@
 	}
 
 	var Oe,
-	    Qe = Me(function (e) {
+	    Re = Me(function (e) {
 	  "function" == typeof Object.create ? e.exports = function (e, t) {
 	    t && (e.super_ = t, e.prototype = Object.create(t.prototype, {
 	      constructor: {
@@ -12283,18 +12284,18 @@
 	    }
 	  };
 	}),
-	    ke = {
+	    Qe = {
 	  js: !0,
 	  wasm: !0
 	};
 
-	function xe(e) {
-	  if (!(this instanceof xe)) return new xe(e);
-	  var t = ye({}, ke, e || {});
+	function ke(e) {
+	  if (!(this instanceof ke)) return new ke(e);
+	  var t = ye({}, Qe, e || {});
 	  if (this.options = t, this.__cache = {}, this.__init_promise = null, this.__modules = t.modules || {}, this.__memory = null, this.__wasm = {}, this.__isLE = 1 === new Uint32Array(new Uint8Array([1, 0, 0, 0]).buffer)[0], !this.options.js && !this.options.wasm) throw new Error('mathlib: at least "js" or "wasm" should be enabled');
 	}
 
-	xe.prototype.has_wasm = function () {
+	ke.prototype.has_wasm = function () {
 	  if (void 0 !== Oe) return Oe;
 	  if (Oe = !1, "undefined" == typeof WebAssembly) return Oe;
 
@@ -12305,9 +12306,9 @@
 	  } catch (e) {}
 
 	  return Oe;
-	}, xe.prototype.use = function (e) {
+	}, ke.prototype.use = function (e) {
 	  return this.__modules[e.name] = e, this.options.wasm && this.has_wasm() && e.wasm_fn ? this[e.name] = e.wasm_fn : this[e.name] = e.fn, this;
-	}, xe.prototype.init = function () {
+	}, ke.prototype.init = function () {
 	  if (this.__init_promise) return this.__init_promise;
 	  if (!this.options.js && this.options.wasm && !this.has_wasm()) return Promise.reject(new Error('mathlib: only "wasm" was enabled, but it\'s not supported'));
 	  var e = this;
@@ -12319,20 +12320,20 @@
 	  })).then(function () {
 	    return e;
 	  }), this.__init_promise;
-	}, xe.prototype.__base64decode = function (e) {
+	}, ke.prototype.__base64decode = function (e) {
 	  for (var t = e.replace(/[\r\n=]/g, ""), r = t.length, n = new Uint8Array(3 * r >> 2), i = 0, o = 0, a = 0; a < r; a++) {
 	    a % 4 == 0 && a && (n[o++] = i >> 16 & 255, n[o++] = i >> 8 & 255, n[o++] = 255 & i), i = i << 6 | "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".indexOf(t.charAt(a));
 	  }
 
 	  var s = r % 4 * 6;
 	  return 0 === s ? (n[o++] = i >> 16 & 255, n[o++] = i >> 8 & 255, n[o++] = 255 & i) : 18 === s ? (n[o++] = i >> 10 & 255, n[o++] = i >> 2 & 255) : 12 === s && (n[o++] = i >> 4 & 255), n;
-	}, xe.prototype.__reallocate = function (e) {
+	}, ke.prototype.__reallocate = function (e) {
 	  if (!this.__memory) return this.__memory = new WebAssembly.Memory({
 	    initial: Math.ceil(e / 65536)
 	  }), this.__memory;
 	  var t = this.__memory.buffer.byteLength;
 	  return t < e && this.__memory.grow(Math.ceil((e - t) / 65536)), this.__memory;
-	}, xe.prototype.__instance = function (e, t, r) {
+	}, ke.prototype.__instance = function (e, t, r) {
 	  if (t && this.__reallocate(t), !this.__wasm[e]) {
 	    var n = this.__modules[e];
 	    this.__wasm[e] = new WebAssembly.Module(this.__base64decode(n.wasm_src));
@@ -12354,17 +12355,17 @@
 	  }
 
 	  return this.__cache[e];
-	}, xe.prototype.__align = function (e, t) {
+	}, ke.prototype.__align = function (e, t) {
 	  var r = e % (t = t || 8);
 	  return e + (r ? t - r : 0);
 	};
-	var Re,
+	var xe,
+	    Te,
 	    De,
 	    Le,
-	    Pe,
 	    Ne,
-	    Te,
-	    je = xe;
+	    Pe,
+	    je = ke;
 
 	function Ue(e, t, r, n, i, o) {
 	  var a, s, u, l, c, h, d, f, g, A, m, p, w, b;
@@ -12390,7 +12391,7 @@
 	          r = Math.exp(-t),
 	          n = Math.exp(-2 * t),
 	          i = (1 - r) * (1 - r) / (1 + 2 * t * r - n);
-	      return Re = i, De = i * (t - 1) * r, Le = i * (t + 1) * r, Pe = -i * n, Ne = 2 * r, Te = -n, new Float32Array([Re, De, Le, Pe, Ne, Te, (Re + De) / (1 - Ne - Te), (Le + Pe) / (1 - Ne - Te)]);
+	      return xe = i, Te = i * (t - 1) * r, De = i * (t + 1) * r, Le = -i * n, Ne = 2 * r, Pe = -n, new Float32Array([xe, Te, De, Le, Ne, Pe, (xe + Te) / (1 - Ne - Pe), (De + Le) / (1 - Ne - Pe)]);
 	    }(n);
 
 	    Ue(e, i, o, a, t, r), Ue(i, e, o, a, r, t);
@@ -12415,8 +12416,8 @@
 
 	      Fe(v, t, r, i);
 
-	      for (var I = n / 100 * 4096 + .5 | 0, y = 257 * o | 0, _ = t * r, E = 0; E < _; E++) {
-	        p = 2 * (b[E] - v[E]), Math.abs(p) >= y && (a = e[w = 4 * E], s = e[w + 1], u = e[w + 2], h = 257 * ((f = a >= s && a >= u ? a : s >= a && s >= u ? s : u) + (d = a <= s && a <= u ? a : s <= a && s <= u ? s : u)) >> 1, d === f ? l = c = 0 : (c = h <= 32767 ? 4095 * (f - d) / (f + d) | 0 : 4095 * (f - d) / (510 - f - d) | 0, l = a === f ? 65535 * (s - u) / (6 * (f - d)) | 0 : s === f ? 21845 + (65535 * (u - a) / (6 * (f - d)) | 0) : 43690 + (65535 * (a - s) / (6 * (f - d)) | 0)), (h += I * p + 2048 >> 12) > 65535 ? h = 65535 : h < 0 && (h = 0), 0 === c ? a = s = u = h >> 8 : (g = 2 * h - (A = h <= 32767 ? h * (4096 + c) + 2048 >> 12 : h + ((65535 - h) * c + 2048 >> 12)) >> 8, A >>= 8, a = (m = l + 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), s = (m = 65535 & l) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), u = (m = l - 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16)), e[w] = a, e[w + 1] = s, e[w + 2] = u);
+	      for (var I = n / 100 * 4096 + .5 | 0, y = 257 * o | 0, E = t * r, _ = 0; _ < E; _++) {
+	        p = 2 * (b[_] - v[_]), Math.abs(p) >= y && (a = e[w = 4 * _], s = e[w + 1], u = e[w + 2], h = 257 * ((f = a >= s && a >= u ? a : s >= a && s >= u ? s : u) + (d = a <= s && a <= u ? a : s <= a && s <= u ? s : u)) >> 1, d === f ? l = c = 0 : (c = h <= 32767 ? 4095 * (f - d) / (f + d) | 0 : 4095 * (f - d) / (510 - f - d) | 0, l = a === f ? 65535 * (s - u) / (6 * (f - d)) | 0 : s === f ? 21845 + (65535 * (u - a) / (6 * (f - d)) | 0) : 43690 + (65535 * (a - s) / (6 * (f - d)) | 0)), (h += I * p + 2048 >> 12) > 65535 ? h = 65535 : h < 0 && (h = 0), 0 === c ? a = s = u = h >> 8 : (g = 2 * h - (A = h <= 32767 ? h * (4096 + c) + 2048 >> 12 : h + ((65535 - h) * c + 2048 >> 12)) >> 8, A >>= 8, a = (m = l + 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), s = (m = 65535 & l) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), u = (m = l - 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16)), e[w] = a, e[w + 1] = s, e[w + 2] = u);
 	      }
 	    }
 	  },
@@ -12500,17 +12501,17 @@
 	      v,
 	      I,
 	      y = We[e].filter,
-	      _ = 1 / n,
-	      E = Math.min(1, n),
-	      B = We[e].win / E,
+	      E = 1 / n,
+	      _ = Math.min(1, n),
+	      B = We[e].win / _,
 	      C = Math.floor(2 * (B + 1)),
 	      S = new Int16Array((C + 2) * r),
 	      M = 0,
 	      O = !S.subarray || !S.set;
 
 	  for (o = 0; o < r; o++) {
-	    for (a = (o + .5) * _ + i, s = Math.max(0, Math.floor(a - B)), l = (u = Math.min(t - 1, Math.ceil(a + B))) - s + 1, c = new Float32Array(l), h = new Int16Array(l), d = 0, f = s, g = 0; f <= u; f++, g++) {
-	      d += A = y((f + .5 - a) * E), c[g] = A;
+	    for (a = (o + .5) * E + i, s = Math.max(0, Math.floor(a - B)), l = (u = Math.min(t - 1, Math.ceil(a + B))) - s + 1, c = new Float32Array(l), h = new Int16Array(l), d = 0, f = s, g = 0; f <= u; f++, g++) {
+	      d += A = y((f + .5 - a) * _), c[g] = A;
 	    }
 
 	    for (m = 0, g = 0; g < c.length; g++) {
@@ -12688,7 +12689,7 @@
 	  }, this.use(He), this.use(Ze);
 	}
 
-	Qe(Je, je), Je.prototype.resizeAndUnsharp = function (e, t) {
+	Re(Je, je), Je.prototype.resizeAndUnsharp = function (e, t) {
 	  var r = this.resize(e, t);
 	  return e.unsharpAmount && this.unsharp_mask(r, e.toWidth, e.toHeight, e.unsharpAmount, e.unsharpRadius, e.unsharpThreshold), r;
 	};
@@ -13172,7 +13173,7 @@
 	    desH: Math.floor(i / o)
 	  };
 	},
-	    _t = Object.freeze({
+	    Et = Object.freeze({
 	  __proto__: null,
 	  scaleImage: function scaleImage(e) {
 	    var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
@@ -13202,7 +13203,7 @@
 	  }
 	});
 
-	function Et(e, t, r) {
+	function _t(e, t, r) {
 	  return function (e, t, r) {
 	    for (var n = 0, i = r[1], o = r[3], a = r[0], s = r[2], u = i; u < o; u++) {
 	      for (var l = a; l < s; l++) {
@@ -13235,7 +13236,7 @@
 	              break;
 	            }
 
-	            return e.abrupt("return", Et(i, n.width, n.heigh));
+	            return e.abrupt("return", _t(i, n.width, n.heigh));
 
 	          case 5:
 	            return e.abrupt("return", j$2.detectGlare(i, n.width, n.height));
@@ -13346,22 +13347,22 @@
 	        v = w.getDevice(),
 	        I = w.getEngine(),
 	        y = w.getOS(),
-	        _ = w.getUA(),
-	        E = a.CHROME,
+	        E = w.getUA(),
+	        _ = a.CHROME,
 	        B = a.CHROMIUM,
 	        C = a.IE,
 	        S = a.INTERNET_EXPLORER,
 	        M = a.OPERA,
 	        O = a.FIREFOX,
-	        Q = a.SAFARI,
-	        k = a.EDGE,
-	        x = a.YANDEX,
-	        R = a.MOBILE_SAFARI,
-	        D = u.MOBILE,
-	        L = u.TABLET,
-	        P = u.SMART_TV,
+	        R = a.SAFARI,
+	        Q = a.EDGE,
+	        k = a.YANDEX,
+	        x = a.MOBILE_SAFARI,
+	        T = u.MOBILE,
+	        D = u.TABLET,
+	        L = u.SMART_TV,
 	        N = u.BROWSER,
-	        T = u.WEARABLE,
+	        P = u.WEARABLE,
 	        j = u.CONSOLE,
 	        U = s.ANDROID,
 	        F = s.WINDOWS_PHONE,
@@ -13369,38 +13370,38 @@
 	        W = s.WINDOWS,
 	        q = s.MAC_OS,
 	        G = function G() {
-	      return y.name === s.WINDOWS && "10" === y.version && "string" == typeof _ && -1 !== _.indexOf("Edg/");
+	      return y.name === s.WINDOWS && "10" === y.version && "string" == typeof E && -1 !== E.indexOf("Edg/");
 	    },
 	        z = function z() {
-	      return b.name === k;
+	      return b.name === Q;
 	    },
 	        V = function V() {
 	      return p("iPad");
 	    },
-	        Y = v.type === P,
+	        Y = v.type === L,
 	        X = v.type === j,
-	        K = v.type === T,
-	        Z = b.name === R || V(),
+	        K = v.type === P,
+	        Z = b.name === x || V(),
 	        J = b.name === B,
 	        $ = function () {
 	      switch (v.type) {
+	        case T:
 	        case D:
-	        case L:
 	          return !0;
 
 	        default:
 	          return !1;
 	      }
 	    }() || V(),
-	        ee = v.type === D,
-	        te = v.type === L || V(),
+	        ee = v.type === T,
+	        te = v.type === D || V(),
 	        re = v.type === N,
 	        ne = y.name === U,
 	        ie = y.name === F,
 	        oe = y.name === H || V(),
-	        ae = b.name === E,
+	        ae = b.name === _,
 	        se = b.name === O,
-	        ue = b.name === Q || b.name === R,
+	        ue = b.name === R || b.name === x,
 	        le = b.name === M,
 	        ce = b.name === S || b.name === C,
 	        he = y.version ? y.version : "none",
@@ -13412,11 +13413,11 @@
 	        pe = v.model ? v.model : "none",
 	        we = I.name,
 	        be = I.version,
-	        ve = _,
+	        ve = E,
 	        Ie = z() || G(),
-	        ye = b.name === x,
-	        _e = v.type,
-	        Ee = (n = m()) && (/iPad|iPhone|iPod/.test(n.platform) || "MacIntel" === n.platform && n.maxTouchPoints > 1) && !window.MSStream,
+	        ye = b.name === k,
+	        Ee = v.type,
+	        _e = (n = m()) && (/iPad|iPhone|iPod/.test(n.platform) || "MacIntel" === n.platform && n.maxTouchPoints > 1) && !window.MSStream,
 	        Be = V(),
 	        Ce = p("iPhone"),
 	        Se = p("iPod"),
@@ -13426,20 +13427,20 @@
 	      return "string" == typeof t && /electron/.test(t);
 	    }(),
 	        Oe = G(),
-	        Qe = z(),
-	        ke = y.name === W,
-	        xe = y.name === q,
-	        Re = c(v.type);
+	        Re = z(),
+	        Qe = y.name === W,
+	        ke = y.name === q,
+	        xe = c(v.type);
 
 	    e.exports = {
 	      deviceDetect: function deviceDetect() {
-	        var e = Re.isBrowser,
-	            t = Re.isMobile,
-	            r = Re.isTablet,
-	            n = Re.isSmartTV,
-	            i = Re.isConsole,
-	            o = Re.isWearable;
-	        return e ? h(e, b, I, y, _) : n ? A(n, I, y, _) : i ? g(i, I, y, _) : t || r ? d(Re, v, y, _) : o ? f(o, I, y, _) : void 0;
+	        var e = xe.isBrowser,
+	            t = xe.isMobile,
+	            r = xe.isTablet,
+	            n = xe.isSmartTV,
+	            i = xe.isConsole,
+	            o = xe.isWearable;
+	        return e ? h(e, b, I, y, E) : n ? A(n, I, y, E) : i ? g(i, I, y, E) : t || r ? d(xe, v, y, E) : o ? f(o, I, y, E) : void 0;
 	      },
 	      isSmartTV: Y,
 	      isConsole: X,
@@ -13470,16 +13471,16 @@
 	      getUA: ve,
 	      isEdge: Ie,
 	      isYandex: ye,
-	      deviceType: _e,
-	      isIOS13: Ee,
+	      deviceType: Ee,
+	      isIOS13: _e,
 	      isIPad13: Be,
 	      isIPhone13: Ce,
 	      isIPod13: Se,
 	      isElectron: Me,
 	      isEdgeChromium: Oe,
-	      isLegacyEdge: Qe,
-	      isWindows: ke,
-	      isMacOs: xe
+	      isLegacyEdge: Re,
+	      isWindows: Qe,
+	      isMacOs: ke
 	    };
 	  }, function (e, t, r) {
 	    var n;
@@ -13606,17 +13607,17 @@
 	          }
 	        }
 	      },
-	          _ = {
+	          E = {
 	        browser: [[/(opera\smini)\/([\w\.-]+)/i, /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i, /(opera).+version\/([\w\.]+)/i, /(opera)[\/\s]+([\w\.]+)/i], [c, f], [/(opios)[\/\s]+([\w\.]+)/i], [[c, "Opera Mini"], f], [/\s(opr)\/([\w\.]+)/i], [[c, "Opera"], f], [/(kindle)\/([\w\.]+)/i, /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i, /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i, /(?:ms|\()(ie)\s([\w\.]+)/i, /(rekonq)\/([\w\.]*)/i, /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark)\/([\w\.-]+)/i], [c, f], [/(trident).+rv[:\s]([\w\.]+).+like\sgecko/i], [[c, "IE"], f], [/(edge|edgios|edgea)\/((\d+)?[\w\.]+)/i], [[c, "Edge"], f], [/(yabrowser)\/([\w\.]+)/i], [[c, "Yandex"], f], [/(puffin)\/([\w\.]+)/i], [[c, "Puffin"], f], [/((?:[\s\/])uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i], [[c, "UCBrowser"], f], [/(comodo_dragon)\/([\w\.]+)/i], [[c, /_/g, " "], f], [/(micromessenger)\/([\w\.]+)/i], [[c, "WeChat"], f], [/(qqbrowserlite)\/([\w\.]+)/i], [c, f], [/(QQ)\/([\d\.]+)/i], [c, f], [/m?(qqbrowser)[\/\s]?([\w\.]+)/i], [c, f], [/(BIDUBrowser)[\/\s]?([\w\.]+)/i], [c, f], [/(2345Explorer)[\/\s]?([\w\.]+)/i], [c, f], [/(MetaSr)[\/\s]?([\w\.]+)/i], [c], [/(LBBROWSER)/i], [c], [/xiaomi\/miuibrowser\/([\w\.]+)/i], [f, [c, "MIUI Browser"]], [/;fbav\/([\w\.]+);/i], [f, [c, "Facebook"]], [/headlesschrome(?:\/([\w\.]+)|\s)/i], [f, [c, "Chrome Headless"]], [/\swv\).+(chrome)\/([\w\.]+)/i], [[c, /(.+)/, "$1 WebView"], f], [/((?:oculus|samsung)browser)\/([\w\.]+)/i], [[c, /(.+(?:g|us))(.+)/, "$1 $2"], f], [/android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)*/i], [f, [c, "Android Browser"]], [/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i], [c, f], [/(dolfin)\/([\w\.]+)/i], [[c, "Dolphin"], f], [/((?:android.+)crmo|crios)\/([\w\.]+)/i], [[c, "Chrome"], f], [/(coast)\/([\w\.]+)/i], [[c, "Opera Coast"], f], [/fxios\/([\w\.-]+)/i], [f, [c, "Firefox"]], [/version\/([\w\.]+).+?mobile\/\w+\s(safari)/i], [f, [c, "Mobile Safari"]], [/version\/([\w\.]+).+?(mobile\s?safari|safari)/i], [f, c], [/webkit.+?(gsa)\/([\w\.]+).+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [[c, "GSA"], f], [/webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [c, [f, I.str, y.browser.oldsafari.version]], [/(konqueror)\/([\w\.]+)/i, /(webkit|khtml)\/([\w\.]+)/i], [c, f], [/(navigator|netscape)\/([\w\.-]+)/i], [[c, "Netscape"], f], [/(swiftfox)/i, /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i, /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i, /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i, /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i, /(links)\s\(([\w\.]+)/i, /(gobrowser)\/?([\w\.]*)/i, /(ice\s?browser)\/v?([\w\._]+)/i, /(mosaic)[\/\s]([\w\.]+)/i], [c, f]],
 	        cpu: [[/(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i], [[g, "amd64"]], [/(ia32(?=;))/i], [[g, v.lowerize]], [/((?:i[346]|x)86)[;\)]/i], [[g, "ia32"]], [/windows\s(ce|mobile);\sppc;/i], [[g, "arm"]], [/((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i], [[g, /ower/, "", v.lowerize]], [/(sun4\w)[;\)]/i], [[g, "sparc"]], [/((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i], [[g, v.lowerize]]],
 	        device: [[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i], [l, d, [h, p]], [/applecoremedia\/[\w\.]+ \((ipad)/], [l, [d, "Apple"], [h, p]], [/(apple\s{0,1}tv)/i], [[l, "Apple TV"], [d, "Apple"]], [/(archos)\s(gamepad2?)/i, /(hp).+(touchpad)/i, /(hp).+(tablet)/i, /(kindle)\/([\w\.]+)/i, /\s(nook)[\w\s]+build\/(\w+)/i, /(dell)\s(strea[kpr\s\d]*[\dko])/i], [d, l, [h, p]], [/(kf[A-z]+)\sbuild\/.+silk\//i], [l, [d, "Amazon"], [h, p]], [/(sd|kf)[0349hijorstuw]+\sbuild\/.+silk\//i], [[l, I.str, y.device.amazon.model], [d, "Amazon"], [h, m]], [/\((ip[honed|\s\w*]+);.+(apple)/i], [l, d, [h, m]], [/\((ip[honed|\s\w*]+);/i], [l, [d, "Apple"], [h, m]], [/(blackberry)[\s-]?(\w+)/i, /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i, /(hp)\s([\w\s]+\w)/i, /(asus)-?(\w+)/i], [d, l, [h, m]], [/\(bb10;\s(\w+)/i], [l, [d, "BlackBerry"], [h, m]], [/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7|padfone)/i], [l, [d, "Asus"], [h, p]], [/(sony)\s(tablet\s[ps])\sbuild\//i, /(sony)?(?:sgp.+)\sbuild\//i], [[d, "Sony"], [l, "Xperia Tablet"], [h, p]], [/android.+\s([c-g]\d{4}|so[-l]\w+)\sbuild\//i], [l, [d, "Sony"], [h, m]], [/\s(ouya)\s/i, /(nintendo)\s([wids3u]+)/i], [d, l, [h, A]], [/android.+;\s(shield)\sbuild/i], [l, [d, "Nvidia"], [h, A]], [/(playstation\s[34portablevi]+)/i], [l, [d, "Sony"], [h, A]], [/(sprint\s(\w+))/i], [[d, I.str, y.device.sprint.vendor], [l, I.str, y.device.sprint.model], [h, m]], [/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i], [d, l, [h, p]], [/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, /(zte)-(\w*)/i, /(alcatel|geeksphone|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i], [d, [l, /_/g, " "], [h, m]], [/(nexus\s9)/i], [l, [d, "HTC"], [h, p]], [/d\/huawei([\w\s-]+)[;\)]/i, /(nexus\s6p)/i], [l, [d, "Huawei"], [h, m]], [/(microsoft);\s(lumia[\s\w]+)/i], [d, l, [h, m]], [/[\s\(;](xbox(?:\sone)?)[\s\);]/i], [l, [d, "Microsoft"], [h, A]], [/(kin\.[onetw]{3})/i], [[l, /\./g, " "], [d, "Microsoft"], [h, m]], [/\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)[\w\s]+build\//i, /mot[\s-]?(\w*)/i, /(XT\d{3,4}) build\//i, /(nexus\s6)/i], [l, [d, "Motorola"], [h, m]], [/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i], [l, [d, "Motorola"], [h, p]], [/hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i], [[d, v.trim], [l, v.trim], [h, w]], [/hbbtv.+maple;(\d+)/i], [[l, /^/, "SmartTV"], [d, "Samsung"], [h, w]], [/\(dtv[\);].+(aquos)/i], [l, [d, "Sharp"], [h, w]], [/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n\d+|sgh-t8[56]9|nexus 10))/i, /((SM-T\w+))/i], [[d, "Samsung"], l, [h, p]], [/smart-tv.+(samsung)/i], [d, [h, w], l], [/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-\w[\w\d]+))/i, /(sam[sung]*)[\s-]*(\w+-?[\w-]*)/i, /sec-((sgh\w+))/i], [[d, "Samsung"], l, [h, m]], [/sie-(\w*)/i], [l, [d, "Siemens"], [h, m]], [/(maemo|nokia).*(n900|lumia\s\d+)/i, /(nokia)[\s_-]?([\w-]*)/i], [[d, "Nokia"], l, [h, m]], [/android\s3\.[\s\w;-]{10}(a\d{3})/i], [l, [d, "Acer"], [h, p]], [/android.+([vl]k\-?\d{3})\s+build/i], [l, [d, "LG"], [h, p]], [/android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i], [[d, "LG"], l, [h, p]], [/(lg) netcast\.tv/i], [d, l, [h, w]], [/(nexus\s[45])/i, /lg[e;\s\/-]+(\w*)/i, /android.+lg(\-?[\d\w]+)\s+build/i], [l, [d, "LG"], [h, m]], [/android.+(ideatab[a-z0-9\-\s]+)/i], [l, [d, "Lenovo"], [h, p]], [/linux;.+((jolla));/i], [d, l, [h, m]], [/((pebble))app\/[\d\.]+\s/i], [d, l, [h, b]], [/android.+;\s(oppo)\s?([\w\s]+)\sbuild/i], [d, l, [h, m]], [/crkey/i], [[l, "Chromecast"], [d, "Google"]], [/android.+;\s(glass)\s\d/i], [l, [d, "Google"], [h, b]], [/android.+;\s(pixel c)\s/i], [l, [d, "Google"], [h, p]], [/android.+;\s(pixel xl|pixel)\s/i], [l, [d, "Google"], [h, m]], [/android.+;\s(\w+)\s+build\/hm\1/i, /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i, /android.+(mi[\s\-_]*(?:one|one[\s_]plus|note lte)?[\s_]*(?:\d?\w?)[\s_]*(?:plus)?)\s+build/i, /android.+(redmi[\s\-_]*(?:note)?(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [d, "Xiaomi"], [h, m]], [/android.+(mi[\s\-_]*(?:pad)(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [d, "Xiaomi"], [h, p]], [/android.+;\s(m[1-5]\snote)\sbuild/i], [l, [d, "Meizu"], [h, p]], [/android.+a000(1)\s+build/i, /android.+oneplus\s(a\d{4})\s+build/i], [l, [d, "OnePlus"], [h, m]], [/android.+[;\/]\s*(RCT[\d\w]+)\s+build/i], [l, [d, "RCA"], [h, p]], [/android.+[;\/\s]+(Venue[\d\s]{2,7})\s+build/i], [l, [d, "Dell"], [h, p]], [/android.+[;\/]\s*(Q[T|M][\d\w]+)\s+build/i], [l, [d, "Verizon"], [h, p]], [/android.+[;\/]\s+(Barnes[&\s]+Noble\s+|BN[RT])(V?.*)\s+build/i], [[d, "Barnes & Noble"], l, [h, p]], [/android.+[;\/]\s+(TM\d{3}.*\b)\s+build/i], [l, [d, "NuVision"], [h, p]], [/android.+;\s(k88)\sbuild/i], [l, [d, "ZTE"], [h, p]], [/android.+[;\/]\s*(gen\d{3})\s+build.*49h/i], [l, [d, "Swiss"], [h, m]], [/android.+[;\/]\s*(zur\d{3})\s+build/i], [l, [d, "Swiss"], [h, p]], [/android.+[;\/]\s*((Zeki)?TB.*\b)\s+build/i], [l, [d, "Zeki"], [h, p]], [/(android).+[;\/]\s+([YR]\d{2})\s+build/i, /android.+[;\/]\s+(Dragon[\-\s]+Touch\s+|DT)(\w{5})\sbuild/i], [[d, "Dragon Touch"], l, [h, p]], [/android.+[;\/]\s*(NS-?\w{0,9})\sbuild/i], [l, [d, "Insignia"], [h, p]], [/android.+[;\/]\s*((NX|Next)-?\w{0,9})\s+build/i], [l, [d, "NextBook"], [h, p]], [/android.+[;\/]\s*(Xtreme\_)?(V(1[045]|2[015]|30|40|60|7[05]|90))\s+build/i], [[d, "Voice"], l, [h, m]], [/android.+[;\/]\s*(LVTEL\-)?(V1[12])\s+build/i], [[d, "LvTel"], l, [h, m]], [/android.+[;\/]\s*(V(100MD|700NA|7011|917G).*\b)\s+build/i], [l, [d, "Envizen"], [h, p]], [/android.+[;\/]\s*(Le[\s\-]+Pan)[\s\-]+(\w{1,9})\s+build/i], [d, l, [h, p]], [/android.+[;\/]\s*(Trio[\s\-]*.*)\s+build/i], [l, [d, "MachSpeed"], [h, p]], [/android.+[;\/]\s*(Trinity)[\-\s]*(T\d{3})\s+build/i], [d, l, [h, p]], [/android.+[;\/]\s*TU_(1491)\s+build/i], [l, [d, "Rotor"], [h, p]], [/android.+(KS(.+))\s+build/i], [l, [d, "Amazon"], [h, p]], [/android.+(Gigaset)[\s\-]+(Q\w{1,9})\s+build/i], [d, l, [h, p]], [/\s(tablet|tab)[;\/]/i, /\s(mobile)(?:[;\/]|\ssafari)/i], [[h, v.lowerize], d, l], [/(android[\w\.\s\-]{0,9});.+build/i], [l, [d, "Generic"]]],
 	        engine: [[/windows.+\sedge\/([\w\.]+)/i], [f, [c, "EdgeHTML"]], [/(presto)\/([\w\.]+)/i, /(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i, /(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i, /(icab)[\/\s]([23]\.[\d\.]+)/i], [c, f], [/rv\:([\w\.]{1,9}).+(gecko)/i], [f, c]],
 	        os: [[/microsoft\s(windows)\s(vista|xp)/i], [c, f], [/(windows)\snt\s6\.2;\s(arm)/i, /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i, /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i], [c, [f, I.str, y.os.windows.version]], [/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i], [[c, "Windows"], [f, I.str, y.os.windows.version]], [/\((bb)(10);/i], [[c, "BlackBerry"], f], [/(blackberry)\w*\/?([\w\.]*)/i, /(tizen)[\/\s]([\w\.]+)/i, /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]*)/i, /linux;.+(sailfish);/i], [c, f], [/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]*)/i], [[c, "Symbian"], f], [/\((series40);/i], [c], [/mozilla.+\(mobile;.+gecko.+firefox/i], [[c, "Firefox OS"], f], [/(nintendo|playstation)\s([wids34portablevu]+)/i, /(mint)[\/\s\(]?(\w*)/i, /(mageia|vectorlinux)[;\s]/i, /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?(?!chrom)([\w\.-]*)/i, /(hurd|linux)\s?([\w\.]*)/i, /(gnu)\s?([\w\.]*)/i], [c, f], [/(cros)\s[\w]+\s([\w\.]+\w)/i], [[c, "Chromium OS"], f], [/(sunos)\s?([\w\.\d]*)/i], [[c, "Solaris"], f], [/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]*)/i], [c, f], [/(haiku)\s(\w+)/i], [c, f], [/cfnetwork\/.+darwin/i, /ip[honead]{2,4}(?:.*os\s([\w]+)\slike\smac|;\sopera)/i], [[f, /_/g, "."], [c, "iOS"]], [/(mac\sos\sx)\s?([\w\s\.]*)/i, /(macintosh|mac(?=_powerpc)\s)/i], [[c, "Mac OS"], [f, /_/g, "."]], [/((?:open)?solaris)[\/\s-]?([\w\.]*)/i, /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i, /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i, /(unix)\s?([\w\.]*)/i], [c, f]]
 	      },
-	          E = function E(e, t) {
-	        if ("object" == _typeof(e) && (t = e, e = o), !(this instanceof E)) return new E(e, t).getResult();
+	          _ = function _(e, t) {
+	        if ("object" == _typeof(e) && (t = e, e = o), !(this instanceof _)) return new _(e, t).getResult();
 	        var r = e || (i && i.navigator && i.navigator.userAgent ? i.navigator.userAgent : ""),
-	            n = t ? v.extend(_, t) : _;
+	            n = t ? v.extend(E, t) : E;
 	        return this.getBrowser = function () {
 	          var e = {
 	            name: o,
@@ -13663,13 +13664,13 @@
 	        }, this;
 	      };
 
-	      E.VERSION = "0.7.18", E.BROWSER = {
+	      _.VERSION = "0.7.18", _.BROWSER = {
 	        NAME: c,
 	        MAJOR: "major",
 	        VERSION: f
-	      }, E.CPU = {
+	      }, _.CPU = {
 	        ARCHITECTURE: g
-	      }, E.DEVICE = {
+	      }, _.DEVICE = {
 	        MODEL: l,
 	        VENDOR: d,
 	        TYPE: h,
@@ -13679,19 +13680,19 @@
 	        TABLET: p,
 	        WEARABLE: b,
 	        EMBEDDED: "embedded"
-	      }, E.ENGINE = {
+	      }, _.ENGINE = {
 	        NAME: c,
 	        VERSION: f
-	      }, E.OS = {
+	      }, _.OS = {
 	        NAME: c,
 	        VERSION: f
-	      }, _typeof(t) !== s ? (_typeof(e) !== s && e.exports && (t = e.exports = E), t.UAParser = E) : r(3) ? (n = function () {
-	        return E;
-	      }.call(t, r, t, e)) === o || (e.exports = n) : i && (i.UAParser = E);
+	      }, _typeof(t) !== s ? (_typeof(e) !== s && e.exports && (t = e.exports = _), t.UAParser = _) : r(3) ? (n = function () {
+	        return _;
+	      }.call(t, r, t, e)) === o || (e.exports = n) : i && (i.UAParser = _);
 	      var B = i && (i.jQuery || i.Zepto);
 
 	      if (_typeof(B) !== s) {
-	        var C = new E();
+	        var C = new _();
 	        B.ua = C.getResult(), B.ua.get = function () {
 	          return C.getUA();
 	        }, B.ua.set = function (e) {
@@ -65969,35 +65970,35 @@
 	          for (;;) {
 	            switch (t.prev = t.next) {
 	              case 0:
-	                return t.prev = 0, t.next = 3, ia("wasm");
-
-	              case 3:
-	                t.next = 23;
-	                break;
+	                return Bt$1.set("WASM_HAS_SIMD_SUPPORT", !1), Bt$1.set("WASM_HAS_MULTITHREAD_SUPPORT", !1), t.prev = 2, t.next = 5, ia("wasm");
 
 	              case 5:
-	                return t.prev = 5, t.t0 = t["catch"](0), t.prev = 7, t.next = 10, ia("webgl");
-
-	              case 10:
-	                t.next = 23;
+	                t.next = 25;
 	                break;
+
+	              case 7:
+	                return t.prev = 7, t.t0 = t["catch"](2), t.prev = 9, t.next = 12, ia("webgl");
 
 	              case 12:
-	                return t.prev = 12, t.t1 = t["catch"](7), t.prev = 14, t.next = 17, ia("cpu");
-
-	              case 17:
-	                t.next = 23;
+	                t.next = 25;
 	                break;
 
-	              case 19:
-	                t.prev = 19, t.t2 = t["catch"](14), console.error(t.t2), e = !0;
+	              case 14:
+	                return t.prev = 14, t.t1 = t["catch"](9), t.prev = 16, t.next = 19, ia("cpu");
 
-	              case 23:
+	              case 19:
+	                t.next = 25;
+	                break;
+
+	              case 21:
+	                t.prev = 21, t.t2 = t["catch"](16), console.error(t.t2), e = !0;
+
+	              case 25:
 	              case "end":
 	                return t.stop();
 	            }
 	          }
-	        }, t, null, [[0, 5], [7, 12], [14, 19]]);
+	        }, t, null, [[2, 7], [9, 14], [16, 21]]);
 	      }));
 	      return function () {
 	        return t.apply(this, arguments);
@@ -66209,7 +66210,7 @@
 	                  break;
 	                }
 
-	                return e.next = 17, _t.scaleImage(u, {
+	                return e.next = 17, Et.scaleImage(u, {
 	                  minSize: $
 	                });
 
@@ -66450,7 +66451,7 @@
 	                (F = n.sent) && (N = F.gesture, C = F.leftRightScore);
 
 	              case 27:
-	                if (v(I && "no_face" === I.code && $ < R.length), I && ("face_too_small" !== I.code || ![Kv.DOWN, Kv.UP, Kv.LEFT, Kv.RIGHT].includes(N))) {
+	                if (v(I && ("no_face" === I.code || "partial_face" === I.code) && $ < R.length), I && ("face_too_small" !== I.code || ![Kv.DOWN, Kv.UP, Kv.LEFT, Kv.RIGHT].includes(N))) {
 	                  n.next = 41;
 	                  break;
 	                }
@@ -75583,7 +75584,7 @@
 	exports.FaceUtils = fe;
 	exports.GlareUtils = Ct;
 	exports.Icons = xO;
-	exports.ImageUtils = _t;
+	exports.ImageUtils = Et;
 	exports.LivenessDetection = Vw;
 	exports.LivenessDetectionComponents = EO;
 	exports.MobileDetect = P$3;
