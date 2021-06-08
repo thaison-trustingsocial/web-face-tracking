@@ -66393,16 +66393,13 @@
 
 	    function v(e) {
 	      if (De.enable && oe) {
-	        var t = De.max_time_ms,
-	            n = De.max_invalid_frame;
+	        var t = De.max_time_ms;
 	        Pe.current && e || (Pe.current = {
 	          time: Date.now(),
 	          frame: 0
 	        }), e && Pe.current.frame++;
-	        var r = Pe.current,
-	            a = r.time,
-	            o = r.frame;
-	        e && (Date.now() - a >= t || o >= n) && (ke({
+	        var n = Pe.current.time;
+	        e && Date.now() - n >= t && (ke({
 	          error: Xv.liveness_terminated_no_face.msg[le],
 	          duration: Fe
 	        }), Le());
@@ -66451,7 +66448,7 @@
 	                (F = n.sent) && (N = F.gesture, C = F.leftRightScore);
 
 	              case 27:
-	                if (v(I && ("no_face" === I.code || "partial_face" === I.code) && $ < R.length), I && ("face_too_small" !== I.code || ![Kv.DOWN, Kv.UP, Kv.LEFT, Kv.RIGHT].includes(N))) {
+	                if (v(I && ("no_face" === I.code || "partial_face" === I.code) && $ < R.length, null == I || I.code), I && ("face_too_small" !== I.code || ![Kv.DOWN, Kv.UP, Kv.LEFT, Kv.RIGHT].includes(N))) {
 	                  n.next = 41;
 	                  break;
 	                }
