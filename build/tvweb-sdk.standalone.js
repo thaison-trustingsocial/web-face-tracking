@@ -11126,30 +11126,30 @@
 	    }
 
 	    return r;
-	  }(e, t) || I$1(e, t) || function () {
+	  }(e, t) || y$2(e, t) || function () {
 	    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 	  }();
 	}
 
 	function v$2(e) {
 	  return function (e) {
-	    if (Array.isArray(e)) return y$2(e);
+	    if (Array.isArray(e)) return I$1(e);
 	  }(e) || function (e) {
 	    if ("undefined" != typeof Symbol && Symbol.iterator in Object(e)) return Array.from(e);
-	  }(e) || I$1(e) || function () {
+	  }(e) || y$2(e) || function () {
 	    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 	  }();
 	}
 
-	function I$1(e, t) {
+	function y$2(e, t) {
 	  if (e) {
-	    if ("string" == typeof e) return y$2(e, t);
+	    if ("string" == typeof e) return I$1(e, t);
 	    var r = Object.prototype.toString.call(e).slice(8, -1);
-	    return "Object" === r && e.constructor && (r = e.constructor.name), "Map" === r || "Set" === r ? Array.from(e) : "Arguments" === r || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r) ? y$2(e, t) : void 0;
+	    return "Object" === r && e.constructor && (r = e.constructor.name), "Map" === r || "Set" === r ? Array.from(e) : "Arguments" === r || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r) ? I$1(e, t) : void 0;
 	  }
 	}
 
-	function y$2(e, t) {
+	function I$1(e, t) {
 	  (null == t || t > e.length) && (t = e.length);
 
 	  for (var r = 0, n = new Array(t); r < t; r++) {
@@ -11159,8 +11159,8 @@
 	  return n;
 	}
 
-	var E$3 = Symbol("Comlink.proxy"),
-	    _ = Symbol("Comlink.endpoint"),
+	var _ = Symbol("Comlink.proxy"),
+	    E$3 = Symbol("Comlink.endpoint"),
 	    B$1 = Symbol("Comlink.releaseProxy"),
 	    C$1 = Symbol("Comlink.thrown"),
 	    S$1 = function S(e) {
@@ -11168,7 +11168,7 @@
 	},
 	    M$1 = new Map([["proxy", {
 	  canHandle: function canHandle(e) {
-	    return S$1(e) && e[E$3];
+	    return S$1(e) && e[_];
 	  },
 	  serialize: function serialize(e) {
 	    var _MessageChannel = new MessageChannel(),
@@ -11178,7 +11178,7 @@
 	    return O$1(e, t), [r, [r]];
 	  },
 	  deserialize: function deserialize(e) {
-	    return e.start(), x$2(e);
+	    return e.start(), Q$1(e);
 	  }
 	}], ["throw", {
 	  canHandle: function canHandle(e) {
@@ -11216,7 +11216,7 @@
 	        i = _Object$assign.id,
 	        o = _Object$assign.type,
 	        a = _Object$assign.path,
-	        s = (n.data.argumentList || []).map(N$1);
+	        s = (n.data.argumentList || []).map(L$1);
 
 	    var u;
 
@@ -11229,26 +11229,26 @@
 	      }, e);
 
 	      switch (o) {
-	        case "GET":
+	        case 0:
 	          u = _r;
 	          break;
 
-	        case "SET":
-	          _t2[a.slice(-1)[0]] = N$1(n.data.value), u = !0;
+	        case 1:
+	          _t2[a.slice(-1)[0]] = L$1(n.data.value), u = !0;
 	          break;
 
-	        case "APPLY":
+	        case 2:
 	          u = _r.apply(_t2, s);
 	          break;
 
-	        case "CONSTRUCT":
+	        case 3:
 	          u = function (e) {
-	            return Object.assign(e, _defineProperty({}, E$3, !0));
+	            return Object.assign(e, _defineProperty({}, _, !0));
 	          }(_construct(_r, _toConsumableArray(s)));
 
 	          break;
 
-	        case "ENDPOINT":
+	        case 4:
 	          {
 	            var _MessageChannel2 = new MessageChannel(),
 	                _t3 = _MessageChannel2.port1,
@@ -11260,12 +11260,8 @@
 	          }
 	          break;
 
-	        case "RELEASE":
+	        case 5:
 	          u = void 0;
-	          break;
-
-	        default:
-	          return;
 	      }
 	    } catch (e) {
 	      u = _defineProperty({
@@ -11278,46 +11274,46 @@
 	        value: e
 	      }, C$1, 0);
 	    }).then(function (e) {
-	      var _L = L$1(e),
-	          _L2 = _slicedToArray(_L, 2),
-	          n = _L2[0],
-	          a = _L2[1];
+	      var _N = N$1(e),
+	          _N2 = _slicedToArray(_N, 2),
+	          n = _N2[0],
+	          a = _N2[1];
 
 	      t.postMessage(Object.assign(Object.assign({}, n), {
 	        id: i
-	      }), a), "RELEASE" === o && (t.removeEventListener("message", r), R$1(t));
+	      }), a), 5 === o && (t.removeEventListener("message", r), k$1(t));
 	    });
 	  }), t.start && t.start();
 	}
 
-	function R$1(e) {
+	function k$1(e) {
 	  (function (e) {
 	    return "MessagePort" === e.constructor.name;
 	  })(e) && e.close();
 	}
 
-	function x$2(e, t) {
-	  return k$1(e, [], t);
+	function Q$1(e, t) {
+	  return R$1(e, [], t);
 	}
 
-	function Q$1(e) {
+	function x$2(e) {
 	  if (e) throw new Error("Proxy has been released and is not useable");
 	}
 
-	function k$1(e) {
+	function R$1(e) {
 	  var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 	  var r = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
 	  var n = !1;
 	  var i = new Proxy(r, {
 	    get: function get(r, o) {
-	      if (Q$1(n), o === B$1) return function () {
+	      if (x$2(n), o === B$1) return function () {
 	        return P$1(e, {
-	          type: "RELEASE",
+	          type: 5,
 	          path: t.map(function (e) {
 	            return e.toString();
 	          })
 	        }).then(function () {
-	          R$1(e), n = !0;
+	          k$1(e), n = !0;
 	        });
 	      };
 
@@ -11329,40 +11325,40 @@
 	        };
 
 	        var _r3 = P$1(e, {
-	          type: "GET",
+	          type: 0,
 	          path: t.map(function (e) {
 	            return e.toString();
 	          })
-	        }).then(N$1);
+	        }).then(L$1);
 
 	        return _r3.then.bind(_r3);
 	      }
 
-	      return k$1(e, [].concat(_toConsumableArray(t), [o]));
+	      return R$1(e, [].concat(_toConsumableArray(t), [o]));
 	    },
 	    set: function set(r, i, o) {
-	      Q$1(n);
+	      x$2(n);
 
-	      var _L3 = L$1(o),
-	          _L4 = _slicedToArray(_L3, 2),
-	          a = _L4[0],
-	          s = _L4[1];
+	      var _N3 = N$1(o),
+	          _N4 = _slicedToArray(_N3, 2),
+	          a = _N4[0],
+	          s = _N4[1];
 
 	      return P$1(e, {
-	        type: "SET",
+	        type: 1,
 	        path: [].concat(_toConsumableArray(t), [i]).map(function (e) {
 	          return e.toString();
 	        }),
 	        value: a
-	      }, s).then(N$1);
+	      }, s).then(L$1);
 	    },
 	    apply: function apply(r, i, o) {
-	      Q$1(n);
+	      x$2(n);
 	      var a = t[t.length - 1];
-	      if (a === _) return P$1(e, {
-	        type: "ENDPOINT"
-	      }).then(N$1);
-	      if ("bind" === a) return k$1(e, t.slice(0, -1));
+	      if (a === E$3) return P$1(e, {
+	        type: 4
+	      }).then(L$1);
+	      if ("bind" === a) return R$1(e, t.slice(0, -1));
 
 	      var _T = T$1(o),
 	          _T2 = _slicedToArray(_T, 2),
@@ -11370,15 +11366,15 @@
 	          u = _T2[1];
 
 	      return P$1(e, {
-	        type: "APPLY",
+	        type: 2,
 	        path: t.map(function (e) {
 	          return e.toString();
 	        }),
 	        argumentList: s
-	      }, u).then(N$1);
+	      }, u).then(L$1);
 	    },
 	    construct: function construct(r, i) {
-	      Q$1(n);
+	      x$2(n);
 
 	      var _T3 = T$1(i),
 	          _T4 = _slicedToArray(_T3, 2),
@@ -11386,19 +11382,19 @@
 	          a = _T4[1];
 
 	      return P$1(e, {
-	        type: "CONSTRUCT",
+	        type: 3,
 	        path: t.map(function (e) {
 	          return e.toString();
 	        }),
 	        argumentList: o
-	      }, a).then(N$1);
+	      }, a).then(L$1);
 	    }
 	  });
 	  return i;
 	}
 
 	function T$1(e) {
-	  var t = e.map(L$1);
+	  var t = e.map(N$1);
 	  return [t.map(function (e) {
 	    return e[0];
 	  }), (r = t.map(function (e) {
@@ -11409,7 +11405,7 @@
 
 	var D$1 = new WeakMap();
 
-	function L$1(e) {
+	function N$1(e) {
 	  var _iterator = _createForOfIteratorHelper(M$1),
 	      _step;
 
@@ -11426,7 +11422,7 @@
 	            _i = _r4$serialize2[1];
 
 	        return [{
-	          type: "HANDLER",
+	          type: 3,
 	          name: _t4,
 	          value: _n
 	        }, _i];
@@ -11439,17 +11435,17 @@
 	  }
 
 	  return [{
-	    type: "RAW",
+	    type: 0,
 	    value: e
 	  }, D$1.get(e) || []];
 	}
 
-	function N$1(e) {
+	function L$1(e) {
 	  switch (e.type) {
-	    case "HANDLER":
+	    case 3:
 	      return M$1.get(e.name).deserialize(e.value);
 
-	    case "RAW":
+	    case 0:
 	      return e.value;
 	  }
 	}
@@ -11469,9 +11465,9 @@
 
 	var j$2 = function () {
 	  if (!window.Worker) return null;
-	  var e = new Blob(['const t=Symbol("Comlink.proxy"),e=Symbol("Comlink.endpoint"),r=Symbol("Comlink.releaseProxy"),n=Symbol("Comlink.thrown"),a=t=>"object"==typeof t&&null!==t||"function"==typeof t,o=new Map([["proxy",{canHandle:e=>a(e)&&e[t],serialize(t){const{port1:e,port2:r}=new MessageChannel;return i(t,e),[r,[r]]},deserialize(t){return t.start(),s(t,[],e);var e}}],["throw",{canHandle:t=>a(t)&&n in t,serialize({value:t}){let e;return e=t instanceof Error?{isError:!0,value:{message:t.message,name:t.name,stack:t.stack}}:{isError:!1,value:t},[e,[]]},deserialize(t){if(t.isError)throw Object.assign(new Error(t.value.message),t.value);throw t.value}}]]);function i(e,r=self){r.addEventListener("message",(function a(o){if(!o||!o.data)return;const{id:c,type:s,path:l}=Object.assign({path:[]},o.data),m=(o.data.argumentList||[]).map(p);let g;try{const r=l.slice(0,-1).reduce(((t,e)=>t[e]),e),n=l.reduce(((t,e)=>t[e]),e);switch(s){case"GET":g=n;break;case"SET":r[l.slice(-1)[0]]=p(o.data.value),g=!0;break;case"APPLY":g=n.apply(r,m);break;case"CONSTRUCT":g=function(e){return Object.assign(e,{[t]:!0})}(new n(...m));break;case"ENDPOINT":{const{port1:t,port2:r}=new MessageChannel;i(e,r),g=function(t,e){return f.set(t,e),t}(t,[t])}break;case"RELEASE":g=void 0;break;default:return}}catch(t){g={value:t,[n]:0}}Promise.resolve(g).catch((t=>({value:t,[n]:0}))).then((t=>{const[e,n]=h(t);r.postMessage(Object.assign(Object.assign({},e),{id:c}),n),"RELEASE"===s&&(r.removeEventListener("message",a),u(r))}))})),r.start&&r.start()}function u(t){(function(t){return"MessagePort"===t.constructor.name})(t)&&t.close()}function c(t){if(t)throw new Error("Proxy has been released and is not useable")}function s(t,n=[],a=function(){}){let o=!1;const i=new Proxy(a,{get(e,a){if(c(o),a===r)return()=>m(t,{type:"RELEASE",path:n.map((t=>t.toString()))}).then((()=>{u(t),o=!0}));if("then"===a){if(0===n.length)return{then:()=>i};const e=m(t,{type:"GET",path:n.map((t=>t.toString()))}).then(p);return e.then.bind(e)}return s(t,[...n,a])},set(e,r,a){c(o);const[i,u]=h(a);return m(t,{type:"SET",path:[...n,r].map((t=>t.toString())),value:i},u).then(p)},apply(r,a,i){c(o);const u=n[n.length-1];if(u===e)return m(t,{type:"ENDPOINT"}).then(p);if("bind"===u)return s(t,n.slice(0,-1));const[f,h]=l(i);return m(t,{type:"APPLY",path:n.map((t=>t.toString())),argumentList:f},h).then(p)},construct(e,r){c(o);const[a,i]=l(r);return m(t,{type:"CONSTRUCT",path:n.map((t=>t.toString())),argumentList:a},i).then(p)}});return i}function l(t){const e=t.map(h);return[e.map((t=>t[0])),(r=e.map((t=>t[1])),Array.prototype.concat.apply([],r))];var r}const f=new WeakMap;function h(t){for(const[e,r]of o)if(r.canHandle(t)){const[n,a]=r.serialize(t);return[{type:"HANDLER",name:e,value:n},a]}return[{type:"RAW",value:t},f.get(t)||[]]}function p(t){switch(t.type){case"HANDLER":return o.get(t.name).deserialize(t.value);case"RAW":return t.value}}function m(t,e,r){return new Promise((n=>{const a=new Array(4).fill(0).map((()=>Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString(16))).join("-");t.addEventListener("message",(function e(r){r.data&&r.data.id&&r.data.id===a&&(t.removeEventListener("message",e),n(r.data))})),t.start&&t.start(),t.postMessage(Object.assign({id:a},e),r)}))}var g=[[0,1,0],[1,-4,1],[0,1,0]];function d(t,e,r,n){return t[4*(r*e+n)]}function v(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function b(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(t)))return;var r=[],n=!0,a=!1,o=void 0;try{for(var i,u=t[Symbol.iterator]();!(n=(i=u.next()).done)&&(r.push(i.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{n||null==u.return||u.return()}finally{if(a)throw o}}return r}(t,e)||function(t,e){if(!t)return;if("string"==typeof t)return y(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return y(t,e)}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance. In order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function y(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}var E="frontal",S="left",w="right",M="up",k="down",A=0,_=1,R=2;function L(t,e){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0,n=b(t,2),a=n[0],o=n[1],i=b(e,2),u=i[0],c=i[1],s=[a[0],o[0]],l=[a[1],o[1]];return s[0]+r<=u[0]&&c[0]<=s[1]-r&&l[0]+r<=u[1]&&c[1]<=l[1]-.8*r?R:s[0]<=u[0]||c[0]<=s[1]||l[0]<=u[1]||c[1]<=l[1]?_:A}var N={code:"no_face",msg:{en:"Face not found",vi:"Không tìm thấy khuôn mặt"}},P={code:"partial_face",msg:{en:"Face out of the box",vi:"Không tìm thấy toàn bộ khuôn mặt"}},O={code:"multiple_faces",msg:{en:"Too many faces",vi:"Quá nhiều khuôn mặt"}},j={code:"face_too_small",msg:{en:"Face too small",vi:"Khuôn mặt quá nhỏ"}},T={code:"face_too_large",msg:{en:"Face too large",vi:"Khuôn mặt quá to"}},C={code:"face_out_of_box",msg:{en:"Face is out of box",vi:"Khuôn mặt nằm ngoài khung ảnh"}};function F(t){return Math.pow(Math.pow(t[0],2)+Math.pow(t[1],2),.5)}function x(t,e){return[t[0]-e[0],t[1]-e[1]]}function I(t,e,r,n){var a=r*(4*e)+4*n;return{r:t[a],g:t[a+1],b:t[a+2]}}i({calculateBlurScoreFunc:function(t){for(var e=t.data,r=t.reducedWidth,n=t.reducedHeight,a=0;a<e.length;a+=4){var o=(e[a]+e[a+1]+e[a+2])/3;e[a]=o}for(var i=0,u=0,c=n-1,s=r-1,l=1;l<c;l++)for(var f=1;f<s;f++){var h=g[0][0]*d(e,r,f-1,l-1)+g[0][1]*d(e,r,f,l-1)+g[0][2]*d(e,r,f+1,l-1)+g[1][0]*d(e,r,f-1,l)+g[1][1]*d(e,r,f,l)+g[1][2]*d(e,r,f+1,l)+g[2][0]*d(e,r,f-1,l+1)+g[2][1]*d(e,r,f,l+1)+g[2][2]*d(e,r,f+1,l+1);(h=Math.abs(h))>25&&i++,h>15&&h<25&&u++}var p=0;return i+u!==0&&(p=i/(i+u)),p},calculateFaceDirectionFunc:function(t){var e=t.landmarks,r=t.getPerfectFrontal,n=function(t){var e,r,n,a,o,i,u,c=b(t,4),s=c[0],l=c[1],f=c[2],h=c[3],p=x(l,s),m=F(p),g=(a=l,e=[(n=s)[0]+a[0],n[1]+a[1]],r=2,[e[0]/r,e[1]/r]),d=x(f,g),v=F(x(h,f)),y=x(h,g),E=F(y),S=(d[0]*y[0]+d[1]*y[1])/E,w=v/E;if(m>.5*E)o=(d[0]*p[0]+d[1]*p[1])/m/m;else{var M=F(x(d,function(t,e){return[t[0]*e,t[1]*e]}(y,S/E)));u=y,o=((i=d)[0]*u[1]-u[0]*i[1]>=0?1:-1)*M/m}return{left_right_score:o,up_down_score:w}}(e),a=n.left_right_score,o=n.up_down_score,i=b(e,3),u=i[0],c=i[1],s=i[2],l=c[0]-s[0],f=u[0]-s[0],h=r?.1:.3,p=o>.7,m=o<.42,g=a>=.35&&a<=.6,d=a<=-.35&&a>=-.6;return o>=.42&&o<=.7&&a>-h&&a<h&&l*f<0?{gesture:E,leftRightScore:a}:p&&!d&&!g?{gesture:M,leftRightScore:a}:m&&!d&&!g?{gesture:k,leftRightScore:a}:g&&!p&&!m?{gesture:w,leftRightScore:a}:d&&!p&&!m?{gesture:S,leftRightScore:a}:null},validatePredictionsFunc:function(t){var e,r,n,a,o,i,u,c,s,l,f,h,p,m,g,d,y,E,S,w,M,k,F,x,I,z,H,D,K,G,W,q,U=t.predictions,B=t.width,Y=[[0,0],[B,t.height]],Q=U.reduce((function(t,e){var r,n,a,o,i,u,c,s=e.topLeft,l=e.bottomRight,f=e.probability,h=e.landmarks;f<.9||h.length<6||(r=Y,n=b([s,l],2),a=n[0],o=n[1],i=b(r,2),u=i[0],c=i[1],(o[0]-a[0])*(o[1]-a[1])/((c[0]-u[0])*(c[1]-u[1]))<=.025)?t[A].push(e):t[L(Y,[s,l])].push(e);return t}),(v(e={},_,[]),v(e,R,[]),v(e,A,[]),e)),X=Q[R].length,$=Q[_].length;if(0===X)r=$>0?P:N;else if(X+$>1)r=O;else{var J=n=Q[R][0],V=J.topLeft,Z=J.bottomRight,tt=(F=Y,x=b([V,Z],2),I=x[0],z=x[1],H=b(F,2),D=H[0],K=H[1],G=z[0]-I[0],W=z[1]-I[1],q=K[0]-D[0],G/q<W/q?G/q:W/q);tt<.4&&(r=j),tt>.61&&(r=T),L(Y,(a=n.landmarks,u=a[0],c=a[1],s=a[2],l=a[3],f=a[4],h=a[5],p=.5*(u[1]+c[1]),m=p+1.5*(p-l[1]),g=l[1]-1.2*(s[1]-l[1]),d=[u[0],c[0],s[0],l[0],f[0],h[0]],y=Math.min.apply(Math,d),E=Math.min(m,g),S=Math.max.apply(Math,d),w=Math.max(m,g),M=Math.abs(l[0]-f[0])/Math.abs(l[0]-h[0]),k=l[0]-f[0]<0&&h[0]-l[0]>.05*(S-y),l[0]-f[0]>0&&h[0]-l[0]<-.05*(S-y)?(o=.2,i=.1):k?(o=.1,i=.2):M>2||M<.5?(o=.15,i=.15):(o=.05,i=.05),[[y-o*(S-y),E],[S+i*(S-y),w]]),.05*B)!==R&&(r=C)}return{error:r,fullFace:n}},checkCardBlur:function(t){var e=t.data,r=t.width,n=t.height,a=function(t,e,r){for(var n=0,a=[],o=1;o<r-1;o++)for(var i=1;i<e-1;i++){var u=t[o-1][i-1],c=t[o][i-1],s=t[o+1][i-1],l=t[o-1][i],f=t[o][i],h=t[o+1][i],p=t[o-1][i+1],m=t[o][i+1],g=t[o+1][i+1],d=Number.parseInt(0*u+1*c+0*s,10),v=Number.parseInt(1*l+-4*f+1*h,10),b=Number.parseInt(0*p+1*m+0*g,10),y=Number.parseInt(Math.abs(d+v+b),10);a.push(y),n+=y}var E=a.length,S=n/E,w=0;a.forEach((function(t){w+=(t-S)*(t-S)}));var M=Math.sqrt(w/E);return{lapAvg:S,lapStd:M}}(function(t,e,r){for(var n=[],a=0;a<r+2;a++)for(var o=0;o<e+2;o++){n[a]||(n[a]=[]),0!==o&&0!==a&&o!==e+1&&a!==r+1||(n[a][o]=1);var i=I(t,e,a-1,o-1),u=i.r,c=i.g,s=i.b,l=Number.parseInt(Math.round(.299*u+.587*c+.114*s),10);n[a][o]=l}n[0]=n[2],n[r+1]=n[r-1];for(var f=0;f<r+2;f++)n[f][0]=n[f][2],n[f][e+1]=n[f][e-1];return n}(e,r,n),r+2,n+2);return function(t,e){return e<=18.553622245788574?e<=11.523502826690674?t<=-.05309182405471802?1:.5:t<=.2395537868142128?.29069767441860467:.8333333333333334:e<=23.69584369659424?e<=23.6335506439209?.10606060606060606:1:e<=33.88881301879883?.03896103896103896:0}(a.lapAvg,a.lapStd)},detectGlare:function(t,e,r){return function(t,e,r){for(var n=0,a=r[1],o=r[3],i=r[0],u=r[2],c=a;c<o;c++)for(var s=i;s<u;s++){var l=I(t,e,c,s),f=l.r,h=l.g,p=l.b;f>=245&&p>=245&&h>245&&(n+=1)}return n}(t,e,function(t,e){var r=Math.floor(.025*t),n=t-r,a=Math.floor(.025*e);return[r,a,n,e-a]}(e,r))/(e*r)>=.001}});']),
+	  var e = new Blob(['const t=Symbol("Comlink.proxy"),e=Symbol("Comlink.endpoint"),r=Symbol("Comlink.releaseProxy"),n=Symbol("Comlink.thrown"),a=t=>"object"==typeof t&&null!==t||"function"==typeof t,o=new Map([["proxy",{canHandle:e=>a(e)&&e[t],serialize(t){const{port1:e,port2:r}=new MessageChannel;return i(t,e),[r,[r]]},deserialize(t){return t.start(),s(t,[],e);var e}}],["throw",{canHandle:t=>a(t)&&n in t,serialize({value:t}){let e;return e=t instanceof Error?{isError:!0,value:{message:t.message,name:t.name,stack:t.stack}}:{isError:!1,value:t},[e,[]]},deserialize(t){if(t.isError)throw Object.assign(new Error(t.value.message),t.value);throw t.value}}]]);function i(e,r=self){r.addEventListener("message",(function a(o){if(!o||!o.data)return;const{id:c,type:s,path:l}=Object.assign({path:[]},o.data),m=(o.data.argumentList||[]).map(p);let g;try{const r=l.slice(0,-1).reduce(((t,e)=>t[e]),e),n=l.reduce(((t,e)=>t[e]),e);switch(s){case 0:g=n;break;case 1:r[l.slice(-1)[0]]=p(o.data.value),g=!0;break;case 2:g=n.apply(r,m);break;case 3:g=function(e){return Object.assign(e,{[t]:!0})}(new n(...m));break;case 4:{const{port1:t,port2:r}=new MessageChannel;i(e,r),g=function(t,e){return f.set(t,e),t}(t,[t])}break;case 5:g=void 0}}catch(t){g={value:t,[n]:0}}Promise.resolve(g).catch((t=>({value:t,[n]:0}))).then((t=>{const[e,n]=h(t);r.postMessage(Object.assign(Object.assign({},e),{id:c}),n),5===s&&(r.removeEventListener("message",a),u(r))}))})),r.start&&r.start()}function u(t){(function(t){return"MessagePort"===t.constructor.name})(t)&&t.close()}function c(t){if(t)throw new Error("Proxy has been released and is not useable")}function s(t,n=[],a=function(){}){let o=!1;const i=new Proxy(a,{get(e,a){if(c(o),a===r)return()=>m(t,{type:5,path:n.map((t=>t.toString()))}).then((()=>{u(t),o=!0}));if("then"===a){if(0===n.length)return{then:()=>i};const e=m(t,{type:0,path:n.map((t=>t.toString()))}).then(p);return e.then.bind(e)}return s(t,[...n,a])},set(e,r,a){c(o);const[i,u]=h(a);return m(t,{type:1,path:[...n,r].map((t=>t.toString())),value:i},u).then(p)},apply(r,a,i){c(o);const u=n[n.length-1];if(u===e)return m(t,{type:4}).then(p);if("bind"===u)return s(t,n.slice(0,-1));const[f,h]=l(i);return m(t,{type:2,path:n.map((t=>t.toString())),argumentList:f},h).then(p)},construct(e,r){c(o);const[a,i]=l(r);return m(t,{type:3,path:n.map((t=>t.toString())),argumentList:a},i).then(p)}});return i}function l(t){const e=t.map(h);return[e.map((t=>t[0])),(r=e.map((t=>t[1])),Array.prototype.concat.apply([],r))];var r}const f=new WeakMap;function h(t){for(const[e,r]of o)if(r.canHandle(t)){const[n,a]=r.serialize(t);return[{type:3,name:e,value:n},a]}return[{type:0,value:t},f.get(t)||[]]}function p(t){switch(t.type){case 3:return o.get(t.name).deserialize(t.value);case 0:return t.value}}function m(t,e,r){return new Promise((n=>{const a=new Array(4).fill(0).map((()=>Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString(16))).join("-");t.addEventListener("message",(function e(r){r.data&&r.data.id&&r.data.id===a&&(t.removeEventListener("message",e),n(r.data))})),t.start&&t.start(),t.postMessage(Object.assign({id:a},e),r)}))}var g=[[0,1,0],[1,-4,1],[0,1,0]];function d(t,e,r,n){return t[4*(r*e+n)]}function v(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function b(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(t)))return;var r=[],n=!0,a=!1,o=void 0;try{for(var i,u=t[Symbol.iterator]();!(n=(i=u.next()).done)&&(r.push(i.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{n||null==u.return||u.return()}finally{if(a)throw o}}return r}(t,e)||function(t,e){if(!t)return;if("string"==typeof t)return y(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return y(t,e)}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance. In order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function y(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}var w="frontal",M="left",S="right",k="up",_="down",E=0,j=1,A=2;function F(t,e){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0,n=b(t,2),a=n[0],o=n[1],i=b(e,2),u=i[0],c=i[1],s=[a[0],o[0]],l=[a[1],o[1]];return s[0]+r<=u[0]&&c[0]<=s[1]-r&&l[0]+r<=u[1]&&c[1]<=l[1]-.8*r?A:s[0]<=u[0]||c[0]<=s[1]||l[0]<=u[1]||c[1]<=l[1]?j:E}var x={code:"no_face",msg:{en:"Face not found",vi:"Không tìm thấy khuôn mặt"}},O={code:"partial_face",msg:{en:"Face out of the box",vi:"Không tìm thấy toàn bộ khuôn mặt"}},I={code:"multiple_faces",msg:{en:"Too many faces",vi:"Quá nhiều khuôn mặt"}},L={code:"face_too_small",msg:{en:"Face too small",vi:"Khuôn mặt quá nhỏ"}},P={code:"face_too_large",msg:{en:"Face too large",vi:"Khuôn mặt quá to"}},C={code:"face_out_of_box",msg:{en:"Face is out of box",vi:"Khuôn mặt nằm ngoài khung ảnh"}};function R(t){return Math.pow(Math.pow(t[0],2)+Math.pow(t[1],2),.5)}function N(t,e){return[t[0]-e[0],t[1]-e[1]]}function z(t,e,r,n){var a=r*(4*e)+4*n;return{r:t[a],g:t[a+1],b:t[a+2]}}i({calculateBlurScoreFunc:function(t){for(var e=t.data,r=t.reducedWidth,n=t.reducedHeight,a=0;a<e.length;a+=4){var o=(e[a]+e[a+1]+e[a+2])/3;e[a]=o}for(var i=0,u=0,c=n-1,s=r-1,l=1;l<c;l++)for(var f=1;f<s;f++){var h=g[0][0]*d(e,r,f-1,l-1)+g[0][1]*d(e,r,f,l-1)+g[0][2]*d(e,r,f+1,l-1)+g[1][0]*d(e,r,f-1,l)+g[1][1]*d(e,r,f,l)+g[1][2]*d(e,r,f+1,l)+g[2][0]*d(e,r,f-1,l+1)+g[2][1]*d(e,r,f,l+1)+g[2][2]*d(e,r,f+1,l+1);(h=Math.abs(h))>25&&i++,h>15&&h<25&&u++}var p=0;return i+u!==0&&(p=i/(i+u)),p},calculateFaceDirectionFunc:function(t){var e=t.landmarks,r=t.getPerfectFrontal,n=function(t){var e,r,n,a,o,i,u,c=b(t,4),s=c[0],l=c[1],f=c[2],h=c[3],p=N(l,s),m=R(p),g=(a=l,e=[(n=s)[0]+a[0],n[1]+a[1]],r=2,[e[0]/r,e[1]/r]),d=N(f,g),v=R(N(h,f)),y=N(h,g),w=R(y),M=(d[0]*y[0]+d[1]*y[1])/w,S=v/w;if(m>.5*w)o=(d[0]*p[0]+d[1]*p[1])/m/m;else{var k=R(N(d,function(t,e){return[t[0]*e,t[1]*e]}(y,M/w)));u=y,o=((i=d)[0]*u[1]-u[0]*i[1]>=0?1:-1)*k/m}return{left_right_score:o,up_down_score:S}}(e),a=n.left_right_score,o=n.up_down_score,i=b(e,3),u=i[0],c=i[1],s=i[2],l=c[0]-s[0],f=u[0]-s[0],h=r?.1:.3,p=o>.7,m=o<.42,g=a>=.35&&a<=.6,d=a<=-.35&&a>=-.6;return o>=.42&&o<=.7&&a>-h&&a<h&&l*f<0?{gesture:w,leftRightScore:a}:p&&!d&&!g?{gesture:k,leftRightScore:a}:m&&!d&&!g?{gesture:_,leftRightScore:a}:g&&!p&&!m?{gesture:S,leftRightScore:a}:d&&!p&&!m?{gesture:M,leftRightScore:a}:null},validatePredictionsFunc:function(t){var e,r,n,a,o,i,u,c,s,l,f,h,p,m,g,d,y,w,M,S,k,_,R,N,z,K,H,q,T,B,G,W,D=t.predictions,Q=t.width,U=[[0,0],[Q,t.height]],X=D.reduce((function(t,e){var r,n,a,o,i,u,c,s=e.topLeft,l=e.bottomRight,f=e.probability,h=e.landmarks;f<.9||h.length<6||(r=U,n=b([s,l],2),a=n[0],o=n[1],i=b(r,2),u=i[0],c=i[1],(o[0]-a[0])*(o[1]-a[1])/((c[0]-u[0])*(c[1]-u[1]))<=.025)?t[E].push(e):t[F(U,[s,l])].push(e);return t}),(v(e={},j,[]),v(e,A,[]),v(e,E,[]),e)),$=X[A].length,J=X[j].length;if(0===$)r=J>0?O:x;else if($+J>1)r=I;else{var V=n=X[A][0],Y=V.topLeft,Z=V.bottomRight,tt=(R=U,N=b([Y,Z],2),z=N[0],K=N[1],H=b(R,2),q=H[0],T=H[1],B=K[0]-z[0],G=K[1]-z[1],W=T[0]-q[0],B/W<G/W?B/W:G/W);tt<.4&&(r=L),tt>.61&&(r=P),F(U,(a=n.landmarks,u=a[0],c=a[1],s=a[2],l=a[3],f=a[4],h=a[5],p=.5*(u[1]+c[1]),m=p+1.5*(p-l[1]),g=l[1]-1.2*(s[1]-l[1]),d=[u[0],c[0],s[0],l[0],f[0],h[0]],y=Math.min.apply(Math,d),w=Math.min(m,g),M=Math.max.apply(Math,d),S=Math.max(m,g),k=Math.abs(l[0]-f[0])/Math.abs(l[0]-h[0]),_=l[0]-f[0]<0&&h[0]-l[0]>.05*(M-y),l[0]-f[0]>0&&h[0]-l[0]<-.05*(M-y)?(o=.2,i=.1):_?(o=.1,i=.2):k>2||k<.5?(o=.15,i=.15):(o=.05,i=.05),[[y-o*(M-y),w],[M+i*(M-y),S]]),.05*Q)!==A&&(r=C)}return{error:r,fullFace:n}},checkCardBlur:function(t){var e=t.data,r=t.width,n=t.height,a=function(t,e,r){for(var n=0,a=[],o=1;o<r-1;o++)for(var i=1;i<e-1;i++){var u=t[o-1][i-1],c=t[o][i-1],s=t[o+1][i-1],l=t[o-1][i],f=t[o][i],h=t[o+1][i],p=t[o-1][i+1],m=t[o][i+1],g=t[o+1][i+1],d=Number.parseInt(0*u+1*c+0*s,10),v=Number.parseInt(1*l+-4*f+1*h,10),b=Number.parseInt(0*p+1*m+0*g,10),y=Number.parseInt(Math.abs(d+v+b),10);a.push(y),n+=y}var w=a.length,M=n/w,S=0;a.forEach((function(t){S+=(t-M)*(t-M)}));var k=Math.sqrt(S/w);return{lapAvg:M,lapStd:k}}(function(t,e,r){for(var n=[],a=0;a<r+2;a++)for(var o=0;o<e+2;o++){n[a]||(n[a]=[]),0!==o&&0!==a&&o!==e+1&&a!==r+1||(n[a][o]=1);var i=z(t,e,a-1,o-1),u=i.r,c=i.g,s=i.b,l=Number.parseInt(Math.round(.299*u+.587*c+.114*s),10);n[a][o]=l}n[0]=n[2],n[r+1]=n[r-1];for(var f=0;f<r+2;f++)n[f][0]=n[f][2],n[f][e+1]=n[f][e-1];return n}(e,r,n),r+2,n+2);return function(t,e){return e<=18.553622245788574?e<=11.523502826690674?t<=-.05309182405471802?1:.5:t<=.2395537868142128?.29069767441860467:.8333333333333334:e<=23.69584369659424?e<=23.6335506439209?.10606060606060606:1:e<=33.88881301879883?.03896103896103896:0}(a.lapAvg,a.lapStd)},detectGlare:function(t,e,r){return function(t,e,r){for(var n=0,a=r[1],o=r[3],i=r[0],u=r[2],c=a;c<o;c++)for(var s=i;s<u;s++){var l=z(t,e,c,s),f=l.r,h=l.g,p=l.b;f>=245&&p>=245&&h>245&&(n+=1)}return n}(t,e,function(t,e){var r=Math.floor(.025*t),n=t-r,a=Math.floor(.025*e);return[r,a,n,e-a]}(e,r))/(e*r)>=.001}});']),
 	      t = URL.createObjectURL(e);
-	  return x$2(new Worker(t));
+	  return Q$1(new Worker(t));
 	}(),
 	    U$1 = [[0, 1, 0], [1, -4, 1], [0, 1, 0]];
 
@@ -11530,15 +11526,17 @@
 	    }
 
 	    var v = i.length,
-	        I = n / v,
-	        y = 0;
+	        y = n / v,
+	        I = 0;
 	    i.forEach(function (e) {
-	      y += (e - I) * (e - I);
+	      I += (e - y) * (e - y);
 	    });
-	    var E = Math.sqrt(y / v);
+
+	    var _ = Math.sqrt(I / v);
+
 	    return {
-	      lapAvg: I,
-	      lapStd: E
+	      lapAvg: y,
+	      lapStd: _
 	    };
 	  }(function (e, t, r) {
 	    for (var n = [], i = 0; i < r + 2; i++) {
@@ -11715,26 +11713,25 @@
 	    });
 	  }
 	}),
-	    J$1 = function J(e) {
-	  for (var t = e.length - 1; t > 0; t--) {
-	    var r = Math.floor(Math.random() * (t + 1)),
-	        n = [e[r], e[t]];
-	    e[t] = n[0], e[r] = n[1];
-	  }
-
-	  return e;
-	},
-	    $ = Object.freeze({
+	    J$1 = Object.freeze({
 	  __proto__: null,
-	  shuffleArray: J$1
+	  shuffleArray: function shuffleArray(e) {
+	    for (var t = e.length - 1; t > 0; t--) {
+	      var r = Math.floor(Math.random() * (t + 1)),
+	          n = [e[r], e[t]];
+	      e[t] = n[0], e[r] = n[1];
+	    }
+
+	    return e;
+	  }
 	}),
-	    ee = {
+	    $ = {
 	  NONE: 0,
 	  PARTIAL: 1,
 	  FULL: 2
 	};
 
-	function te(e, t) {
+	function ee(e, t) {
 	  var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
 	      n = b$1(e, 2),
 	      i = n[0],
@@ -11744,10 +11741,10 @@
 	      u = a[1],
 	      l = [i[0], o[0]],
 	      c = [i[1], o[1]];
-	  return l[0] + r <= s[0] && u[0] <= l[1] - r && c[0] + r <= s[1] && u[1] <= c[1] - .8 * r ? ee.FULL : l[0] <= s[0] || u[0] <= l[1] || c[0] <= s[1] || u[1] <= c[1] ? ee.PARTIAL : ee.NONE;
+	  return l[0] + r <= s[0] && u[0] <= l[1] - r && c[0] + r <= s[1] && u[1] <= c[1] - .8 * r ? $.FULL : l[0] <= s[0] || u[0] <= l[1] || c[0] <= s[1] || u[1] <= c[1] ? $.PARTIAL : $.NONE;
 	}
 
-	function re$1(e, t) {
+	function te(e, t) {
 	  var r = b$1(e, 2),
 	      n = r[0],
 	      i = r[1],
@@ -11757,7 +11754,7 @@
 	  return (i[0] - n[0]) * (i[1] - n[1]) / ((s[0] - a[0]) * (s[1] - a[1]));
 	}
 
-	function ne(e, t) {
+	function re$1(e, t) {
 	  var r = b$1(e, 2),
 	      n = r[0],
 	      i = r[1],
@@ -11770,12 +11767,12 @@
 	  return u / c < l / c ? u / c : l / c;
 	}
 
-	var ie = Object.freeze({
+	var ne = Object.freeze({
 	  __proto__: null,
-	  ContainMode: ee,
-	  rectContains: te,
-	  rectAreaRatio: re$1,
-	  rectEdgeRatio: ne,
+	  ContainMode: $,
+	  rectContains: ee,
+	  rectAreaRatio: te,
+	  rectEdgeRatio: re$1,
 	  isFaceCenter: function isFaceCenter(e, t) {
 	    var r = b$1(e, 2),
 	        n = r[0],
@@ -11786,21 +11783,21 @@
 	        u = i[0] - n[0],
 	        l = i[1] - n[1],
 	        c = s[0] - a[0],
-	        h = Math.abs(n[0] - (c - u) / 2) / c < .07,
-	        d = Math.abs(n[1] - (c - l) / 2) / c < .07;
+	        h = Math.abs(n[0] - (c - u) / 2) / c < .2,
+	        d = Math.abs(n[1] - (c - l) / 2) / c < .2;
 	    return !(!h || !d);
 	  }
 	});
 
-	function oe(e) {
+	function ie(e) {
 	  return Math.pow(Math.pow(e[0], 2) + Math.pow(e[1], 2), .5);
 	}
 
-	function ae(e, t) {
+	function oe(e, t) {
 	  return [e[0] - t[0], e[1] - t[1]];
 	}
 
-	function se(e) {
+	function ae(e) {
 	  var t = e.landmarks,
 	      r = e.getPerfectFrontal,
 	      n = function (e) {
@@ -11816,24 +11813,25 @@
 	        c = u[1],
 	        h = u[2],
 	        d = u[3],
-	        f = ae(c, l),
-	        g = oe(f),
+	        f = oe(c, l),
+	        g = ie(f),
 	        A = (i = c, t = [(n = l)[0] + i[0], n[1] + i[1]], r = 2, [t[0] / r, t[1] / r]),
-	        m = ae(h, A),
-	        p = oe(ae(d, h)),
-	        w = ae(d, A),
-	        v = oe(w),
-	        I = (m[0] * w[0] + m[1] * w[1]) / v,
-	        y = p / v;
+	        m = oe(h, A),
+	        p = ie(oe(d, h)),
+	        w = oe(d, A),
+	        v = ie(w),
+	        y = (m[0] * w[0] + m[1] * w[1]) / v,
+	        I = p / v;
 	    if (g > .5 * v) o = (m[0] * f[0] + m[1] * f[1]) / g / g;else {
-	      var E = oe(ae(m, function (e, t) {
+	      var _ = ie(oe(m, function (e, t) {
 	        return [e[0] * t, e[1] * t];
-	      }(w, I / v)));
-	      s = w, o = ((a = m)[0] * s[1] - s[0] * a[1] >= 0 ? 1 : -1) * E / g;
+	      }(w, y / v)));
+
+	      s = w, o = ((a = m)[0] * s[1] - s[0] * a[1] >= 0 ? 1 : -1) * _ / g;
 	    }
 	    return {
 	      left_right_score: o,
-	      up_down_score: y
+	      up_down_score: I
 	    };
 	  }(t),
 	      o = n.left_right_score,
@@ -11868,7 +11866,7 @@
 	  } : null;
 	}
 
-	function ue(e) {
+	function se(e) {
 	  var t,
 	      r,
 	      i,
@@ -11887,10 +11885,10 @@
 	      w,
 	      b,
 	      v,
-	      I,
 	      y,
-	      E,
+	      I,
 	      _,
+	      E,
 	      B = e.predictions,
 	      C = e.width,
 	      S = [[0, 0], [C, e.height]],
@@ -11899,16 +11897,16 @@
 	        n = t.bottomRight,
 	        i = t.probability,
 	        o = t.landmarks;
-	    i < .9 || o.length < 6 || re$1([r, n], S) <= .025 ? e[ee.NONE].push(t) : e[te(S, [r, n])].push(t);
+	    i < .9 || o.length < 6 || te([r, n], S) <= .025 ? e[$.NONE].push(t) : e[ee(S, [r, n])].push(t);
 	    return e;
-	  }, (m$1(t = {}, ee.PARTIAL, []), m$1(t, ee.FULL, []), m$1(t, ee.NONE, []), t)),
-	      O = M[ee.FULL].length,
-	      R = M[ee.PARTIAL].length;
+	  }, (m$1(t = {}, $.PARTIAL, []), m$1(t, $.FULL, []), m$1(t, $.NONE, []), t)),
+	      O = M[$.FULL].length,
+	      k = M[$.PARTIAL].length;
 
-	  if (0 === O) r = R > 0 ? n$2.partial_face : n$2.no_face;else if (O + R > 1) r = n$2.multiple_faces;else {
-	    var x = i = M[ee.FULL][0],
-	        Q = ne([x.topLeft, x.bottomRight], S);
-	    Q < .4 && (r = n$2.face_too_small), Q > .61 && (r = n$2.face_too_large), te(S, (o = i.landmarks, u = o[0], l = o[1], c = o[2], h = o[3], d = o[4], f = o[5], g = .5 * (u[1] + l[1]), A = g + 1.5 * (g - h[1]), p = h[1] - 1.2 * (c[1] - h[1]), w = [u[0], l[0], c[0], h[0], d[0], f[0]], b = Math.min.apply(Math, w), v = Math.min(A, p), I = Math.max.apply(Math, w), y = Math.max(A, p), E = Math.abs(h[0] - d[0]) / Math.abs(h[0] - f[0]), _ = h[0] - d[0] < 0 && f[0] - h[0] > .05 * (I - b), h[0] - d[0] > 0 && f[0] - h[0] < -.05 * (I - b) ? (a = .2, s = .1) : _ ? (a = .1, s = .2) : E > 2 || E < .5 ? (a = .15, s = .15) : (a = .05, s = .05), [[b - a * (I - b), v], [I + s * (I - b), y]]), .05 * C) !== ee.FULL && (r = n$2.face_out_of_box);
+	  if (0 === O) r = k > 0 ? n$2.partial_face : n$2.no_face;else if (O + k > 1) r = n$2.multiple_faces;else {
+	    var Q = i = M[$.FULL][0],
+	        x = re$1([Q.topLeft, Q.bottomRight], S);
+	    x < .4 && (r = n$2.face_too_small), x > .61 && (r = n$2.face_too_large), ee(S, (o = i.landmarks, u = o[0], l = o[1], c = o[2], h = o[3], d = o[4], f = o[5], g = .5 * (u[1] + l[1]), A = g + 1.5 * (g - h[1]), p = h[1] - 1.2 * (c[1] - h[1]), w = [u[0], l[0], c[0], h[0], d[0], f[0]], b = Math.min.apply(Math, w), v = Math.min(A, p), y = Math.max.apply(Math, w), I = Math.max(A, p), _ = Math.abs(h[0] - d[0]) / Math.abs(h[0] - f[0]), E = h[0] - d[0] < 0 && f[0] - h[0] > .05 * (y - b), h[0] - d[0] > 0 && f[0] - h[0] < -.05 * (y - b) ? (a = .2, s = .1) : E ? (a = .1, s = .2) : _ > 2 || _ < .5 ? (a = .15, s = .15) : (a = .05, s = .05), [[b - a * (y - b), v], [y + s * (y - b), I]]), .05 * C) !== $.FULL && (r = n$2.face_out_of_box);
 	  }
 	  return {
 	    error: r,
@@ -11916,7 +11914,7 @@
 	  };
 	}
 
-	function le(e, t) {
+	function ue(e, t) {
 	  var r = t.customInstructions,
 	      n = t.customIcon,
 	      i = t.customDirectionIcon,
@@ -11925,8 +11923,8 @@
 	  return null != r && r[e] && (a.instructions = r[e]), null != n && n[e] && (a.icon = n[e]), null != i && i[e] && (a.directionIcon = i[e]), null != o && o[e] && (a.stepTimeConstraints = o[e]), a;
 	}
 
-	function ce() {
-	  return (ce = A$2(regeneratorRuntime.mark(function e(t) {
+	function le() {
+	  return (le = A$2(regeneratorRuntime.mark(function e(t) {
 	    return regeneratorRuntime.wrap(function (e) {
 	      for (;;) {
 	        switch (e.prev = e.next) {
@@ -11936,7 +11934,7 @@
 	              break;
 	            }
 
-	            return e.abrupt("return", ue(t));
+	            return e.abrupt("return", se(t));
 
 	          case 2:
 	            return e.abrupt("return", j$2.validatePredictionsFunc(t));
@@ -11950,8 +11948,8 @@
 	  }))).apply(this, arguments);
 	}
 
-	function he() {
-	  return (he = A$2(regeneratorRuntime.mark(function e(t) {
+	function ce() {
+	  return (ce = A$2(regeneratorRuntime.mark(function e(t) {
 	    return regeneratorRuntime.wrap(function (e) {
 	      for (;;) {
 	        switch (e.prev = e.next) {
@@ -11961,7 +11959,7 @@
 	              break;
 	            }
 
-	            return e.abrupt("return", se(t));
+	            return e.abrupt("return", ae(t));
 
 	          case 2:
 	            return e.abrupt("return", j$2.calculateFaceDirectionFunc(t));
@@ -11975,7 +11973,7 @@
 	  }))).apply(this, arguments);
 	}
 
-	var de = Object.freeze({
+	var he = Object.freeze({
 	  __proto__: null,
 	  initFaceVerificationData: function initFaceVerificationData() {
 	    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
@@ -11987,7 +11985,7 @@
 	        s = e.customStepTimeConstraints;
 	    return {
 	      curStepIndex: 0,
-	      steps: [].concat(v$2(J$1([w$2({
+	      steps: [w$2({
 	        name: i.LEFT,
 	        instructions: {
 	          en: "Turn your face to the left",
@@ -12013,7 +12011,7 @@
 	        stepTimeConstraints: {
 	          delayTime: null
 	        }
-	      }, le(i.LEFT, {
+	      }, ue(i.LEFT, {
 	        customInstructions: n,
 	        customIcon: o,
 	        customDirectionIcon: a,
@@ -12044,7 +12042,7 @@
 	        stepTimeConstraints: {
 	          delayTime: null
 	        }
-	      }, le(i.RIGHT, {
+	      }, ue(i.RIGHT, {
 	        customInstructions: n,
 	        customIcon: o,
 	        customDirectionIcon: a,
@@ -12075,12 +12073,12 @@
 	        stepTimeConstraints: {
 	          delayTime: null
 	        }
-	      }, le(i.UP, {
+	      }, ue(i.UP, {
 	        customInstructions: n,
 	        customIcon: o,
 	        customDirectionIcon: a,
 	        customStepTimeConstraints: s
-	      }))])), [w$2({
+	      }))].concat([w$2({
 	        name: i.FRONTAL,
 	        instructions: {
 	          en: "Look straight into the camera",
@@ -12106,7 +12104,7 @@
 	        stepTimeConstraints: {
 	          delayTime: null
 	        }
-	      }, le(i.FRONTAL, {
+	      }, ue(i.FRONTAL, {
 	        customInstructions: n,
 	        customIcon: o,
 	        customDirectionIcon: a,
@@ -12115,10 +12113,10 @@
 	    };
 	  },
 	  validatePredictions: function validatePredictions(e) {
-	    return ce.apply(this, arguments);
+	    return le.apply(this, arguments);
 	  },
 	  calculateFaceDirection: function calculateFaceDirection(e) {
-	    return he.apply(this, arguments);
+	    return ce.apply(this, arguments);
 	  },
 	  faceTracker: function faceTracker() {
 	    var e = [],
@@ -12158,33 +12156,33 @@
 	        i[v] = Math.sqrt((e[v] - r[v]) * (e[v] - r[v]) + (t[v] - n[v]) * (t[v] - n[v]));
 	      }
 
-	      for (var I = 0; I < 6; I++) {
-	        i[I] /= (o - a) * w;
+	      for (var y = 0; y < 6; y++) {
+	        i[y] /= (o - a) * w;
 	      }
 
-	      for (var y = 0, E = 0; E < 6; E++) {
-	        y += i[E];
+	      for (var I = 0, _ = 0; _ < 6; _++) {
+	        I += i[_];
 	      }
 
-	      return y /= 6, s(), {
-	        score: y,
+	      return I /= 6, s(), {
+	        score: I,
 	        time: o
 	      };
 	    };
 	  }
 	}),
-	    fe = document.createElement("canvas"),
-	    ge = fe.getContext("2d");
-	fe.width = 128, fe.height = 128;
+	    de = document.createElement("canvas"),
+	    fe = de.getContext("2d");
+	de.width = 128, de.height = 128;
 
-	var Ae = function () {
+	var ge = function () {
 	  var e = A$2(regeneratorRuntime.mark(function e(t) {
 	    var r, n;
 	    return regeneratorRuntime.wrap(function (e) {
 	      for (;;) {
 	        switch (e.prev = e.next) {
 	          case 0:
-	            return r = t.model, n = t.sCanvas, i = n, ge.drawImage(i, 0, 0, fe.width, fe.height), e.abrupt("return", r.estimateFaces(fe, !1, !1, !0));
+	            return r = t.model, n = t.sCanvas, i = n, fe.drawImage(i, 0, 0, de.width, de.height), e.abrupt("return", r.estimateFaces(de, !1, !1, !0));
 
 	          case 3:
 	          case "end":
@@ -12199,21 +12197,21 @@
 	    return e.apply(this, arguments);
 	  };
 	}(),
-	    me = Object.freeze({
+	    Ae = Object.freeze({
 	  __proto__: null,
 	  SIZE: 128,
-	  getModelPredictions: Ae
+	  getModelPredictions: ge
 	}),
-	    pe = Object.getOwnPropertySymbols,
-	    we = Object.prototype.hasOwnProperty,
-	    be = Object.prototype.propertyIsEnumerable;
+	    me = Object.getOwnPropertySymbols,
+	    pe = Object.prototype.hasOwnProperty,
+	    we = Object.prototype.propertyIsEnumerable;
 
-	function ve(e) {
+	function be(e) {
 	  if (null == e) throw new TypeError("Object.assign cannot be called with null or undefined");
 	  return Object(e);
 	}
 
-	var Ie = function () {
+	var ve = function () {
 	  try {
 	    if (!Object.assign) return !1;
 	    var e = new String("abc");
@@ -12234,16 +12232,16 @@
 	    return !1;
 	  }
 	}() ? Object.assign : function (e, t) {
-	  for (var r, n, i = ve(e), o = 1; o < arguments.length; o++) {
+	  for (var r, n, i = be(e), o = 1; o < arguments.length; o++) {
 	    for (var a in r = Object(arguments[o])) {
-	      we.call(r, a) && (i[a] = r[a]);
+	      pe.call(r, a) && (i[a] = r[a]);
 	    }
 
-	    if (pe) {
-	      n = pe(r);
+	    if (me) {
+	      n = me(r);
 
 	      for (var s = 0; s < n.length; s++) {
-	        be.call(r, n[s]) && (i[n[s]] = r[n[s]]);
+	        we.call(r, n[s]) && (i[n[s]] = r[n[s]]);
 	      }
 	    }
 	  }
@@ -12251,10 +12249,10 @@
 	  return i;
 	},
 	    ye = arguments[3],
-	    Ee = arguments[4],
+	    Ie = arguments[4],
 	    _e = arguments[5],
-	    Be = JSON.stringify,
-	    Ce = function Ce(e, t) {
+	    Ee = JSON.stringify,
+	    Be = function Be(e, t) {
 	  for (var r, n = Object.keys(_e), i = 0, o = n.length; i < o; i++) {
 	    var a = n[i],
 	        s = _e[a].exports;
@@ -12273,22 +12271,22 @@
 	      u[a = n[i]] = a;
 	    }
 
-	    Ee[r] = ["function(require,module,exports){" + e + "(self); }", u];
+	    Ie[r] = ["function(require,module,exports){" + e + "(self); }", u];
 	  }
 
 	  var l = Math.floor(Math.pow(16, 8) * Math.random()).toString(16),
 	      c = {};
-	  c[r] = r, Ee[l] = ["function(require,module,exports){var f = require(" + Be(r) + ");(f.default ? f.default : f)(self);}", c];
+	  c[r] = r, Ie[l] = ["function(require,module,exports){var f = require(" + Ee(r) + ");(f.default ? f.default : f)(self);}", c];
 	  var h = {};
 	  !function e(t) {
-	    for (var r in h[t] = !0, Ee[t][1]) {
-	      var n = Ee[t][1][r];
+	    for (var r in h[t] = !0, Ie[t][1]) {
+	      var n = Ie[t][1][r];
 	      h[n] || e(n);
 	    }
 	  }(l);
 	  var d = "(" + ye + ")({" + Object.keys(h).map(function (e) {
-	    return Be(e) + ":[" + Ee[e][0] + "," + Be(Ee[e][1]) + "]";
-	  }).join(",") + "},{},[" + Be(l) + "])",
+	    return Ee(e) + ":[" + Ie[e][0] + "," + Ee(Ie[e][1]) + "]";
+	  }).join(",") + "},{},[" + Ee(l) + "])",
 	      f = window.URL || window.webkitURL || window.mozURL || window.msURL,
 	      g = new Blob([d], {
 	    type: "text/javascript"
@@ -12299,7 +12297,7 @@
 	  return m.objectURL = A, m;
 	};
 
-	function Se(e, t, r) {
+	function Ce(e, t, r) {
 	  return e(r = {
 	    path: t,
 	    exports: {},
@@ -12311,8 +12309,8 @@
 	  }, r.exports), r.exports;
 	}
 
-	var Me,
-	    Oe = Se(function (e) {
+	var Se,
+	    Me = Ce(function (e) {
 	  "function" == typeof Object.create ? e.exports = function (e, t) {
 	    t && (e.super_ = t, e.prototype = Object.create(t.prototype, {
 	      constructor: {
@@ -12332,31 +12330,31 @@
 	    }
 	  };
 	}),
-	    Re = {
+	    Oe = {
 	  js: !0,
 	  wasm: !0
 	};
 
-	function xe(e) {
-	  if (!(this instanceof xe)) return new xe(e);
-	  var t = Ie({}, Re, e || {});
+	function ke(e) {
+	  if (!(this instanceof ke)) return new ke(e);
+	  var t = ve({}, Oe, e || {});
 	  if (this.options = t, this.__cache = {}, this.__init_promise = null, this.__modules = t.modules || {}, this.__memory = null, this.__wasm = {}, this.__isLE = 1 === new Uint32Array(new Uint8Array([1, 0, 0, 0]).buffer)[0], !this.options.js && !this.options.wasm) throw new Error('mathlib: at least "js" or "wasm" should be enabled');
 	}
 
-	xe.prototype.has_wasm = function () {
-	  if (void 0 !== Me) return Me;
-	  if (Me = !1, "undefined" == typeof WebAssembly) return Me;
+	ke.prototype.has_wasm = function () {
+	  if (void 0 !== Se) return Se;
+	  if (Se = !1, "undefined" == typeof WebAssembly) return Se;
 
 	  try {
 	    var e = new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 6, 1, 96, 1, 127, 1, 127, 3, 2, 1, 0, 5, 3, 1, 0, 1, 7, 8, 1, 4, 116, 101, 115, 116, 0, 0, 10, 16, 1, 14, 0, 32, 0, 65, 1, 54, 2, 0, 32, 0, 40, 2, 0, 11]),
 	        t = new WebAssembly.Module(e);
-	    return 0 !== new WebAssembly.Instance(t, {}).exports.test(4) && (Me = !0), Me;
+	    return 0 !== new WebAssembly.Instance(t, {}).exports.test(4) && (Se = !0), Se;
 	  } catch (e) {}
 
-	  return Me;
-	}, xe.prototype.use = function (e) {
+	  return Se;
+	}, ke.prototype.use = function (e) {
 	  return this.__modules[e.name] = e, this.options.wasm && this.has_wasm() && e.wasm_fn ? this[e.name] = e.wasm_fn : this[e.name] = e.fn, this;
-	}, xe.prototype.init = function () {
+	}, ke.prototype.init = function () {
 	  if (this.__init_promise) return this.__init_promise;
 	  if (!this.options.js && this.options.wasm && !this.has_wasm()) return Promise.reject(new Error('mathlib: only "wasm" was enabled, but it\'s not supported'));
 	  var e = this;
@@ -12368,20 +12366,20 @@
 	  })).then(function () {
 	    return e;
 	  }), this.__init_promise;
-	}, xe.prototype.__base64decode = function (e) {
+	}, ke.prototype.__base64decode = function (e) {
 	  for (var t = e.replace(/[\r\n=]/g, ""), r = t.length, n = new Uint8Array(3 * r >> 2), i = 0, o = 0, a = 0; a < r; a++) {
 	    a % 4 == 0 && a && (n[o++] = i >> 16 & 255, n[o++] = i >> 8 & 255, n[o++] = 255 & i), i = i << 6 | "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".indexOf(t.charAt(a));
 	  }
 
 	  var s = r % 4 * 6;
 	  return 0 === s ? (n[o++] = i >> 16 & 255, n[o++] = i >> 8 & 255, n[o++] = 255 & i) : 18 === s ? (n[o++] = i >> 10 & 255, n[o++] = i >> 2 & 255) : 12 === s && (n[o++] = i >> 4 & 255), n;
-	}, xe.prototype.__reallocate = function (e) {
+	}, ke.prototype.__reallocate = function (e) {
 	  if (!this.__memory) return this.__memory = new WebAssembly.Memory({
 	    initial: Math.ceil(e / 65536)
 	  }), this.__memory;
 	  var t = this.__memory.buffer.byteLength;
 	  return t < e && this.__memory.grow(Math.ceil((e - t) / 65536)), this.__memory;
-	}, xe.prototype.__instance = function (e, t, r) {
+	}, ke.prototype.__instance = function (e, t, r) {
 	  if (t && this.__reallocate(t), !this.__wasm[e]) {
 	    var n = this.__modules[e];
 	    this.__wasm[e] = new WebAssembly.Module(this.__base64decode(n.wasm_src));
@@ -12398,24 +12396,24 @@
 	      })
 	    };
 	    this.__cache[e] = new WebAssembly.Instance(this.__wasm[e], {
-	      env: Ie(i, r || {})
+	      env: ve(i, r || {})
 	    });
 	  }
 
 	  return this.__cache[e];
-	}, xe.prototype.__align = function (e, t) {
+	}, ke.prototype.__align = function (e, t) {
 	  var r = e % (t = t || 8);
 	  return e + (r ? t - r : 0);
 	};
 	var Qe,
-	    ke,
+	    xe,
+	    Re,
 	    Te,
 	    De,
-	    Le,
 	    Ne,
-	    Pe = xe;
+	    Le = ke;
 
-	function je(e, t, r, n, i, o) {
+	function Pe(e, t, r, n, i, o) {
 	  var a, s, u, l, c, h, d, f, g, A, m, p, w, b;
 
 	  for (g = 0; g < o; g++) {
@@ -12429,7 +12427,7 @@
 	  }
 	}
 
-	var Ue = function Ue(e, t, r, n) {
+	var je = function je(e, t, r, n) {
 	  if (n) {
 	    var i = new Uint16Array(e.length),
 	        o = new Float32Array(Math.max(t, r)),
@@ -12439,13 +12437,13 @@
 	          r = Math.exp(-t),
 	          n = Math.exp(-2 * t),
 	          i = (1 - r) * (1 - r) / (1 + 2 * t * r - n);
-	      return Qe = i, ke = i * (t - 1) * r, Te = i * (t + 1) * r, De = -i * n, Le = 2 * r, Ne = -n, new Float32Array([Qe, ke, Te, De, Le, Ne, (Qe + ke) / (1 - Le - Ne), (Te + De) / (1 - Le - Ne)]);
+	      return Qe = i, xe = i * (t - 1) * r, Re = i * (t + 1) * r, Te = -i * n, De = 2 * r, Ne = -n, new Float32Array([Qe, xe, Re, Te, De, Ne, (Qe + xe) / (1 - De - Ne), (Re + Te) / (1 - De - Ne)]);
 	    }(n);
 
-	    je(e, i, o, a, t, r), je(i, e, o, a, r, t);
+	    Pe(e, i, o, a, t, r), Pe(i, e, o, a, r, t);
 	  }
 	},
-	    Fe = {
+	    Ue = {
 	  name: "unsharp_mask",
 	  fn: function fn(e, t, r, n, i, o) {
 	    var a, s, u, l, c, h, d, f, g, A, m, p, w;
@@ -12462,10 +12460,10 @@
 	      }(e, t, r),
 	          v = new Uint16Array(b);
 
-	      Ue(v, t, r, i);
+	      je(v, t, r, i);
 
-	      for (var I = n / 100 * 4096 + .5 | 0, y = 257 * o | 0, E = t * r, _ = 0; _ < E; _++) {
-	        p = 2 * (b[_] - v[_]), Math.abs(p) >= y && (a = e[w = 4 * _], s = e[w + 1], u = e[w + 2], h = 257 * ((f = a >= s && a >= u ? a : s >= a && s >= u ? s : u) + (d = a <= s && a <= u ? a : s <= a && s <= u ? s : u)) >> 1, d === f ? l = c = 0 : (c = h <= 32767 ? 4095 * (f - d) / (f + d) | 0 : 4095 * (f - d) / (510 - f - d) | 0, l = a === f ? 65535 * (s - u) / (6 * (f - d)) | 0 : s === f ? 21845 + (65535 * (u - a) / (6 * (f - d)) | 0) : 43690 + (65535 * (a - s) / (6 * (f - d)) | 0)), (h += I * p + 2048 >> 12) > 65535 ? h = 65535 : h < 0 && (h = 0), 0 === c ? a = s = u = h >> 8 : (g = 2 * h - (A = h <= 32767 ? h * (4096 + c) + 2048 >> 12 : h + ((65535 - h) * c + 2048 >> 12)) >> 8, A >>= 8, a = (m = l + 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), s = (m = 65535 & l) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), u = (m = l - 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16)), e[w] = a, e[w + 1] = s, e[w + 2] = u);
+	      for (var y = n / 100 * 4096 + .5 | 0, I = 257 * o | 0, _ = t * r, E = 0; E < _; E++) {
+	        p = 2 * (b[E] - v[E]), Math.abs(p) >= I && (a = e[w = 4 * E], s = e[w + 1], u = e[w + 2], h = 257 * ((f = a >= s && a >= u ? a : s >= a && s >= u ? s : u) + (d = a <= s && a <= u ? a : s <= a && s <= u ? s : u)) >> 1, d === f ? l = c = 0 : (c = h <= 32767 ? 4095 * (f - d) / (f + d) | 0 : 4095 * (f - d) / (510 - f - d) | 0, l = a === f ? 65535 * (s - u) / (6 * (f - d)) | 0 : s === f ? 21845 + (65535 * (u - a) / (6 * (f - d)) | 0) : 43690 + (65535 * (a - s) / (6 * (f - d)) | 0)), (h += y * p + 2048 >> 12) > 65535 ? h = 65535 : h < 0 && (h = 0), 0 === c ? a = s = u = h >> 8 : (g = 2 * h - (A = h <= 32767 ? h * (4096 + c) + 2048 >> 12 : h + ((65535 - h) * c + 2048 >> 12)) >> 8, A >>= 8, a = (m = l + 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), s = (m = 65535 & l) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16), u = (m = l - 21845 & 65535) >= 43690 ? g : m >= 32767 ? g + (6 * (A - g) * (43690 - m) + 32768 >> 16) : m >= 10922 ? A : g + (6 * (A - g) * m + 32768 >> 16)), e[w] = a, e[w + 1] = s, e[w + 2] = u);
 	      }
 	    }
 	  },
@@ -12495,7 +12493,7 @@
 	  },
 	  wasm_src: "AGFzbQEAAAABMQZgAXwBfGACfX8AYAZ/f39/f38AYAh/f39/f39/fQBgBH9/f38AYAh/f39/f39/fwACGQIDZW52A2V4cAAAA2VudgZtZW1vcnkCAAEDBgUBAgMEBQQEAXAAAAdMBRZfX2J1aWxkX2dhdXNzaWFuX2NvZWZzAAEOX19nYXVzczE2X2xpbmUAAgpibHVyTW9ubzE2AAMHaHNsX2wxNgAEB3Vuc2hhcnAABQkBAAqJEAXZAQEGfAJAIAFE24a6Q4Ia+z8gALujIgOaEAAiBCAEoCIGtjgCECABIANEAAAAAAAAAMCiEAAiBbaMOAIUIAFEAAAAAAAA8D8gBKEiAiACoiAEIAMgA6CiRAAAAAAAAPA/oCAFoaMiArY4AgAgASAEIANEAAAAAAAA8L+gIAKioiIHtjgCBCABIAQgA0QAAAAAAADwP6AgAqKiIgO2OAIIIAEgBSACoiIEtow4AgwgASACIAegIAVEAAAAAAAA8D8gBqGgIgKjtjgCGCABIAMgBKEgAqO2OAIcCwu3AwMDfwR9CHwCQCADKgIUIQkgAyoCECEKIAMqAgwhCyADKgIIIQwCQCAEQX9qIgdBAEgiCA0AIAIgAC8BALgiDSADKgIYu6IiDiAJuyIQoiAOIAq7IhGiIA0gAyoCBLsiEqIgAyoCALsiEyANoqCgoCIPtjgCACACQQRqIQIgAEECaiEAIAdFDQAgBCEGA0AgAiAOIBCiIA8iDiARoiANIBKiIBMgAC8BALgiDaKgoKAiD7Y4AgAgAkEEaiECIABBAmohACAGQX9qIgZBAUoNAAsLAkAgCA0AIAEgByAFbEEBdGogAEF+ai8BACIIuCINIAu7IhGiIA0gDLsiEqKgIA0gAyoCHLuiIg4gCrsiE6KgIA4gCbsiFKKgIg8gAkF8aioCALugqzsBACAHRQ0AIAJBeGohAiAAQXxqIQBBACAFQQF0ayEHIAEgBSAEQQF0QXxqbGohBgNAIAghAyAALwEAIQggBiANIBGiIAO4Ig0gEqKgIA8iECAToqAgDiAUoqAiDyACKgIAu6CrOwEAIAYgB2ohBiAAQX5qIQAgAkF8aiECIBAhDiAEQX9qIgRBAUoNAAsLCwvfAgIDfwZ8AkAgB0MAAAAAWw0AIARE24a6Q4Ia+z8gB0MAAAA/l7ujIgyaEAAiDSANoCIPtjgCECAEIAxEAAAAAAAAAMCiEAAiDraMOAIUIAREAAAAAAAA8D8gDaEiCyALoiANIAwgDKCiRAAAAAAAAPA/oCAOoaMiC7Y4AgAgBCANIAxEAAAAAAAA8L+gIAuioiIQtjgCBCAEIA0gDEQAAAAAAADwP6AgC6KiIgy2OAIIIAQgDiALoiINtow4AgwgBCALIBCgIA5EAAAAAAAA8D8gD6GgIgujtjgCGCAEIAwgDaEgC6O2OAIcIAYEQCAFQQF0IQogBiEJIAIhCANAIAAgCCADIAQgBSAGEAIgACAKaiEAIAhBAmohCCAJQX9qIgkNAAsLIAVFDQAgBkEBdCEIIAUhAANAIAIgASADIAQgBiAFEAIgAiAIaiECIAFBAmohASAAQX9qIgANAAsLC7wBAQV/IAMgAmwiAwRAQQAgA2shBgNAIAAoAgAiBEEIdiIHQf8BcSECAn8gBEH/AXEiAyAEQRB2IgRB/wFxIgVPBEAgAyIIIAMgAk8NARoLIAQgBCAHIAIgA0kbIAIgBUkbQf8BcQshCAJAIAMgAk0EQCADIAVNDQELIAQgByAEIAMgAk8bIAIgBUsbQf8BcSEDCyAAQQRqIQAgASADIAhqQYECbEEBdjsBACABQQJqIQEgBkEBaiIGDQALCwvTBgEKfwJAIAazQwAAgEWUQwAAyEKVu0QAAAAAAADgP6CqIQ0gBSAEbCILBEAgB0GBAmwhDgNAQQAgAi8BACADLwEAayIGQQF0IgdrIAcgBkEASBsgDk8EQCAAQQJqLQAAIQUCfyAALQAAIgYgAEEBai0AACIESSIJRQRAIAYiCCAGIAVPDQEaCyAFIAUgBCAEIAVJGyAGIARLGwshCAJ/IAYgBE0EQCAGIgogBiAFTQ0BGgsgBSAFIAQgBCAFSxsgCRsLIgogCGoiD0GBAmwiEEEBdiERQQAhDAJ/QQAiCSAIIApGDQAaIAggCmsiCUH/H2wgD0H+AyAIayAKayAQQYCABEkbbSEMIAYgCEYEQCAEIAVrQf//A2wgCUEGbG0MAQsgBSAGayAGIARrIAQgCEYiBhtB//8DbCAJQQZsbUHVqgFBqtUCIAYbagshCSARIAcgDWxBgBBqQQx1aiIGQQAgBkEAShsiBkH//wMgBkH//wNIGyEGAkACfwJAIAxB//8DcSIFBEAgBkH//wFKDQEgBUGAIGogBmxBgBBqQQx2DAILIAZBCHYiBiEFIAYhBAwCCyAFIAZB//8Dc2xBgBBqQQx2IAZqCyIFQQh2IQcgBkEBdCAFa0EIdiIGIQQCQCAJQdWqAWpB//8DcSIFQanVAksNACAFQf//AU8EQEGq1QIgBWsgByAGa2xBBmxBgIACakEQdiAGaiEEDAELIAchBCAFQanVAEsNACAFIAcgBmtsQQZsQYCAAmpBEHYgBmohBAsCfyAGIgUgCUH//wNxIghBqdUCSw0AGkGq1QIgCGsgByAGa2xBBmxBgIACakEQdiAGaiAIQf//AU8NABogByIFIAhBqdUASw0AGiAIIAcgBmtsQQZsQYCAAmpBEHYgBmoLIQUgCUGr1QJqQf//A3EiCEGp1QJLDQAgCEH//wFPBEBBqtUCIAhrIAcgBmtsQQZsQYCAAmpBEHYgBmohBgwBCyAIQanVAEsEQCAHIQYMAQsgCCAHIAZrbEEGbEGAgAJqQRB2IAZqIQYLIAEgBDoAACABQQFqIAU6AAAgAUECaiAGOgAACyADQQJqIQMgAkECaiECIABBBGohACABQQRqIQEgC0F/aiILDQALCwsL"
 	},
-	    He = [{
+	    Fe = [{
 	  win: .5,
 	  filter: function filter(e) {
 	    return e >= -.5 && e < .5 ? 1 : 0;
@@ -12526,11 +12524,11 @@
 	  }
 	}];
 
-	function We(e) {
+	function He(e) {
 	  return Math.round(16383 * e);
 	}
 
-	var qe = function qe(e, t, r, n, i) {
+	var We = function We(e, t, r, n, i) {
 	  var o,
 	      a,
 	      s,
@@ -12547,26 +12545,26 @@
 	      w,
 	      b,
 	      v,
-	      I,
-	      y = He[e].filter,
-	      E = 1 / n,
-	      _ = Math.min(1, n),
-	      B = He[e].win / _,
+	      y,
+	      I = Fe[e].filter,
+	      _ = 1 / n,
+	      E = Math.min(1, n),
+	      B = Fe[e].win / E,
 	      C = Math.floor(2 * (B + 1)),
 	      S = new Int16Array((C + 2) * r),
 	      M = 0,
 	      O = !S.subarray || !S.set;
 
 	  for (o = 0; o < r; o++) {
-	    for (a = (o + .5) * E + i, s = Math.max(0, Math.floor(a - B)), l = (u = Math.min(t - 1, Math.ceil(a + B))) - s + 1, c = new Float32Array(l), h = new Int16Array(l), d = 0, f = s, g = 0; f <= u; f++, g++) {
-	      d += A = y((f + .5 - a) * _), c[g] = A;
+	    for (a = (o + .5) * _ + i, s = Math.max(0, Math.floor(a - B)), l = (u = Math.min(t - 1, Math.ceil(a + B))) - s + 1, c = new Float32Array(l), h = new Int16Array(l), d = 0, f = s, g = 0; f <= u; f++, g++) {
+	      d += A = I((f + .5 - a) * E), c[g] = A;
 	    }
 
 	    for (m = 0, g = 0; g < c.length; g++) {
-	      m += p = c[g] / d, h[g] = We(p);
+	      m += p = c[g] / d, h[g] = He(p);
 	    }
 
-	    for (h[r >> 1] += We(1 - m), w = 0; w < h.length && 0 === h[w];) {
+	    for (h[r >> 1] += He(1 - m), w = 0; w < h.length && 0 === h[w];) {
 	      w++;
 	    }
 
@@ -12575,20 +12573,20 @@
 	        b--;
 	      }
 
-	      if (v = s + w, I = b - w + 1, S[M++] = v, S[M++] = I, O) for (g = w; g <= b; g++) {
+	      if (v = s + w, y = b - w + 1, S[M++] = v, S[M++] = y, O) for (g = w; g <= b; g++) {
 	        S[M++] = h[g];
-	      } else S.set(h.subarray(w, b + 1), M), M += I;
+	      } else S.set(h.subarray(w, b + 1), M), M += y;
 	    } else S[M++] = 0, S[M++] = 0;
 	  }
 
 	  return S;
 	};
 
-	function Ge(e) {
+	function qe(e) {
 	  return e < 0 ? 0 : e > 255 ? 255 : e;
 	}
 
-	var ze = function ze(e, t, r, n, i, o) {
+	var Ge = function Ge(e, t, r, n, i, o) {
 	  var a,
 	      s,
 	      u,
@@ -12609,13 +12607,13 @@
 	        l = l + (m = o[c++]) * e[f + 3] | 0, u = u + m * e[f + 2] | 0, s = s + m * e[f + 1] | 0, a = a + m * e[f] | 0, f = f + 4 | 0;
 	      }
 
-	      t[w + 3] = Ge(l + 8192 >> 14), t[w + 2] = Ge(u + 8192 >> 14), t[w + 1] = Ge(s + 8192 >> 14), t[w] = Ge(a + 8192 >> 14), w = w + 4 * n | 0;
+	      t[w + 3] = qe(l + 8192 >> 14), t[w + 2] = qe(u + 8192 >> 14), t[w + 1] = qe(s + 8192 >> 14), t[w] = qe(a + 8192 >> 14), w = w + 4 * n | 0;
 	    }
 
 	    w = 4 * (g + 1) | 0, p = (g + 1) * r * 4 | 0;
 	  }
 	},
-	    Ve = function Ve(e, t, r, n, i, o) {
+	    ze = function ze(e, t, r, n, i, o) {
 	  var a,
 	      s,
 	      u,
@@ -12636,21 +12634,21 @@
 	        l = l + (m = o[c++]) * e[f + 3] | 0, u = u + m * e[f + 2] | 0, s = s + m * e[f + 1] | 0, a = a + m * e[f] | 0, f = f + 4 | 0;
 	      }
 
-	      t[w + 3] = Ge(l + 8192 >> 14), t[w + 2] = Ge(u + 8192 >> 14), t[w + 1] = Ge(s + 8192 >> 14), t[w] = Ge(a + 8192 >> 14), w = w + 4 * n | 0;
+	      t[w + 3] = qe(l + 8192 >> 14), t[w + 2] = qe(u + 8192 >> 14), t[w + 1] = qe(s + 8192 >> 14), t[w] = qe(a + 8192 >> 14), w = w + 4 * n | 0;
 	    }
 
 	    w = 4 * (g + 1) | 0, p = (g + 1) * r * 4 | 0;
 	  }
 	};
 
-	var Ye = !0;
+	var Ve = !0;
 
 	try {
-	  Ye = 1 === new Uint32Array(new Uint8Array([1, 0, 0, 0]).buffer)[0];
+	  Ve = 1 === new Uint32Array(new Uint8Array([1, 0, 0, 0]).buffer)[0];
 	} catch (e) {}
 
-	function Xe(e, t, r) {
-	  if (Ye) t.set(function (e) {
+	function Ye(e, t, r) {
+	  if (Ve) t.set(function (e) {
 	    return new Uint8Array(e.buffer, 0, e.byteLength);
 	  }(e), r);else for (var _n2 = r, _i2 = 0; _i2 < e.length; _i2++) {
 	    var _r5 = e[_i2];
@@ -12658,7 +12656,7 @@
 	  }
 	}
 
-	var Ke = {
+	var Xe = {
 	  name: "resize",
 	  fn: function fn(e) {
 	    var t = e.src,
@@ -12673,10 +12671,10 @@
 	        c = e.dest || new Uint8Array(i * o * 4),
 	        h = void 0 === e.quality ? 3 : e.quality,
 	        d = e.alpha || !1,
-	        f = qe(h, r, i, a, u),
-	        g = qe(h, n, o, s, l),
+	        f = We(h, r, i, a, u),
+	        g = We(h, n, o, s, l),
 	        A = new Uint8Array(i * n * 4);
-	    return ze(t, A, r, n, i, f), Ve(A, c, n, i, o, g), d || function (e, t, r) {
+	    return Ge(t, A, r, n, i, f), ze(A, c, n, i, o, g), d || function (e, t, r) {
 	      var n = 3,
 	          i = t * r * 4 | 0;
 
@@ -12698,18 +12696,18 @@
 	        c = e.dest || new Uint8Array(i * o * 4),
 	        h = void 0 === e.quality ? 3 : e.quality,
 	        d = e.alpha || !1,
-	        f = qe(h, r, i, a, u),
-	        g = qe(h, n, o, s, l),
+	        f = We(h, r, i, a, u),
+	        g = We(h, n, o, s, l),
 	        A = this.__align(0 + Math.max(t.byteLength, c.byteLength)),
 	        m = this.__align(A + n * i * 4),
 	        p = this.__align(m + f.byteLength),
 	        w = p + g.byteLength,
 	        b = this.__instance("resize", w),
 	        v = new Uint8Array(this.__memory.buffer),
-	        I = new Uint32Array(this.__memory.buffer),
-	        y = new Uint32Array(t.buffer);
+	        y = new Uint32Array(this.__memory.buffer),
+	        I = new Uint32Array(t.buffer);
 
-	    I.set(y), Xe(f, v, m), Xe(g, v, p);
+	    y.set(I), Ye(f, v, m), Ye(g, v, p);
 
 	    (b.exports.convolveHV || b.exports._convolveHV)(m, p, A, r, n, i, o);
 
@@ -12725,42 +12723,42 @@
 	  wasm_src: "AGFzbQEAAAABFAJgBn9/f39/fwBgB39/f39/f38AAg8BA2VudgZtZW1vcnkCAAEDAwIAAQQEAXAAAAcZAghjb252b2x2ZQAACmNvbnZvbHZlSFYAAQkBAArmAwLBAwEQfwJAIANFDQAgBEUNACAFQQRqIRVBACEMQQAhDQNAIA0hDkEAIRFBACEHA0AgB0ECaiESAn8gBSAHQQF0IgdqIgZBAmouAQAiEwRAQQAhCEEAIBNrIRQgFSAHaiEPIAAgDCAGLgEAakECdGohEEEAIQlBACEKQQAhCwNAIBAoAgAiB0EYdiAPLgEAIgZsIAtqIQsgB0H/AXEgBmwgCGohCCAHQRB2Qf8BcSAGbCAKaiEKIAdBCHZB/wFxIAZsIAlqIQkgD0ECaiEPIBBBBGohECAUQQFqIhQNAAsgEiATagwBC0EAIQtBACEKQQAhCUEAIQggEgshByABIA5BAnRqIApBgMAAakEOdSIGQf8BIAZB/wFIG0EQdEGAgPwHcUEAIAZBAEobIAtBgMAAakEOdSIGQf8BIAZB/wFIG0EYdEEAIAZBAEobciAJQYDAAGpBDnUiBkH/ASAGQf8BSBtBCHRBgP4DcUEAIAZBAEobciAIQYDAAGpBDnUiBkH/ASAGQf8BSBtB/wFxQQAgBkEAShtyNgIAIA4gA2ohDiARQQFqIhEgBEcNAAsgDCACaiEMIA1BAWoiDSADRw0ACwsLIQACQEEAIAIgAyAEIAUgABAAIAJBACAEIAUgBiABEAALCw=="
 	};
 
-	function Ze(e) {
+	function Ke(e) {
 	  var t = e || [];
 	  var r = {
 	    js: t.indexOf("js") >= 0,
 	    wasm: t.indexOf("wasm") >= 0
 	  };
-	  Pe.call(this, r), this.features = {
+	  Le.call(this, r), this.features = {
 	    js: r.js,
 	    wasm: r.wasm && this.has_wasm()
-	  }, this.use(Fe), this.use(Ke);
+	  }, this.use(Ue), this.use(Xe);
 	}
 
-	Oe(Ze, Pe), Ze.prototype.resizeAndUnsharp = function (e, t) {
+	Me(Ke, Le), Ke.prototype.resizeAndUnsharp = function (e, t) {
 	  var r = this.resize(e, t);
 	  return e.unsharpAmount && this.unsharp_mask(r, e.toWidth, e.toHeight, e.unsharpAmount, e.unsharpRadius, e.unsharpThreshold), r;
 	};
-	var Je = Ze;
+	var Ze = Ke;
 
-	function $e(e, t) {
+	function Je(e, t) {
 	  this.create = e, this.available = [], this.acquired = {}, this.lastId = 1, this.timeoutId = 0, this.idle = t || 2e3;
 	}
 
-	$e.prototype.acquire = function () {
+	Je.prototype.acquire = function () {
 	  var _this = this;
 
 	  var e;
 	  return 0 !== this.available.length ? e = this.available.pop() : (e = this.create(), e.id = this.lastId++, e.release = function () {
 	    return _this.release(e);
 	  }), this.acquired[e.id] = e, e;
-	}, $e.prototype.release = function (e) {
+	}, Je.prototype.release = function (e) {
 	  var _this2 = this;
 
 	  delete this.acquired[e.id], e.lastUsed = Date.now(), this.available.push(e), 0 === this.timeoutId && (this.timeoutId = setTimeout(function () {
 	    return _this2.gc();
 	  }, 100));
-	}, $e.prototype.gc = function () {
+	}, Je.prototype.gc = function () {
 	  var _this3 = this;
 
 	  var e = Date.now();
@@ -12770,23 +12768,23 @@
 	    return _this3.gc();
 	  }, 100) : this.timeoutId = 0;
 	};
-	var et = $e;
+	var $e = Je;
 
-	function tt(e) {
+	function et(e) {
 	  return Object.prototype.toString.call(e);
 	}
 
-	var rt = function rt(e) {
-	  var t = tt(e);
+	var tt = function tt(e) {
+	  var t = et(e);
 	  return "[object HTMLCanvasElement]" === t || "[object OffscreenCanvas]" === t || "[object Canvas]" === t;
 	},
+	    rt = function rt(e) {
+	  return "[object HTMLImageElement]" === et(e);
+	},
 	    nt = function nt(e) {
-	  return "[object HTMLImageElement]" === tt(e);
+	  return "[object ImageBitmap]" === et(e);
 	},
 	    it = function it(e) {
-	  return "[object ImageBitmap]" === tt(e);
-	},
-	    ot = function ot(e) {
 	  var t = 0,
 	      r = [];
 
@@ -12806,7 +12804,7 @@
 	    });
 	  };
 	},
-	    at = function at(e) {
+	    ot = function ot(e) {
 	  switch (e) {
 	    case 0:
 	      return "pixelated";
@@ -12820,7 +12818,7 @@
 
 	  return "high";
 	},
-	    st = function st(e) {
+	    at = function at(e) {
 	  return Promise.resolve().then(function () {
 	    if ("undefined" == typeof createImageBitmap) return !1;
 	    var t = e(100, 100);
@@ -12836,8 +12834,8 @@
 	    return !1;
 	  });
 	},
-	    ut = function ut() {
-	  var e = Je;
+	    st = function st() {
+	  var e = Ze;
 	  var t;
 
 	  onmessage = function onmessage(r) {
@@ -12850,28 +12848,28 @@
 	  };
 	};
 
-	function lt(e) {
+	function ut(e) {
 	  var t = Math.round(e);
 	  return Math.abs(e - t) < 1e-5 ? t : Math.floor(e);
 	}
 
-	function ct(e) {
+	function lt(e) {
 	  var t = Math.round(e);
 	  return Math.abs(e - t) < 1e-5 ? t : Math.ceil(e);
 	}
 
-	var ht = {};
-	var dt = !1;
+	var ct = {};
+	var ht = !1;
 
 	try {
-	  "undefined" != typeof navigator && navigator.userAgent && (dt = navigator.userAgent.indexOf("Safari") >= 0);
+	  "undefined" != typeof navigator && navigator.userAgent && (ht = navigator.userAgent.indexOf("Safari") >= 0);
 	} catch (e) {}
 
-	var ft = 1;
-	"undefined" != typeof navigator && (ft = Math.min(navigator.hardwareConcurrency || 1, 4));
-	var gt = {
+	var dt = 1;
+	"undefined" != typeof navigator && (dt = Math.min(navigator.hardwareConcurrency || 1, 4));
+	var ft = {
 	  tile: 1024,
-	  concurrency: ft,
+	  concurrency: dt,
 	  features: ["js", "wasm", "ww"],
 	  idle: 2e3,
 	  createCanvas: function createCanvas(e, t) {
@@ -12879,18 +12877,18 @@
 	    return r.width = e, r.height = t, r;
 	  }
 	},
-	    At = {
+	    gt = {
 	  quality: 3,
 	  alpha: !1,
 	  unsharpAmount: 0,
 	  unsharpRadius: 0,
 	  unsharpThreshold: 0
 	};
-	var mt, pt;
+	var At, mt;
 
-	function wt() {
+	function pt() {
 	  return {
-	    value: Ce(ut),
+	    value: Be(st),
 	    destroy: function destroy() {
 	      if (this.value.terminate(), "undefined" != typeof window) {
 	        var _e2 = window.URL || window.webkitURL || window.mozURL || window.msURL;
@@ -12901,11 +12899,11 @@
 	  };
 	}
 
-	function bt(e) {
-	  if (!(this instanceof bt)) return new bt(e);
-	  this.options = Ie({}, gt, e || {});
+	function wt(e) {
+	  if (!(this instanceof wt)) return new wt(e);
+	  this.options = ve({}, ft, e || {});
 	  var t = "lk_".concat(this.options.concurrency);
-	  this.__limit = ht[t] || ot(this.options.concurrency), ht[t] || (ht[t] = this.__limit), this.features = {
+	  this.__limit = ct[t] || it(this.options.concurrency), ct[t] || (ct[t] = this.__limit), this.features = {
 	    js: !1,
 	    wasm: !1,
 	    cib: !1,
@@ -12913,39 +12911,39 @@
 	  }, this.__workersPool = null, this.__requested_features = [], this.__mathlib = null;
 	}
 
-	bt.prototype.init = function () {
+	wt.prototype.init = function () {
 	  var _this4 = this;
 
 	  if (this.__initPromise) return this.__initPromise;
-	  if (!1 !== mt && !0 !== mt && (mt = !1, "undefined" != typeof ImageData && "undefined" != typeof Uint8ClampedArray)) try {
-	    new ImageData(new Uint8ClampedArray(400), 10, 10), mt = !0;
+	  if (!1 !== At && !0 !== At && (At = !1, "undefined" != typeof ImageData && "undefined" != typeof Uint8ClampedArray)) try {
+	    new ImageData(new Uint8ClampedArray(400), 10, 10), At = !0;
 	  } catch (e) {}
-	  !1 !== pt && !0 !== pt && (pt = !1, "undefined" != typeof ImageBitmap && (ImageBitmap.prototype && ImageBitmap.prototype.close ? pt = !0 : this.debug("ImageBitmap does not support .close(), disabled")));
+	  !1 !== mt && !0 !== mt && (mt = !1, "undefined" != typeof ImageBitmap && (ImageBitmap.prototype && ImageBitmap.prototype.close ? mt = !0 : this.debug("ImageBitmap does not support .close(), disabled")));
 	  var e = this.options.features.slice();
-	  if (e.indexOf("all") >= 0 && (e = ["cib", "wasm", "js", "ww"]), this.__requested_features = e, this.__mathlib = new Je(e), e.indexOf("ww") >= 0 && "undefined" != typeof window && "Worker" in window) try {
-	    Ce(function () {}).terminate(), this.features.ww = !0;
+	  if (e.indexOf("all") >= 0 && (e = ["cib", "wasm", "js", "ww"]), this.__requested_features = e, this.__mathlib = new Ze(e), e.indexOf("ww") >= 0 && "undefined" != typeof window && "Worker" in window) try {
+	    Be(function () {}).terminate(), this.features.ww = !0;
 
 	    var _e3 = "wp_".concat(JSON.stringify(this.options));
 
-	    ht[_e3] ? this.__workersPool = ht[_e3] : (this.__workersPool = new et(wt, this.options.idle), ht[_e3] = this.__workersPool);
+	    ct[_e3] ? this.__workersPool = ct[_e3] : (this.__workersPool = new $e(pt, this.options.idle), ct[_e3] = this.__workersPool);
 	  } catch (e) {}
 
 	  var t,
 	      r = this.__mathlib.init().then(function (e) {
-	    Ie(_this4.features, e.features);
+	    ve(_this4.features, e.features);
 	  });
 
-	  return t = pt ? st(this.options.createCanvas).then(function (t) {
+	  return t = mt ? at(this.options.createCanvas).then(function (t) {
 	    _this4.features.cib && e.indexOf("cib") < 0 ? _this4.debug("createImageBitmap() resize supported, but disabled by config") : e.indexOf("cib") >= 0 && (_this4.features.cib = t);
 	  }) : Promise.resolve(!1), this.__initPromise = Promise.all([r, t]).then(function () {
 	    return _this4;
 	  }), this.__initPromise;
-	}, bt.prototype.resize = function (e, t, r) {
+	}, wt.prototype.resize = function (e, t, r) {
 	  var _this5 = this;
 
 	  this.debug("Start resize...");
-	  var n = Ie({}, At);
-	  if (isNaN(r) ? r && (n = Ie(n, r)) : n = Ie(n, {
+	  var n = ve({}, gt);
+	  if (isNaN(r) ? r && (n = ve(n, r)) : n = ve(n, {
 	    quality: r
 	  }), n.toWidth = t.width, n.toHeight = t.height, n.width = e.naturalWidth || e.width, n.height = e.naturalHeight || e.height, 0 === t.width || 0 === t.height) return Promise.reject(new Error("Invalid output size: ".concat(t.width, "x").concat(t.height)));
 	  n.unsharpRadius > 2 && (n.unsharpRadius = 2);
@@ -12968,7 +12966,7 @@
 	      return _this5.debug("Resize via createImageBitmap()"), createImageBitmap(e, {
 	        resizeWidth: n.toWidth,
 	        resizeHeight: n.toHeight,
-	        resizeQuality: at(n.quality)
+	        resizeQuality: ot(n.quality)
 	      }).then(function (e) {
 	        if (i) return o;
 	        if (!n.unsharpAmount) return _r6.drawImage(e, 0, 0), e.close(), _r6 = null, _this5.debug("Finished!"), t;
@@ -13017,7 +13015,7 @@
 	        return _this5.__limit(function () {
 	          if (i) return o;
 	          var a;
-	          if (rt(e)) _this5.debug("Get tile pixel data"), a = n.getImageData(t.x, t.y, t.width, t.height);else {
+	          if (tt(e)) _this5.debug("Get tile pixel data"), a = n.getImageData(t.x, t.y, t.width, t.height);else {
 	            _this5.debug("Draw tile imageBitmap/image to temporary canvas");
 
 	            var _n3 = _this5.options.createCanvas(t.width, t.height),
@@ -13048,10 +13046,10 @@
 	          }).then(function (e) {
 	            if (i) return o;
 	            var r;
-	            if (a = null, _this5.debug("Convert raw rgba tile result to ImageData"), mt) r = new ImageData(new Uint8ClampedArray(e), t.toWidth, t.toHeight);else if (r = l.createImageData(t.toWidth, t.toHeight), r.data.set) r.data.set(e);else for (var _t5 = r.data.length - 1; _t5 >= 0; _t5--) {
+	            if (a = null, _this5.debug("Convert raw rgba tile result to ImageData"), At) r = new ImageData(new Uint8ClampedArray(e), t.toWidth, t.toHeight);else if (r = l.createImageData(t.toWidth, t.toHeight), r.data.set) r.data.set(e);else for (var _t5 = r.data.length - 1; _t5 >= 0; _t5--) {
 	              r.data[_t5] = e[_t5];
 	            }
-	            return _this5.debug("Draw tile"), dt ? l.putImageData(r, t.toX, t.toY, t.toInnerX - t.toX, t.toInnerY - t.toY, t.toInnerWidth + 1e-5, t.toInnerHeight + 1e-5) : l.putImageData(r, t.toX, t.toY, t.toInnerX - t.toX, t.toInnerY - t.toY, t.toInnerWidth, t.toInnerHeight), null;
+	            return _this5.debug("Draw tile"), ht ? l.putImageData(r, t.toX, t.toY, t.toInnerX - t.toX, t.toInnerY - t.toY, t.toInnerWidth + 1e-5, t.toInnerHeight + 1e-5) : l.putImageData(r, t.toX, t.toY, t.toInnerX - t.toX, t.toInnerY - t.toY, t.toInnerWidth, t.toInnerHeight), null;
 	          });
 	        });
 	      };
@@ -13059,11 +13057,11 @@
 	      return Promise.resolve().then(function () {
 	        if (l = t.getContext("2d", {
 	          alpha: Boolean(r.alpha)
-	        }), rt(e)) return n = e.getContext("2d", {
+	        }), tt(e)) return n = e.getContext("2d", {
 	          alpha: Boolean(r.alpha)
 	        }), null;
-	        if (it(e)) return u = e, c = !0, null;
-	        if (nt(e)) return pt ? (_this5.debug("Decode image via createImageBitmap"), createImageBitmap(e).then(function (e) {
+	        if (nt(e)) return u = e, c = !0, null;
+	        if (rt(e)) return mt ? (_this5.debug("Decode image via createImageBitmap"), createImageBitmap(e).then(function (e) {
 	          u = e;
 	        })["catch"](function (e) {
 	          return null;
@@ -13083,8 +13081,8 @@
 	              a,
 	              s = e.toWidth / e.width,
 	              u = e.toHeight / e.height,
-	              l = lt(e.srcTileSize * s) - 2 * e.destTileBorder,
-	              c = lt(e.srcTileSize * u) - 2 * e.destTileBorder;
+	              l = ut(e.srcTileSize * s) - 2 * e.destTileBorder,
+	              c = ut(e.srcTileSize * u) - 2 * e.destTileBorder;
 	          if (l < 1 || c < 1) throw new Error("Internal error in pica: target tile width/height is too small.");
 	          var h,
 	              d = [];
@@ -13100,14 +13098,14 @@
 	                toInnerY: i,
 	                toInnerWidth: l,
 	                toInnerHeight: c,
-	                offsetX: t / s - lt(t / s),
-	                offsetY: r / u - lt(r / u),
+	                offsetX: t / s - ut(t / s),
+	                offsetY: r / u - ut(r / u),
 	                scaleX: s,
 	                scaleY: u,
-	                x: lt(t / s),
-	                y: lt(r / u),
-	                width: ct(o / s),
-	                height: ct(a / u)
+	                x: ut(t / s),
+	                y: ut(r / u),
+	                width: lt(o / s),
+	                height: lt(a / u)
 	              }, d.push(h);
 	            }
 	          }
@@ -13145,7 +13143,7 @@
 	          c = _e$shift2[1],
 	          h = 0 === e.length;
 
-	      return n = Ie({}, n, {
+	      return n = ve({}, n, {
 	        toWidth: s,
 	        toHeight: c,
 	        quality: h ? n.quality : Math.min(1, n.quality)
@@ -13177,14 +13175,14 @@
 
 	    return l(c, e, t, n);
 	  });
-	}, bt.prototype.resizeBuffer = function (e) {
+	}, wt.prototype.resizeBuffer = function (e) {
 	  var _this6 = this;
 
-	  var t = Ie({}, At, e);
+	  var t = ve({}, gt, e);
 	  return this.init().then(function () {
 	    return _this6.__mathlib.resizeAndUnsharp(t);
 	  });
-	}, bt.prototype.toBlob = function (e, t, r) {
+	}, wt.prototype.toBlob = function (e, t, r) {
 	  return t = t || "image/png", new Promise(function (n) {
 	    if (e.toBlob) return void e.toBlob(function (e) {
 	      return n(e);
@@ -13205,10 +13203,10 @@
 	      type: t
 	    }));
 	  });
-	}, bt.prototype.debug = function () {};
+	}, wt.prototype.debug = function () {};
 
-	var vt = new bt(),
-	    It = function It(e, t) {
+	var bt = new wt(),
+	    vt = function vt(e, t) {
 	  var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
 	      n = r.minSize,
 	      i = void 0 === n ? 720 : n,
@@ -13235,13 +13233,13 @@
 
 	      i.onload = function () {
 	        if (i.width && i.height && (i.width < n || i.height < n)) {
-	          var e = It(i.width, i.height, {
+	          var e = vt(i.width, i.height, {
 	            minSize: n
 	          }),
 	              r = e.desW,
 	              a = e.desH;
-	          o.width = r, o.height = a, vt.resize(i, o).then(function (e) {
-	            return vt.toBlob(e, "image/jpeg");
+	          o.width = r, o.height = a, bt.resize(i, o).then(function (e) {
+	            return bt.toBlob(e, "image/jpeg");
 	          }).then(function (e) {
 	            return t(e);
 	          });
@@ -13251,7 +13249,7 @@
 	  }
 	});
 
-	function Et(e, t, r) {
+	function It(e, t, r) {
 	  return function (e, t, r) {
 	    for (var n = 0, i = r[1], o = r[3], a = r[0], s = r[2], u = i; u < o; u++) {
 	      for (var l = a; l < s; l++) {
@@ -13284,7 +13282,7 @@
 	              break;
 	            }
 
-	            return e.abrupt("return", Et(i, n.width, n.heigh));
+	            return e.abrupt("return", It(i, n.width, n.heigh));
 
 	          case 5:
 	            return e.abrupt("return", j$2.detectGlare(i, n.width, n.height));
@@ -13298,13 +13296,13 @@
 	  }))).apply(this, arguments);
 	}
 
-	var Bt = Object.freeze({
+	var Et = Object.freeze({
 	  __proto__: null,
 	  isCardGlare: function isCardGlare(e) {
 	    return _t.apply(this, arguments);
 	  }
 	}),
-	    Ct = Se(function (e) {
+	    Bt = Ce(function (e) {
 	  e.exports = function (e) {
 	    var t = {};
 
@@ -13393,23 +13391,23 @@
 	        w = new i(),
 	        b = w.getBrowser(),
 	        v = w.getDevice(),
-	        I = w.getEngine(),
-	        y = w.getOS(),
-	        E = w.getUA(),
-	        _ = a.CHROME,
+	        y = w.getEngine(),
+	        I = w.getOS(),
+	        _ = w.getUA(),
+	        E = a.CHROME,
 	        B = a.CHROMIUM,
 	        C = a.IE,
 	        S = a.INTERNET_EXPLORER,
 	        M = a.OPERA,
 	        O = a.FIREFOX,
-	        R = a.SAFARI,
-	        x = a.EDGE,
-	        Q = a.YANDEX,
-	        k = a.MOBILE_SAFARI,
+	        k = a.SAFARI,
+	        Q = a.EDGE,
+	        x = a.YANDEX,
+	        R = a.MOBILE_SAFARI,
 	        T = u.MOBILE,
 	        D = u.TABLET,
-	        L = u.SMART_TV,
-	        N = u.BROWSER,
+	        N = u.SMART_TV,
+	        L = u.BROWSER,
 	        P = u.WEARABLE,
 	        j = u.CONSOLE,
 	        U = s.ANDROID,
@@ -13418,18 +13416,18 @@
 	        W = s.WINDOWS,
 	        q = s.MAC_OS,
 	        G = function G() {
-	      return y.name === s.WINDOWS && "10" === y.version && "string" == typeof E && -1 !== E.indexOf("Edg/");
+	      return I.name === s.WINDOWS && "10" === I.version && "string" == typeof _ && -1 !== _.indexOf("Edg/");
 	    },
 	        z = function z() {
-	      return b.name === x;
+	      return b.name === Q;
 	    },
 	        V = function V() {
 	      return p("iPad");
 	    },
-	        Y = v.type === L,
+	        Y = v.type === N,
 	        X = v.type === j,
 	        K = v.type === P,
-	        Z = b.name === k || V(),
+	        Z = b.name === R || V(),
 	        J = b.name === B,
 	        $ = function () {
 	      switch (v.type) {
@@ -13443,29 +13441,29 @@
 	    }() || V(),
 	        ee = v.type === T,
 	        te = v.type === D || V(),
-	        re = v.type === N,
-	        ne = y.name === U,
-	        ie = y.name === F,
-	        oe = y.name === H || V(),
-	        ae = b.name === _,
+	        re = v.type === L,
+	        ne = I.name === U,
+	        ie = I.name === F,
+	        oe = I.name === H || V(),
+	        ae = b.name === E,
 	        se = b.name === O,
-	        ue = b.name === R || b.name === k,
+	        ue = b.name === k || b.name === R,
 	        le = b.name === M,
 	        ce = b.name === S || b.name === C,
-	        he = y.version ? y.version : "none",
-	        de = y.name ? y.name : "none",
+	        he = I.version ? I.version : "none",
+	        de = I.name ? I.name : "none",
 	        fe = b.major,
 	        ge = b.version,
 	        Ae = b.name,
 	        me = v.vendor ? v.vendor : "none",
 	        pe = v.model ? v.model : "none",
-	        we = I.name,
-	        be = I.version,
-	        ve = E,
-	        Ie = z() || G(),
-	        ye = b.name === Q,
-	        Ee = v.type,
-	        _e = (n = m()) && (/iPad|iPhone|iPod/.test(n.platform) || "MacIntel" === n.platform && n.maxTouchPoints > 1) && !window.MSStream,
+	        we = y.name,
+	        be = y.version,
+	        ve = _,
+	        ye = z() || G(),
+	        Ie = b.name === x,
+	        _e = v.type,
+	        Ee = (n = m()) && (/iPad|iPhone|iPod/.test(n.platform) || "MacIntel" === n.platform && n.maxTouchPoints > 1) && !window.MSStream,
 	        Be = V(),
 	        Ce = p("iPhone"),
 	        Se = p("iPod"),
@@ -13475,20 +13473,20 @@
 	      return "string" == typeof t && /electron/.test(t);
 	    }(),
 	        Oe = G(),
-	        Re = z(),
-	        xe = y.name === W,
-	        Qe = y.name === q,
-	        ke = c(v.type);
+	        ke = z(),
+	        Qe = I.name === W,
+	        xe = I.name === q,
+	        Re = c(v.type);
 
 	    e.exports = {
 	      deviceDetect: function deviceDetect() {
-	        var e = ke.isBrowser,
-	            t = ke.isMobile,
-	            r = ke.isTablet,
-	            n = ke.isSmartTV,
-	            i = ke.isConsole,
-	            o = ke.isWearable;
-	        return e ? h(e, b, I, y, E) : n ? A(n, I, y, E) : i ? g(i, I, y, E) : t || r ? d(ke, v, y, E) : o ? f(o, I, y, E) : void 0;
+	        var e = Re.isBrowser,
+	            t = Re.isMobile,
+	            r = Re.isTablet,
+	            n = Re.isSmartTV,
+	            i = Re.isConsole,
+	            o = Re.isWearable;
+	        return e ? h(e, b, y, I, _) : n ? A(n, y, I, _) : i ? g(i, y, I, _) : t || r ? d(Re, v, I, _) : o ? f(o, y, I, _) : void 0;
 	      },
 	      isSmartTV: Y,
 	      isConsole: X,
@@ -13517,18 +13515,18 @@
 	      engineName: we,
 	      engineVersion: be,
 	      getUA: ve,
-	      isEdge: Ie,
-	      isYandex: ye,
-	      deviceType: Ee,
-	      isIOS13: _e,
+	      isEdge: ye,
+	      isYandex: Ie,
+	      deviceType: _e,
+	      isIOS13: Ee,
 	      isIPad13: Be,
 	      isIPhone13: Ce,
 	      isIPod13: Se,
 	      isElectron: Me,
 	      isEdgeChromium: Oe,
-	      isLegacyEdge: Re,
-	      isWindows: xe,
-	      isMacOs: Qe
+	      isLegacyEdge: ke,
+	      isWindows: Qe,
+	      isMacOs: xe
 	    };
 	  }, function (e, t, r) {
 	    var n;
@@ -13579,7 +13577,7 @@
 	          return e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 	        }
 	      },
-	          I = {
+	          y = {
 	        rgx: function rgx(e, t) {
 	          for (var r, n, i, s, l, c, h = 0; h < t.length && !l;) {
 	            var d = t[h],
@@ -13606,7 +13604,7 @@
 	          return e;
 	        }
 	      },
-	          y = {
+	          I = {
 	        browser: {
 	          oldsafari: {
 	            version: {
@@ -13655,47 +13653,47 @@
 	          }
 	        }
 	      },
-	          E = {
-	        browser: [[/(opera\smini)\/([\w\.-]+)/i, /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i, /(opera).+version\/([\w\.]+)/i, /(opera)[\/\s]+([\w\.]+)/i], [c, f], [/(opios)[\/\s]+([\w\.]+)/i], [[c, "Opera Mini"], f], [/\s(opr)\/([\w\.]+)/i], [[c, "Opera"], f], [/(kindle)\/([\w\.]+)/i, /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i, /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i, /(?:ms|\()(ie)\s([\w\.]+)/i, /(rekonq)\/([\w\.]*)/i, /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark)\/([\w\.-]+)/i], [c, f], [/(trident).+rv[:\s]([\w\.]+).+like\sgecko/i], [[c, "IE"], f], [/(edge|edgios|edgea)\/((\d+)?[\w\.]+)/i], [[c, "Edge"], f], [/(yabrowser)\/([\w\.]+)/i], [[c, "Yandex"], f], [/(puffin)\/([\w\.]+)/i], [[c, "Puffin"], f], [/((?:[\s\/])uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i], [[c, "UCBrowser"], f], [/(comodo_dragon)\/([\w\.]+)/i], [[c, /_/g, " "], f], [/(micromessenger)\/([\w\.]+)/i], [[c, "WeChat"], f], [/(qqbrowserlite)\/([\w\.]+)/i], [c, f], [/(QQ)\/([\d\.]+)/i], [c, f], [/m?(qqbrowser)[\/\s]?([\w\.]+)/i], [c, f], [/(BIDUBrowser)[\/\s]?([\w\.]+)/i], [c, f], [/(2345Explorer)[\/\s]?([\w\.]+)/i], [c, f], [/(MetaSr)[\/\s]?([\w\.]+)/i], [c], [/(LBBROWSER)/i], [c], [/xiaomi\/miuibrowser\/([\w\.]+)/i], [f, [c, "MIUI Browser"]], [/;fbav\/([\w\.]+);/i], [f, [c, "Facebook"]], [/headlesschrome(?:\/([\w\.]+)|\s)/i], [f, [c, "Chrome Headless"]], [/\swv\).+(chrome)\/([\w\.]+)/i], [[c, /(.+)/, "$1 WebView"], f], [/((?:oculus|samsung)browser)\/([\w\.]+)/i], [[c, /(.+(?:g|us))(.+)/, "$1 $2"], f], [/android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)*/i], [f, [c, "Android Browser"]], [/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i], [c, f], [/(dolfin)\/([\w\.]+)/i], [[c, "Dolphin"], f], [/((?:android.+)crmo|crios)\/([\w\.]+)/i], [[c, "Chrome"], f], [/(coast)\/([\w\.]+)/i], [[c, "Opera Coast"], f], [/fxios\/([\w\.-]+)/i], [f, [c, "Firefox"]], [/version\/([\w\.]+).+?mobile\/\w+\s(safari)/i], [f, [c, "Mobile Safari"]], [/version\/([\w\.]+).+?(mobile\s?safari|safari)/i], [f, c], [/webkit.+?(gsa)\/([\w\.]+).+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [[c, "GSA"], f], [/webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [c, [f, I.str, y.browser.oldsafari.version]], [/(konqueror)\/([\w\.]+)/i, /(webkit|khtml)\/([\w\.]+)/i], [c, f], [/(navigator|netscape)\/([\w\.-]+)/i], [[c, "Netscape"], f], [/(swiftfox)/i, /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i, /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i, /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i, /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i, /(links)\s\(([\w\.]+)/i, /(gobrowser)\/?([\w\.]*)/i, /(ice\s?browser)\/v?([\w\._]+)/i, /(mosaic)[\/\s]([\w\.]+)/i], [c, f]],
+	          _ = {
+	        browser: [[/(opera\smini)\/([\w\.-]+)/i, /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i, /(opera).+version\/([\w\.]+)/i, /(opera)[\/\s]+([\w\.]+)/i], [c, f], [/(opios)[\/\s]+([\w\.]+)/i], [[c, "Opera Mini"], f], [/\s(opr)\/([\w\.]+)/i], [[c, "Opera"], f], [/(kindle)\/([\w\.]+)/i, /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i, /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i, /(?:ms|\()(ie)\s([\w\.]+)/i, /(rekonq)\/([\w\.]*)/i, /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark)\/([\w\.-]+)/i], [c, f], [/(trident).+rv[:\s]([\w\.]+).+like\sgecko/i], [[c, "IE"], f], [/(edge|edgios|edgea)\/((\d+)?[\w\.]+)/i], [[c, "Edge"], f], [/(yabrowser)\/([\w\.]+)/i], [[c, "Yandex"], f], [/(puffin)\/([\w\.]+)/i], [[c, "Puffin"], f], [/((?:[\s\/])uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i], [[c, "UCBrowser"], f], [/(comodo_dragon)\/([\w\.]+)/i], [[c, /_/g, " "], f], [/(micromessenger)\/([\w\.]+)/i], [[c, "WeChat"], f], [/(qqbrowserlite)\/([\w\.]+)/i], [c, f], [/(QQ)\/([\d\.]+)/i], [c, f], [/m?(qqbrowser)[\/\s]?([\w\.]+)/i], [c, f], [/(BIDUBrowser)[\/\s]?([\w\.]+)/i], [c, f], [/(2345Explorer)[\/\s]?([\w\.]+)/i], [c, f], [/(MetaSr)[\/\s]?([\w\.]+)/i], [c], [/(LBBROWSER)/i], [c], [/xiaomi\/miuibrowser\/([\w\.]+)/i], [f, [c, "MIUI Browser"]], [/;fbav\/([\w\.]+);/i], [f, [c, "Facebook"]], [/headlesschrome(?:\/([\w\.]+)|\s)/i], [f, [c, "Chrome Headless"]], [/\swv\).+(chrome)\/([\w\.]+)/i], [[c, /(.+)/, "$1 WebView"], f], [/((?:oculus|samsung)browser)\/([\w\.]+)/i], [[c, /(.+(?:g|us))(.+)/, "$1 $2"], f], [/android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)*/i], [f, [c, "Android Browser"]], [/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i], [c, f], [/(dolfin)\/([\w\.]+)/i], [[c, "Dolphin"], f], [/((?:android.+)crmo|crios)\/([\w\.]+)/i], [[c, "Chrome"], f], [/(coast)\/([\w\.]+)/i], [[c, "Opera Coast"], f], [/fxios\/([\w\.-]+)/i], [f, [c, "Firefox"]], [/version\/([\w\.]+).+?mobile\/\w+\s(safari)/i], [f, [c, "Mobile Safari"]], [/version\/([\w\.]+).+?(mobile\s?safari|safari)/i], [f, c], [/webkit.+?(gsa)\/([\w\.]+).+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [[c, "GSA"], f], [/webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [c, [f, y.str, I.browser.oldsafari.version]], [/(konqueror)\/([\w\.]+)/i, /(webkit|khtml)\/([\w\.]+)/i], [c, f], [/(navigator|netscape)\/([\w\.-]+)/i], [[c, "Netscape"], f], [/(swiftfox)/i, /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i, /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i, /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i, /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i, /(links)\s\(([\w\.]+)/i, /(gobrowser)\/?([\w\.]*)/i, /(ice\s?browser)\/v?([\w\._]+)/i, /(mosaic)[\/\s]([\w\.]+)/i], [c, f]],
 	        cpu: [[/(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i], [[g, "amd64"]], [/(ia32(?=;))/i], [[g, v.lowerize]], [/((?:i[346]|x)86)[;\)]/i], [[g, "ia32"]], [/windows\s(ce|mobile);\sppc;/i], [[g, "arm"]], [/((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i], [[g, /ower/, "", v.lowerize]], [/(sun4\w)[;\)]/i], [[g, "sparc"]], [/((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i], [[g, v.lowerize]]],
-	        device: [[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i], [l, d, [h, p]], [/applecoremedia\/[\w\.]+ \((ipad)/], [l, [d, "Apple"], [h, p]], [/(apple\s{0,1}tv)/i], [[l, "Apple TV"], [d, "Apple"]], [/(archos)\s(gamepad2?)/i, /(hp).+(touchpad)/i, /(hp).+(tablet)/i, /(kindle)\/([\w\.]+)/i, /\s(nook)[\w\s]+build\/(\w+)/i, /(dell)\s(strea[kpr\s\d]*[\dko])/i], [d, l, [h, p]], [/(kf[A-z]+)\sbuild\/.+silk\//i], [l, [d, "Amazon"], [h, p]], [/(sd|kf)[0349hijorstuw]+\sbuild\/.+silk\//i], [[l, I.str, y.device.amazon.model], [d, "Amazon"], [h, m]], [/\((ip[honed|\s\w*]+);.+(apple)/i], [l, d, [h, m]], [/\((ip[honed|\s\w*]+);/i], [l, [d, "Apple"], [h, m]], [/(blackberry)[\s-]?(\w+)/i, /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i, /(hp)\s([\w\s]+\w)/i, /(asus)-?(\w+)/i], [d, l, [h, m]], [/\(bb10;\s(\w+)/i], [l, [d, "BlackBerry"], [h, m]], [/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7|padfone)/i], [l, [d, "Asus"], [h, p]], [/(sony)\s(tablet\s[ps])\sbuild\//i, /(sony)?(?:sgp.+)\sbuild\//i], [[d, "Sony"], [l, "Xperia Tablet"], [h, p]], [/android.+\s([c-g]\d{4}|so[-l]\w+)\sbuild\//i], [l, [d, "Sony"], [h, m]], [/\s(ouya)\s/i, /(nintendo)\s([wids3u]+)/i], [d, l, [h, A]], [/android.+;\s(shield)\sbuild/i], [l, [d, "Nvidia"], [h, A]], [/(playstation\s[34portablevi]+)/i], [l, [d, "Sony"], [h, A]], [/(sprint\s(\w+))/i], [[d, I.str, y.device.sprint.vendor], [l, I.str, y.device.sprint.model], [h, m]], [/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i], [d, l, [h, p]], [/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, /(zte)-(\w*)/i, /(alcatel|geeksphone|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i], [d, [l, /_/g, " "], [h, m]], [/(nexus\s9)/i], [l, [d, "HTC"], [h, p]], [/d\/huawei([\w\s-]+)[;\)]/i, /(nexus\s6p)/i], [l, [d, "Huawei"], [h, m]], [/(microsoft);\s(lumia[\s\w]+)/i], [d, l, [h, m]], [/[\s\(;](xbox(?:\sone)?)[\s\);]/i], [l, [d, "Microsoft"], [h, A]], [/(kin\.[onetw]{3})/i], [[l, /\./g, " "], [d, "Microsoft"], [h, m]], [/\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)[\w\s]+build\//i, /mot[\s-]?(\w*)/i, /(XT\d{3,4}) build\//i, /(nexus\s6)/i], [l, [d, "Motorola"], [h, m]], [/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i], [l, [d, "Motorola"], [h, p]], [/hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i], [[d, v.trim], [l, v.trim], [h, w]], [/hbbtv.+maple;(\d+)/i], [[l, /^/, "SmartTV"], [d, "Samsung"], [h, w]], [/\(dtv[\);].+(aquos)/i], [l, [d, "Sharp"], [h, w]], [/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n\d+|sgh-t8[56]9|nexus 10))/i, /((SM-T\w+))/i], [[d, "Samsung"], l, [h, p]], [/smart-tv.+(samsung)/i], [d, [h, w], l], [/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-\w[\w\d]+))/i, /(sam[sung]*)[\s-]*(\w+-?[\w-]*)/i, /sec-((sgh\w+))/i], [[d, "Samsung"], l, [h, m]], [/sie-(\w*)/i], [l, [d, "Siemens"], [h, m]], [/(maemo|nokia).*(n900|lumia\s\d+)/i, /(nokia)[\s_-]?([\w-]*)/i], [[d, "Nokia"], l, [h, m]], [/android\s3\.[\s\w;-]{10}(a\d{3})/i], [l, [d, "Acer"], [h, p]], [/android.+([vl]k\-?\d{3})\s+build/i], [l, [d, "LG"], [h, p]], [/android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i], [[d, "LG"], l, [h, p]], [/(lg) netcast\.tv/i], [d, l, [h, w]], [/(nexus\s[45])/i, /lg[e;\s\/-]+(\w*)/i, /android.+lg(\-?[\d\w]+)\s+build/i], [l, [d, "LG"], [h, m]], [/android.+(ideatab[a-z0-9\-\s]+)/i], [l, [d, "Lenovo"], [h, p]], [/linux;.+((jolla));/i], [d, l, [h, m]], [/((pebble))app\/[\d\.]+\s/i], [d, l, [h, b]], [/android.+;\s(oppo)\s?([\w\s]+)\sbuild/i], [d, l, [h, m]], [/crkey/i], [[l, "Chromecast"], [d, "Google"]], [/android.+;\s(glass)\s\d/i], [l, [d, "Google"], [h, b]], [/android.+;\s(pixel c)\s/i], [l, [d, "Google"], [h, p]], [/android.+;\s(pixel xl|pixel)\s/i], [l, [d, "Google"], [h, m]], [/android.+;\s(\w+)\s+build\/hm\1/i, /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i, /android.+(mi[\s\-_]*(?:one|one[\s_]plus|note lte)?[\s_]*(?:\d?\w?)[\s_]*(?:plus)?)\s+build/i, /android.+(redmi[\s\-_]*(?:note)?(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [d, "Xiaomi"], [h, m]], [/android.+(mi[\s\-_]*(?:pad)(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [d, "Xiaomi"], [h, p]], [/android.+;\s(m[1-5]\snote)\sbuild/i], [l, [d, "Meizu"], [h, p]], [/android.+a000(1)\s+build/i, /android.+oneplus\s(a\d{4})\s+build/i], [l, [d, "OnePlus"], [h, m]], [/android.+[;\/]\s*(RCT[\d\w]+)\s+build/i], [l, [d, "RCA"], [h, p]], [/android.+[;\/\s]+(Venue[\d\s]{2,7})\s+build/i], [l, [d, "Dell"], [h, p]], [/android.+[;\/]\s*(Q[T|M][\d\w]+)\s+build/i], [l, [d, "Verizon"], [h, p]], [/android.+[;\/]\s+(Barnes[&\s]+Noble\s+|BN[RT])(V?.*)\s+build/i], [[d, "Barnes & Noble"], l, [h, p]], [/android.+[;\/]\s+(TM\d{3}.*\b)\s+build/i], [l, [d, "NuVision"], [h, p]], [/android.+;\s(k88)\sbuild/i], [l, [d, "ZTE"], [h, p]], [/android.+[;\/]\s*(gen\d{3})\s+build.*49h/i], [l, [d, "Swiss"], [h, m]], [/android.+[;\/]\s*(zur\d{3})\s+build/i], [l, [d, "Swiss"], [h, p]], [/android.+[;\/]\s*((Zeki)?TB.*\b)\s+build/i], [l, [d, "Zeki"], [h, p]], [/(android).+[;\/]\s+([YR]\d{2})\s+build/i, /android.+[;\/]\s+(Dragon[\-\s]+Touch\s+|DT)(\w{5})\sbuild/i], [[d, "Dragon Touch"], l, [h, p]], [/android.+[;\/]\s*(NS-?\w{0,9})\sbuild/i], [l, [d, "Insignia"], [h, p]], [/android.+[;\/]\s*((NX|Next)-?\w{0,9})\s+build/i], [l, [d, "NextBook"], [h, p]], [/android.+[;\/]\s*(Xtreme\_)?(V(1[045]|2[015]|30|40|60|7[05]|90))\s+build/i], [[d, "Voice"], l, [h, m]], [/android.+[;\/]\s*(LVTEL\-)?(V1[12])\s+build/i], [[d, "LvTel"], l, [h, m]], [/android.+[;\/]\s*(V(100MD|700NA|7011|917G).*\b)\s+build/i], [l, [d, "Envizen"], [h, p]], [/android.+[;\/]\s*(Le[\s\-]+Pan)[\s\-]+(\w{1,9})\s+build/i], [d, l, [h, p]], [/android.+[;\/]\s*(Trio[\s\-]*.*)\s+build/i], [l, [d, "MachSpeed"], [h, p]], [/android.+[;\/]\s*(Trinity)[\-\s]*(T\d{3})\s+build/i], [d, l, [h, p]], [/android.+[;\/]\s*TU_(1491)\s+build/i], [l, [d, "Rotor"], [h, p]], [/android.+(KS(.+))\s+build/i], [l, [d, "Amazon"], [h, p]], [/android.+(Gigaset)[\s\-]+(Q\w{1,9})\s+build/i], [d, l, [h, p]], [/\s(tablet|tab)[;\/]/i, /\s(mobile)(?:[;\/]|\ssafari)/i], [[h, v.lowerize], d, l], [/(android[\w\.\s\-]{0,9});.+build/i], [l, [d, "Generic"]]],
+	        device: [[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i], [l, d, [h, p]], [/applecoremedia\/[\w\.]+ \((ipad)/], [l, [d, "Apple"], [h, p]], [/(apple\s{0,1}tv)/i], [[l, "Apple TV"], [d, "Apple"]], [/(archos)\s(gamepad2?)/i, /(hp).+(touchpad)/i, /(hp).+(tablet)/i, /(kindle)\/([\w\.]+)/i, /\s(nook)[\w\s]+build\/(\w+)/i, /(dell)\s(strea[kpr\s\d]*[\dko])/i], [d, l, [h, p]], [/(kf[A-z]+)\sbuild\/.+silk\//i], [l, [d, "Amazon"], [h, p]], [/(sd|kf)[0349hijorstuw]+\sbuild\/.+silk\//i], [[l, y.str, I.device.amazon.model], [d, "Amazon"], [h, m]], [/\((ip[honed|\s\w*]+);.+(apple)/i], [l, d, [h, m]], [/\((ip[honed|\s\w*]+);/i], [l, [d, "Apple"], [h, m]], [/(blackberry)[\s-]?(\w+)/i, /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i, /(hp)\s([\w\s]+\w)/i, /(asus)-?(\w+)/i], [d, l, [h, m]], [/\(bb10;\s(\w+)/i], [l, [d, "BlackBerry"], [h, m]], [/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7|padfone)/i], [l, [d, "Asus"], [h, p]], [/(sony)\s(tablet\s[ps])\sbuild\//i, /(sony)?(?:sgp.+)\sbuild\//i], [[d, "Sony"], [l, "Xperia Tablet"], [h, p]], [/android.+\s([c-g]\d{4}|so[-l]\w+)\sbuild\//i], [l, [d, "Sony"], [h, m]], [/\s(ouya)\s/i, /(nintendo)\s([wids3u]+)/i], [d, l, [h, A]], [/android.+;\s(shield)\sbuild/i], [l, [d, "Nvidia"], [h, A]], [/(playstation\s[34portablevi]+)/i], [l, [d, "Sony"], [h, A]], [/(sprint\s(\w+))/i], [[d, y.str, I.device.sprint.vendor], [l, y.str, I.device.sprint.model], [h, m]], [/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i], [d, l, [h, p]], [/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, /(zte)-(\w*)/i, /(alcatel|geeksphone|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i], [d, [l, /_/g, " "], [h, m]], [/(nexus\s9)/i], [l, [d, "HTC"], [h, p]], [/d\/huawei([\w\s-]+)[;\)]/i, /(nexus\s6p)/i], [l, [d, "Huawei"], [h, m]], [/(microsoft);\s(lumia[\s\w]+)/i], [d, l, [h, m]], [/[\s\(;](xbox(?:\sone)?)[\s\);]/i], [l, [d, "Microsoft"], [h, A]], [/(kin\.[onetw]{3})/i], [[l, /\./g, " "], [d, "Microsoft"], [h, m]], [/\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)[\w\s]+build\//i, /mot[\s-]?(\w*)/i, /(XT\d{3,4}) build\//i, /(nexus\s6)/i], [l, [d, "Motorola"], [h, m]], [/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i], [l, [d, "Motorola"], [h, p]], [/hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i], [[d, v.trim], [l, v.trim], [h, w]], [/hbbtv.+maple;(\d+)/i], [[l, /^/, "SmartTV"], [d, "Samsung"], [h, w]], [/\(dtv[\);].+(aquos)/i], [l, [d, "Sharp"], [h, w]], [/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n\d+|sgh-t8[56]9|nexus 10))/i, /((SM-T\w+))/i], [[d, "Samsung"], l, [h, p]], [/smart-tv.+(samsung)/i], [d, [h, w], l], [/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-\w[\w\d]+))/i, /(sam[sung]*)[\s-]*(\w+-?[\w-]*)/i, /sec-((sgh\w+))/i], [[d, "Samsung"], l, [h, m]], [/sie-(\w*)/i], [l, [d, "Siemens"], [h, m]], [/(maemo|nokia).*(n900|lumia\s\d+)/i, /(nokia)[\s_-]?([\w-]*)/i], [[d, "Nokia"], l, [h, m]], [/android\s3\.[\s\w;-]{10}(a\d{3})/i], [l, [d, "Acer"], [h, p]], [/android.+([vl]k\-?\d{3})\s+build/i], [l, [d, "LG"], [h, p]], [/android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i], [[d, "LG"], l, [h, p]], [/(lg) netcast\.tv/i], [d, l, [h, w]], [/(nexus\s[45])/i, /lg[e;\s\/-]+(\w*)/i, /android.+lg(\-?[\d\w]+)\s+build/i], [l, [d, "LG"], [h, m]], [/android.+(ideatab[a-z0-9\-\s]+)/i], [l, [d, "Lenovo"], [h, p]], [/linux;.+((jolla));/i], [d, l, [h, m]], [/((pebble))app\/[\d\.]+\s/i], [d, l, [h, b]], [/android.+;\s(oppo)\s?([\w\s]+)\sbuild/i], [d, l, [h, m]], [/crkey/i], [[l, "Chromecast"], [d, "Google"]], [/android.+;\s(glass)\s\d/i], [l, [d, "Google"], [h, b]], [/android.+;\s(pixel c)\s/i], [l, [d, "Google"], [h, p]], [/android.+;\s(pixel xl|pixel)\s/i], [l, [d, "Google"], [h, m]], [/android.+;\s(\w+)\s+build\/hm\1/i, /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i, /android.+(mi[\s\-_]*(?:one|one[\s_]plus|note lte)?[\s_]*(?:\d?\w?)[\s_]*(?:plus)?)\s+build/i, /android.+(redmi[\s\-_]*(?:note)?(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [d, "Xiaomi"], [h, m]], [/android.+(mi[\s\-_]*(?:pad)(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [d, "Xiaomi"], [h, p]], [/android.+;\s(m[1-5]\snote)\sbuild/i], [l, [d, "Meizu"], [h, p]], [/android.+a000(1)\s+build/i, /android.+oneplus\s(a\d{4})\s+build/i], [l, [d, "OnePlus"], [h, m]], [/android.+[;\/]\s*(RCT[\d\w]+)\s+build/i], [l, [d, "RCA"], [h, p]], [/android.+[;\/\s]+(Venue[\d\s]{2,7})\s+build/i], [l, [d, "Dell"], [h, p]], [/android.+[;\/]\s*(Q[T|M][\d\w]+)\s+build/i], [l, [d, "Verizon"], [h, p]], [/android.+[;\/]\s+(Barnes[&\s]+Noble\s+|BN[RT])(V?.*)\s+build/i], [[d, "Barnes & Noble"], l, [h, p]], [/android.+[;\/]\s+(TM\d{3}.*\b)\s+build/i], [l, [d, "NuVision"], [h, p]], [/android.+;\s(k88)\sbuild/i], [l, [d, "ZTE"], [h, p]], [/android.+[;\/]\s*(gen\d{3})\s+build.*49h/i], [l, [d, "Swiss"], [h, m]], [/android.+[;\/]\s*(zur\d{3})\s+build/i], [l, [d, "Swiss"], [h, p]], [/android.+[;\/]\s*((Zeki)?TB.*\b)\s+build/i], [l, [d, "Zeki"], [h, p]], [/(android).+[;\/]\s+([YR]\d{2})\s+build/i, /android.+[;\/]\s+(Dragon[\-\s]+Touch\s+|DT)(\w{5})\sbuild/i], [[d, "Dragon Touch"], l, [h, p]], [/android.+[;\/]\s*(NS-?\w{0,9})\sbuild/i], [l, [d, "Insignia"], [h, p]], [/android.+[;\/]\s*((NX|Next)-?\w{0,9})\s+build/i], [l, [d, "NextBook"], [h, p]], [/android.+[;\/]\s*(Xtreme\_)?(V(1[045]|2[015]|30|40|60|7[05]|90))\s+build/i], [[d, "Voice"], l, [h, m]], [/android.+[;\/]\s*(LVTEL\-)?(V1[12])\s+build/i], [[d, "LvTel"], l, [h, m]], [/android.+[;\/]\s*(V(100MD|700NA|7011|917G).*\b)\s+build/i], [l, [d, "Envizen"], [h, p]], [/android.+[;\/]\s*(Le[\s\-]+Pan)[\s\-]+(\w{1,9})\s+build/i], [d, l, [h, p]], [/android.+[;\/]\s*(Trio[\s\-]*.*)\s+build/i], [l, [d, "MachSpeed"], [h, p]], [/android.+[;\/]\s*(Trinity)[\-\s]*(T\d{3})\s+build/i], [d, l, [h, p]], [/android.+[;\/]\s*TU_(1491)\s+build/i], [l, [d, "Rotor"], [h, p]], [/android.+(KS(.+))\s+build/i], [l, [d, "Amazon"], [h, p]], [/android.+(Gigaset)[\s\-]+(Q\w{1,9})\s+build/i], [d, l, [h, p]], [/\s(tablet|tab)[;\/]/i, /\s(mobile)(?:[;\/]|\ssafari)/i], [[h, v.lowerize], d, l], [/(android[\w\.\s\-]{0,9});.+build/i], [l, [d, "Generic"]]],
 	        engine: [[/windows.+\sedge\/([\w\.]+)/i], [f, [c, "EdgeHTML"]], [/(presto)\/([\w\.]+)/i, /(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i, /(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i, /(icab)[\/\s]([23]\.[\d\.]+)/i], [c, f], [/rv\:([\w\.]{1,9}).+(gecko)/i], [f, c]],
-	        os: [[/microsoft\s(windows)\s(vista|xp)/i], [c, f], [/(windows)\snt\s6\.2;\s(arm)/i, /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i, /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i], [c, [f, I.str, y.os.windows.version]], [/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i], [[c, "Windows"], [f, I.str, y.os.windows.version]], [/\((bb)(10);/i], [[c, "BlackBerry"], f], [/(blackberry)\w*\/?([\w\.]*)/i, /(tizen)[\/\s]([\w\.]+)/i, /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]*)/i, /linux;.+(sailfish);/i], [c, f], [/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]*)/i], [[c, "Symbian"], f], [/\((series40);/i], [c], [/mozilla.+\(mobile;.+gecko.+firefox/i], [[c, "Firefox OS"], f], [/(nintendo|playstation)\s([wids34portablevu]+)/i, /(mint)[\/\s\(]?(\w*)/i, /(mageia|vectorlinux)[;\s]/i, /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?(?!chrom)([\w\.-]*)/i, /(hurd|linux)\s?([\w\.]*)/i, /(gnu)\s?([\w\.]*)/i], [c, f], [/(cros)\s[\w]+\s([\w\.]+\w)/i], [[c, "Chromium OS"], f], [/(sunos)\s?([\w\.\d]*)/i], [[c, "Solaris"], f], [/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]*)/i], [c, f], [/(haiku)\s(\w+)/i], [c, f], [/cfnetwork\/.+darwin/i, /ip[honead]{2,4}(?:.*os\s([\w]+)\slike\smac|;\sopera)/i], [[f, /_/g, "."], [c, "iOS"]], [/(mac\sos\sx)\s?([\w\s\.]*)/i, /(macintosh|mac(?=_powerpc)\s)/i], [[c, "Mac OS"], [f, /_/g, "."]], [/((?:open)?solaris)[\/\s-]?([\w\.]*)/i, /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i, /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i, /(unix)\s?([\w\.]*)/i], [c, f]]
+	        os: [[/microsoft\s(windows)\s(vista|xp)/i], [c, f], [/(windows)\snt\s6\.2;\s(arm)/i, /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i, /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i], [c, [f, y.str, I.os.windows.version]], [/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i], [[c, "Windows"], [f, y.str, I.os.windows.version]], [/\((bb)(10);/i], [[c, "BlackBerry"], f], [/(blackberry)\w*\/?([\w\.]*)/i, /(tizen)[\/\s]([\w\.]+)/i, /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]*)/i, /linux;.+(sailfish);/i], [c, f], [/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]*)/i], [[c, "Symbian"], f], [/\((series40);/i], [c], [/mozilla.+\(mobile;.+gecko.+firefox/i], [[c, "Firefox OS"], f], [/(nintendo|playstation)\s([wids34portablevu]+)/i, /(mint)[\/\s\(]?(\w*)/i, /(mageia|vectorlinux)[;\s]/i, /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?(?!chrom)([\w\.-]*)/i, /(hurd|linux)\s?([\w\.]*)/i, /(gnu)\s?([\w\.]*)/i], [c, f], [/(cros)\s[\w]+\s([\w\.]+\w)/i], [[c, "Chromium OS"], f], [/(sunos)\s?([\w\.\d]*)/i], [[c, "Solaris"], f], [/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]*)/i], [c, f], [/(haiku)\s(\w+)/i], [c, f], [/cfnetwork\/.+darwin/i, /ip[honead]{2,4}(?:.*os\s([\w]+)\slike\smac|;\sopera)/i], [[f, /_/g, "."], [c, "iOS"]], [/(mac\sos\sx)\s?([\w\s\.]*)/i, /(macintosh|mac(?=_powerpc)\s)/i], [[c, "Mac OS"], [f, /_/g, "."]], [/((?:open)?solaris)[\/\s-]?([\w\.]*)/i, /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i, /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i, /(unix)\s?([\w\.]*)/i], [c, f]]
 	      },
-	          _ = function _(e, t) {
-	        if ("object" == _typeof(e) && (t = e, e = o), !(this instanceof _)) return new _(e, t).getResult();
+	          E = function E(e, t) {
+	        if ("object" == _typeof(e) && (t = e, e = o), !(this instanceof E)) return new E(e, t).getResult();
 	        var r = e || (i && i.navigator && i.navigator.userAgent ? i.navigator.userAgent : ""),
-	            n = t ? v.extend(E, t) : E;
+	            n = t ? v.extend(_, t) : _;
 	        return this.getBrowser = function () {
 	          var e = {
 	            name: o,
 	            version: o
 	          };
-	          return I.rgx.call(e, r, n.browser), e.major = v.major(e.version), e;
+	          return y.rgx.call(e, r, n.browser), e.major = v.major(e.version), e;
 	        }, this.getCPU = function () {
 	          var e = {
 	            architecture: o
 	          };
-	          return I.rgx.call(e, r, n.cpu), e;
+	          return y.rgx.call(e, r, n.cpu), e;
 	        }, this.getDevice = function () {
 	          var e = {
 	            vendor: o,
 	            model: o,
 	            type: o
 	          };
-	          return I.rgx.call(e, r, n.device), e;
+	          return y.rgx.call(e, r, n.device), e;
 	        }, this.getEngine = function () {
 	          var e = {
 	            name: o,
 	            version: o
 	          };
-	          return I.rgx.call(e, r, n.engine), e;
+	          return y.rgx.call(e, r, n.engine), e;
 	        }, this.getOS = function () {
 	          var e = {
 	            name: o,
 	            version: o
 	          };
-	          return I.rgx.call(e, r, n.os), e;
+	          return y.rgx.call(e, r, n.os), e;
 	        }, this.getResult = function () {
 	          return {
 	            ua: this.getUA(),
@@ -13712,13 +13710,13 @@
 	        }, this;
 	      };
 
-	      _.VERSION = "0.7.18", _.BROWSER = {
+	      E.VERSION = "0.7.18", E.BROWSER = {
 	        NAME: c,
 	        MAJOR: "major",
 	        VERSION: f
-	      }, _.CPU = {
+	      }, E.CPU = {
 	        ARCHITECTURE: g
-	      }, _.DEVICE = {
+	      }, E.DEVICE = {
 	        MODEL: l,
 	        VENDOR: d,
 	        TYPE: h,
@@ -13728,19 +13726,19 @@
 	        TABLET: p,
 	        WEARABLE: b,
 	        EMBEDDED: "embedded"
-	      }, _.ENGINE = {
+	      }, E.ENGINE = {
 	        NAME: c,
 	        VERSION: f
-	      }, _.OS = {
+	      }, E.OS = {
 	        NAME: c,
 	        VERSION: f
-	      }, _typeof(t) !== s ? (_typeof(e) !== s && e.exports && (t = e.exports = _), t.UAParser = _) : r(3) ? (n = function () {
-	        return _;
-	      }.call(t, r, t, e)) === o || (e.exports = n) : i && (i.UAParser = _);
+	      }, _typeof(t) !== s ? (_typeof(e) !== s && e.exports && (t = e.exports = E), t.UAParser = E) : r(3) ? (n = function () {
+	        return E;
+	      }.call(t, r, t, e)) === o || (e.exports = n) : i && (i.UAParser = E);
 	      var B = i && (i.jQuery || i.Zepto);
 
 	      if (_typeof(B) !== s) {
-	        var C = new _();
+	        var C = new E();
 	        B.ua = C.getResult(), B.ua.get = function () {
 	          return C.getUA();
 	        }, B.ua.set = function (e) {
@@ -13878,13 +13876,13 @@
 	    };
 	  }]);
 	});
-	var St = Object.freeze({
+	var Ct = Object.freeze({
 	  __proto__: null,
 	  getUAMetadata: function getUAMetadata() {
 	    return {
-	      "X-TV-Device-Model": "".concat(Ct.browserName, " ").concat(Ct.browserVersion),
-	      "X-TV-OS-Version": "".concat(Ct.osName, " ").concat(Ct.osVersion),
-	      "X-TV-OS-Platform": Ct.isMobile ? "".concat(Ct.osName.toLowerCase(), "_web") : "web"
+	      "X-TV-Device-Model": "".concat(Bt.browserName, " ").concat(Bt.browserVersion),
+	      "X-TV-OS-Version": "".concat(Bt.osName, " ").concat(Bt.osVersion),
+	      "X-TV-OS-Platform": Bt.isMobile ? "".concat(Bt.osName.toLowerCase(), "_web") : "web"
 	    };
 	  }
 	});
@@ -17274,7 +17272,7 @@
 	  return Ct$1(0, e, t);
 	}
 
-	function St$1(e, t) {
+	function St(e, t) {
 	  var n = $t(e, t);
 
 	  for (var _e2 = 0; _e2 < n.length; _e2++) {
@@ -19285,7 +19283,7 @@
 	      return this.tidy("backward", function () {
 	        var e = {};
 	        e[a.id] = null == n ? function (e) {
-	          var t = St$1(ut$1(e), "float32");
+	          var t = St(ut$1(e), "float32");
 	          return On.makeTensor(t, e, "float32");
 	        }(a.shape) : n, function (e, t, n, r) {
 	          var _loop2 = function _loop2(_a10) {
@@ -25876,7 +25874,7 @@
 	    return Gn(_t62, _n56);
 	  }
 
-	  var n = St$1(ut$1(e), t);
+	  var n = St(ut$1(e), t);
 	  return On.makeTensor(n, e, t);
 	}
 	/**
@@ -66072,7 +66070,7 @@
 	      r = Qw(t, "stepTimeConstraints.delayTime");
 	  return !!r && (null === t.firstFrameSpottedAt ? (t.name === n && (t.firstFrameSpottedAt = new Date().getTime()), !0) : new Date().getTime() - t.firstFrameSpottedAt < r);
 	},
-	    rk = de.faceTracker(),
+	    rk = he.faceTracker(),
 	    ak = o.Mode,
 	    ok = o.FaceDirection,
 	    sk = o.Errors,
@@ -66126,17 +66124,17 @@
 	      ue = l$1.useSDKSettings(),
 	      le = ue.lang,
 	      ce = ue.assetRoot,
-	      de$1 = ue.apiClient,
+	      de = ue.apiClient,
 	      pe = u === ak.ACTIVE,
 	      fe = react.useReducer(function (e) {
 	    return e + 1;
 	  }, 0),
-	      he = C$3(fe, 2),
-	      me$1 = (he[0], he[1]),
+	      he$1 = C$3(fe, 2),
+	      me = (he$1[0], he$1[1]),
 	      ge = react.useRef(null),
 	      ye = react.useRef(!1),
 	      be = react.useRef(null);
-	  null === be.current && (be.current = de.initFaceVerificationData({
+	  null === be.current && (be.current = he.initFaceVerificationData({
 	    assetRoot: ce,
 	    customInstructions: I,
 	    customIcon: E,
@@ -66160,11 +66158,11 @@
 	      $e = react.useRef(),
 	      Re = Jw({
 	    clientSettings: W,
-	    apiClient: de$1,
+	    apiClient: de,
 	    apiCheck: i,
 	    onError: A
 	  }),
-	      Ae = Re.face_tracking_setting,
+	      Ae$1 = Re.face_tracking_setting,
 	      Fe = Re.flow_interval_time_ms,
 	      Oe = Re.limit_time_liveness_check,
 	      De = Re.terminate_if_no_face,
@@ -66172,12 +66170,12 @@
 	      Pe = react.useRef(),
 	      Le = react.useCallback(function () {
 	    U(""), be.current.curStepIndex = be.current.steps.length, setTimeout(function () {
-	      be.current = de.initFaceVerificationData({
+	      be.current = he.initFaceVerificationData({
 	        assetRoot: ce,
 	        customInstructions: I,
 	        customIcon: E,
 	        customDirectionIcon: N
-	      }), $e.current = Date.now(), Me.current = 0, Pe.current = null, Ne.current = [], Ce.current = 0, _e.current = 4, se(!1), me$1();
+	      }), $e.current = Date.now(), Me.current = 0, Pe.current = null, Ne.current = [], Ce.current = 0, _e.current = 4, se(!1), me();
 	    }, Fe);
 	  }, [ce, I, E, N, Fe, U]),
 	      Be = react.useRef(null);
@@ -66229,7 +66227,7 @@
 	      isMobile: D$3.isMobile,
 	      width: t,
 	      height: n
-	    }))), me$1(), K(!0);
+	    }))), me(), K(!0);
 	  }, [l, f, v]),
 	      We = react.useState(3),
 	      Ve = C$3(We, 2),
@@ -66257,7 +66255,7 @@
 
 	          if (i) {
 	            var r = t.map(function (e) {
-	              return de$1.uploadImage({
+	              return de.uploadImage({
 	                file: e.blob,
 	                label: "portrait",
 	                metadata: JSON.stringify({
@@ -66266,7 +66264,7 @@
 	                })
 	              });
 	            }).concat(n.map(function (e) {
-	              return de$1.uploadFile({
+	              return de.uploadFile({
 	                file: e,
 	                label: "video"
 	              });
@@ -66278,7 +66276,7 @@
 	                  r = e.filter(function (e, n) {
 	                return n >= t.length;
 	              });
-	              return de$1.verifyFaceLiveness({
+	              return de.verifyFaceLiveness({
 	                images: n.map(function (e) {
 	                  return {
 	                    id: e.data.image_id
@@ -66309,7 +66307,7 @@
 	        return e - 1;
 	      });
 	    }, 1e3);
-	  }, [Ye, i, R, de$1, A]);
+	  }, [Ye, i, R, de, A]);
 	  react.useEffect(function () {
 	    we && (clearInterval(Qe.current), Ye(!1));
 	  }, [we, Ye]), react.useEffect(function () {
@@ -66394,7 +66392,7 @@
 	                  var t = e.name,
 	                      r = e.image,
 	                      a = e.frontalFaceImage;
-	                  t !== ok.FRONTAL ? n.push(de$1.uploadImage({
+	                  t !== ok.FRONTAL ? n.push(de.uploadImage({
 	                    file: r.blob,
 	                    label: "portrait",
 	                    metadata: JSON.stringify({
@@ -66405,7 +66403,7 @@
 	                    data: {
 	                      image_id: null
 	                    }
-	                  })), a.blob ? n.push(de$1.uploadImage({
+	                  })), a.blob ? n.push(de.uploadImage({
 	                    file: a.blob,
 	                    label: "portrait",
 	                    metadata: JSON.stringify({
@@ -66449,7 +66447,7 @@
 	                  return e.frontalFaceImage.imageId;
 	                })).length ? R({
 	                  error: "wrong_face_movement"
-	                }) : de$1.verifyFaceLiveness({
+	                }) : de.verifyFaceLiveness({
 	                  images: r.map(function (e) {
 	                    return {
 	                      id: e.frontalFaceImage.imageId
@@ -66515,7 +66513,7 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                if (t = be.current.steps, be.current.curStepIndex++, Ae.enable && "each_gesture" === Ae.limit_for && (Me.current = 0), be.current.curStepIndex !== t.length) {
+	                if (t = be.current.steps, be.current.curStepIndex++, Ae$1.enable && "each_gesture" === Ae$1.limit_for && (Me.current = 0), be.current.curStepIndex !== t.length) {
 	                  e.next = 29;
 	                  break;
 	                }
@@ -66585,7 +66583,7 @@
 	                return H(), e.next = 29, r();
 
 	              case 29:
-	                me$1();
+	                me();
 
 	              case 30:
 	              case "end":
@@ -66710,7 +66708,7 @@
 	            o = [].concat(_$2(r), _$2(a)),
 	            s = [];
 	        [r, a].forEach(function (e) {
-	          s = [].concat(_$2(s), [e[0] / me.SIZE * t.width, e[1] / me.SIZE * t.height]);
+	          s = [].concat(_$2(s), [e[0] / Ae.SIZE * t.width, e[1] / Ae.SIZE * t.height]);
 	        });
 	        var i = rk(e, 0 === Ne.current.length),
 	            u = i.score,
@@ -66721,7 +66719,7 @@
 	          base64: c.split(",")[1],
 	          landmarks: n,
 	          original_landmarks: n.map(function (e) {
-	            return [e[0] / me.SIZE * t.width, e[1] / me.SIZE * t.height];
+	            return [e[0] / Ae.SIZE * t.width, e[1] / Ae.SIZE * t.height];
 	          }),
 	          score: u,
 	          time: l,
@@ -66735,10 +66733,10 @@
 	    }
 
 	    function x(e) {
-	      if (!Ae.enable || null === e || !oe) return !0;
-	      var t = Ae.web_warning_threshold,
-	          n = Ae.web_terminate_threshold,
-	          r = Ae.max_warning_time;
+	      if (!Ae$1.enable || null === e || !oe) return !0;
+	      var t = Ae$1.web_warning_threshold,
+	          n = Ae$1.web_terminate_threshold,
+	          r = Ae$1.max_warning_time;
 	      return e < t || (e < n && Me.current < r ? (Me.current++, Me.current === r ? ke({
 	        error: sk.liveness_terminated_face_tracking.msg[le],
 	        duration: Fe
@@ -66781,16 +66779,16 @@
 	                return o = r.cropX, i = r.cropY, u = r.cropWidth, p = r.cropHeight, a.getContext("2d").drawImage(t, o, i, u, p, 0, 0, u, p), n.next = 5, X$1.calculateBlurScore(a);
 
 	              case 5:
-	                return h = n.sent, n.next = 8, me.getModelPredictions({
+	                return h = n.sent, n.next = 8, Ae.getModelPredictions({
 	                  model: Q,
 	                  sCanvas: a
 	                });
 
 	              case 8:
-	                return g = n.sent, n.next = 11, de.validatePredictions({
+	                return g = n.sent, n.next = 11, he.validatePredictions({
 	                  predictions: g,
-	                  width: me.SIZE,
-	                  height: me.SIZE
+	                  width: Ae.SIZE,
+	                  height: Ae.SIZE
 	                });
 
 	              case 11:
@@ -66799,7 +66797,7 @@
 	                  break;
 	                }
 
-	                return A = R[$], _ = E.landmarks, n.next = 25, de.calculateFaceDirection({
+	                return A = R[$], _ = E.landmarks, n.next = 25, he.calculateFaceDirection({
 	                  landmarks: _,
 	                  getPerfectFrontal: A && A.name === ok.FRONTAL
 	                });
@@ -66881,7 +66879,7 @@
 	    }, 2e3), function () {
 	      cancelAnimationFrame(e), e = -1;
 	    };
-	  }, [q, le, pe, de$1, i, l, c, R, A, M, F, L, z, H, Ae, Oe.enable, U, Ie, Fe, Le, De, Q, oe]);
+	  }, [q, le, pe, de, i, l, c, R, A, M, F, L, z, H, Ae$1, Oe.enable, U, Ie, Fe, Le, De, Q, oe]);
 	  var tt = be.current,
 	      nt = tt.curStepIndex,
 	      rt = tt.steps,
@@ -75481,7 +75479,7 @@
 	var TrustVisionAPI = /*@__PURE__*/getDefaultExportFromCjs(trustvisionSdk_umd);
 
 	var defaultAssetRoot = "https://unpkg.com/@tsocial/tvweb-sdk@latest/assets";
-	var userAgentMetadata = St.getUAMetadata();
+	var userAgentMetadata = Ct.getUAMetadata();
 
 	var TVWebSDK = /*#__PURE__*/function () {
 	  function TVWebSDK(_ref) {
@@ -75670,12 +75668,12 @@
 	exports.BlurUtils = X$1;
 	exports.Camera = he$2;
 	exports.CameraUtils = Z$1;
-	exports.CommonUtils = $;
+	exports.CommonUtils = J$1;
 	exports.Constants = o;
-	exports.CoordinateUtils = ie;
+	exports.CoordinateUtils = ne;
 	exports.CropAreaOverlayWrapper = Ee$2;
-	exports.FaceUtils = de;
-	exports.GlareUtils = Bt;
+	exports.FaceUtils = he;
+	exports.GlareUtils = Et;
 	exports.Icons = xO;
 	exports.ImageUtils = yt;
 	exports.LivenessDetection = Jk;
@@ -75683,12 +75681,12 @@
 	exports.MobileDetect = P$3;
 	exports.OverlayAssetImage = Te$2;
 	exports.PlacementArea = we$2;
-	exports.PredictionUtils = me;
+	exports.PredictionUtils = Ae;
 	exports.ProgressCircle = kO;
 	exports.ReadIDCard = bO;
 	exports.SDK = TVWebSDK;
 	exports.SettingsContext = l$1;
-	exports.UserAgentUtils = St;
+	exports.UserAgentUtils = Ct;
 	exports.useLivenessDetection = IO;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
