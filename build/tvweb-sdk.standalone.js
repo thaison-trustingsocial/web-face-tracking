@@ -10866,7 +10866,7 @@
 	    code: "face_out_of_box",
 	    msg: {
 	      en: "Face is out of box",
-	      vi: "Khuôn mặt nằm ngoài khung ảnh"
+	      vi: "Khuôn mặt không nằm trọn vẹn trong khung ảnh"
 	    }
 	  },
 	  liveness_too_fast: {
@@ -11482,7 +11482,7 @@
 
 	var j$2 = function () {
 	  if (!window.Worker) return null;
-	  var e = new Blob(['const t=Symbol("Comlink.proxy"),e=Symbol("Comlink.endpoint"),r=Symbol("Comlink.releaseProxy"),n=Symbol("Comlink.thrown"),a=t=>"object"==typeof t&&null!==t||"function"==typeof t,o=new Map([["proxy",{canHandle:e=>a(e)&&e[t],serialize(t){const{port1:e,port2:r}=new MessageChannel;return i(t,e),[r,[r]]},deserialize(t){return t.start(),s(t,[],e);var e}}],["throw",{canHandle:t=>a(t)&&n in t,serialize({value:t}){let e;return e=t instanceof Error?{isError:!0,value:{message:t.message,name:t.name,stack:t.stack}}:{isError:!1,value:t},[e,[]]},deserialize(t){if(t.isError)throw Object.assign(new Error(t.value.message),t.value);throw t.value}}]]);function i(e,r=self){r.addEventListener("message",(function a(o){if(!o||!o.data)return;const{id:c,type:s,path:l}=Object.assign({path:[]},o.data),m=(o.data.argumentList||[]).map(p);let g;try{const r=l.slice(0,-1).reduce(((t,e)=>t[e]),e),n=l.reduce(((t,e)=>t[e]),e);switch(s){case 0:g=n;break;case 1:r[l.slice(-1)[0]]=p(o.data.value),g=!0;break;case 2:g=n.apply(r,m);break;case 3:g=function(e){return Object.assign(e,{[t]:!0})}(new n(...m));break;case 4:{const{port1:t,port2:r}=new MessageChannel;i(e,r),g=function(t,e){return f.set(t,e),t}(t,[t])}break;case 5:g=void 0}}catch(t){g={value:t,[n]:0}}Promise.resolve(g).catch((t=>({value:t,[n]:0}))).then((t=>{const[e,n]=h(t);r.postMessage(Object.assign(Object.assign({},e),{id:c}),n),5===s&&(r.removeEventListener("message",a),u(r))}))})),r.start&&r.start()}function u(t){(function(t){return"MessagePort"===t.constructor.name})(t)&&t.close()}function c(t){if(t)throw new Error("Proxy has been released and is not useable")}function s(t,n=[],a=function(){}){let o=!1;const i=new Proxy(a,{get(e,a){if(c(o),a===r)return()=>m(t,{type:5,path:n.map((t=>t.toString()))}).then((()=>{u(t),o=!0}));if("then"===a){if(0===n.length)return{then:()=>i};const e=m(t,{type:0,path:n.map((t=>t.toString()))}).then(p);return e.then.bind(e)}return s(t,[...n,a])},set(e,r,a){c(o);const[i,u]=h(a);return m(t,{type:1,path:[...n,r].map((t=>t.toString())),value:i},u).then(p)},apply(r,a,i){c(o);const u=n[n.length-1];if(u===e)return m(t,{type:4}).then(p);if("bind"===u)return s(t,n.slice(0,-1));const[f,h]=l(i);return m(t,{type:2,path:n.map((t=>t.toString())),argumentList:f},h).then(p)},construct(e,r){c(o);const[a,i]=l(r);return m(t,{type:3,path:n.map((t=>t.toString())),argumentList:a},i).then(p)}});return i}function l(t){const e=t.map(h);return[e.map((t=>t[0])),(r=e.map((t=>t[1])),Array.prototype.concat.apply([],r))];var r}const f=new WeakMap;function h(t){for(const[e,r]of o)if(r.canHandle(t)){const[n,a]=r.serialize(t);return[{type:3,name:e,value:n},a]}return[{type:0,value:t},f.get(t)||[]]}function p(t){switch(t.type){case 3:return o.get(t.name).deserialize(t.value);case 0:return t.value}}function m(t,e,r){return new Promise((n=>{const a=new Array(4).fill(0).map((()=>Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString(16))).join("-");t.addEventListener("message",(function e(r){r.data&&r.data.id&&r.data.id===a&&(t.removeEventListener("message",e),n(r.data))})),t.start&&t.start(),t.postMessage(Object.assign({id:a},e),r)}))}var g=[[0,1,0],[1,-4,1],[0,1,0]];function d(t,e,r,n){return t[4*(r*e+n)]}function v(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function b(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(t)))return;var r=[],n=!0,a=!1,o=void 0;try{for(var i,u=t[Symbol.iterator]();!(n=(i=u.next()).done)&&(r.push(i.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{n||null==u.return||u.return()}finally{if(a)throw o}}return r}(t,e)||function(t,e){if(!t)return;if("string"==typeof t)return y(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return y(t,e)}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance. In order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function y(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}var w="frontal",M="left",S="right",k="up",_="down",E=0,j=1,A=2;function F(t,e){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0,n=b(t,2),a=n[0],o=n[1],i=b(e,2),u=i[0],c=i[1],s=[a[0],o[0]],l=[a[1],o[1]];return s[0]+r<=u[0]&&c[0]<=s[1]-r&&l[0]+r<=u[1]&&c[1]<=l[1]-.8*r?A:s[0]<=u[0]||c[0]<=s[1]||l[0]<=u[1]||c[1]<=l[1]?j:E}var x={code:"no_face",msg:{en:"Face not found",vi:"Không tìm thấy khuôn mặt"}},O={code:"partial_face",msg:{en:"Face out of the box",vi:"Không tìm thấy toàn bộ khuôn mặt"}},I={code:"multiple_faces",msg:{en:"Too many faces",vi:"Quá nhiều khuôn mặt"}},L={code:"face_too_small",msg:{en:"Face too small",vi:"Khuôn mặt quá nhỏ"}},P={code:"face_too_large",msg:{en:"Face too large",vi:"Khuôn mặt quá to"}},C={code:"face_out_of_box",msg:{en:"Face is out of box",vi:"Khuôn mặt nằm ngoài khung ảnh"}};function R(t){return Math.pow(Math.pow(t[0],2)+Math.pow(t[1],2),.5)}function N(t,e){return[t[0]-e[0],t[1]-e[1]]}function z(t,e,r,n){var a=r*(4*e)+4*n;return{r:t[a],g:t[a+1],b:t[a+2]}}i({calculateBlurScoreFunc:function(t){for(var e=t.data,r=t.reducedWidth,n=t.reducedHeight,a=0;a<e.length;a+=4){var o=(e[a]+e[a+1]+e[a+2])/3;e[a]=o}for(var i=0,u=0,c=n-1,s=r-1,l=1;l<c;l++)for(var f=1;f<s;f++){var h=g[0][0]*d(e,r,f-1,l-1)+g[0][1]*d(e,r,f,l-1)+g[0][2]*d(e,r,f+1,l-1)+g[1][0]*d(e,r,f-1,l)+g[1][1]*d(e,r,f,l)+g[1][2]*d(e,r,f+1,l)+g[2][0]*d(e,r,f-1,l+1)+g[2][1]*d(e,r,f,l+1)+g[2][2]*d(e,r,f+1,l+1);(h=Math.abs(h))>25&&i++,h>15&&h<25&&u++}var p=0;return i+u!==0&&(p=i/(i+u)),p},calculateFaceDirectionFunc:function(t){var e=t.landmarks,r=t.getPerfectFrontal,n=function(t){var e,r,n,a,o,i,u,c=b(t,4),s=c[0],l=c[1],f=c[2],h=c[3],p=N(l,s),m=R(p),g=(a=l,e=[(n=s)[0]+a[0],n[1]+a[1]],r=2,[e[0]/r,e[1]/r]),d=N(f,g),v=R(N(h,f)),y=N(h,g),w=R(y),M=(d[0]*y[0]+d[1]*y[1])/w,S=v/w;if(m>.5*w)o=(d[0]*p[0]+d[1]*p[1])/m/m;else{var k=R(N(d,function(t,e){return[t[0]*e,t[1]*e]}(y,M/w)));u=y,o=((i=d)[0]*u[1]-u[0]*i[1]>=0?1:-1)*k/m}return{left_right_score:o,up_down_score:S}}(e),a=n.left_right_score,o=n.up_down_score,i=b(e,3),u=i[0],c=i[1],s=i[2],l=c[0]-s[0],f=u[0]-s[0],h=r?.1:.3,p=o>.7,m=o<.42,g=a>=.35&&a<=.6,d=a<=-.35&&a>=-.6;return o>=.42&&o<=.7&&a>-h&&a<h&&l*f<0?{gesture:w,leftRightScore:a}:p&&!d&&!g?{gesture:k,leftRightScore:a}:m&&!d&&!g?{gesture:_,leftRightScore:a}:g&&!p&&!m?{gesture:S,leftRightScore:a}:d&&!p&&!m?{gesture:M,leftRightScore:a}:null},validatePredictionsFunc:function(t){var e,r,n,a,o,i,u,c,s,l,f,h,p,m,g,d,y,w,M,S,k,_,R,N,z,K,H,q,T,B,G,W,D=t.predictions,Q=t.width,U=[[0,0],[Q,t.height]],X=D.reduce((function(t,e){var r,n,a,o,i,u,c,s=e.topLeft,l=e.bottomRight,f=e.probability,h=e.landmarks;f<.9||h.length<6||(r=U,n=b([s,l],2),a=n[0],o=n[1],i=b(r,2),u=i[0],c=i[1],(o[0]-a[0])*(o[1]-a[1])/((c[0]-u[0])*(c[1]-u[1]))<=.025)?t[E].push(e):t[F(U,[s,l])].push(e);return t}),(v(e={},j,[]),v(e,A,[]),v(e,E,[]),e)),$=X[A].length,J=X[j].length;if(0===$)r=J>0?O:x;else if($+J>1)r=I;else{var V=n=X[A][0],Y=V.topLeft,Z=V.bottomRight,tt=(R=U,N=b([Y,Z],2),z=N[0],K=N[1],H=b(R,2),q=H[0],T=H[1],B=K[0]-z[0],G=K[1]-z[1],W=T[0]-q[0],B/W<G/W?B/W:G/W);tt<.4&&(r=L),tt>.61&&(r=P),F(U,(a=n.landmarks,u=a[0],c=a[1],s=a[2],l=a[3],f=a[4],h=a[5],p=.5*(u[1]+c[1]),m=p+1.5*(p-l[1]),g=l[1]-1.2*(s[1]-l[1]),d=[u[0],c[0],s[0],l[0],f[0],h[0]],y=Math.min.apply(Math,d),w=Math.min(m,g),M=Math.max.apply(Math,d),S=Math.max(m,g),k=Math.abs(l[0]-f[0])/Math.abs(l[0]-h[0]),_=l[0]-f[0]<0&&h[0]-l[0]>.05*(M-y),l[0]-f[0]>0&&h[0]-l[0]<-.05*(M-y)?(o=.2,i=.1):_?(o=.1,i=.2):k>2||k<.5?(o=.15,i=.15):(o=.05,i=.05),[[y-o*(M-y),w],[M+i*(M-y),S]]),.05*Q)!==A&&(r=C)}return{error:r,fullFace:n}},checkCardBlur:function(t){var e=t.data,r=t.width,n=t.height,a=function(t,e,r){for(var n=0,a=[],o=1;o<r-1;o++)for(var i=1;i<e-1;i++){var u=t[o-1][i-1],c=t[o][i-1],s=t[o+1][i-1],l=t[o-1][i],f=t[o][i],h=t[o+1][i],p=t[o-1][i+1],m=t[o][i+1],g=t[o+1][i+1],d=Number.parseInt(0*u+1*c+0*s,10),v=Number.parseInt(1*l+-4*f+1*h,10),b=Number.parseInt(0*p+1*m+0*g,10),y=Number.parseInt(Math.abs(d+v+b),10);a.push(y),n+=y}var w=a.length,M=n/w,S=0;a.forEach((function(t){S+=(t-M)*(t-M)}));var k=Math.sqrt(S/w);return{lapAvg:M,lapStd:k}}(function(t,e,r){for(var n=[],a=0;a<r+2;a++)for(var o=0;o<e+2;o++){n[a]||(n[a]=[]),0!==o&&0!==a&&o!==e+1&&a!==r+1||(n[a][o]=1);var i=z(t,e,a-1,o-1),u=i.r,c=i.g,s=i.b,l=Number.parseInt(Math.round(.299*u+.587*c+.114*s),10);n[a][o]=l}n[0]=n[2],n[r+1]=n[r-1];for(var f=0;f<r+2;f++)n[f][0]=n[f][2],n[f][e+1]=n[f][e-1];return n}(e,r,n),r+2,n+2);return function(t,e){return e<=18.553622245788574?e<=11.523502826690674?t<=-.05309182405471802?1:.5:t<=.2395537868142128?.29069767441860467:.8333333333333334:e<=23.69584369659424?e<=23.6335506439209?.10606060606060606:1:e<=33.88881301879883?.03896103896103896:0}(a.lapAvg,a.lapStd)},detectGlare:function(t,e,r){return function(t,e,r){for(var n=0,a=r[1],o=r[3],i=r[0],u=r[2],c=a;c<o;c++)for(var s=i;s<u;s++){var l=z(t,e,c,s),f=l.r,h=l.g,p=l.b;f>=245&&p>=245&&h>245&&(n+=1)}return n}(t,e,function(t,e){var r=Math.floor(.025*t),n=t-r,a=Math.floor(.025*e);return[r,a,n,e-a]}(e,r))/(e*r)>=.001}});']),
+	  var e = new Blob(['const t=Symbol("Comlink.proxy"),e=Symbol("Comlink.endpoint"),r=Symbol("Comlink.releaseProxy"),n=Symbol("Comlink.thrown"),a=t=>"object"==typeof t&&null!==t||"function"==typeof t,o=new Map([["proxy",{canHandle:e=>a(e)&&e[t],serialize(t){const{port1:e,port2:r}=new MessageChannel;return i(t,e),[r,[r]]},deserialize(t){return t.start(),s(t,[],e);var e}}],["throw",{canHandle:t=>a(t)&&n in t,serialize({value:t}){let e;return e=t instanceof Error?{isError:!0,value:{message:t.message,name:t.name,stack:t.stack}}:{isError:!1,value:t},[e,[]]},deserialize(t){if(t.isError)throw Object.assign(new Error(t.value.message),t.value);throw t.value}}]]);function i(e,r=self){r.addEventListener("message",(function a(o){if(!o||!o.data)return;const{id:c,type:s,path:l}=Object.assign({path:[]},o.data),m=(o.data.argumentList||[]).map(p);let g;try{const r=l.slice(0,-1).reduce(((t,e)=>t[e]),e),n=l.reduce(((t,e)=>t[e]),e);switch(s){case 0:g=n;break;case 1:r[l.slice(-1)[0]]=p(o.data.value),g=!0;break;case 2:g=n.apply(r,m);break;case 3:g=function(e){return Object.assign(e,{[t]:!0})}(new n(...m));break;case 4:{const{port1:t,port2:r}=new MessageChannel;i(e,r),g=function(t,e){return f.set(t,e),t}(t,[t])}break;case 5:g=void 0}}catch(t){g={value:t,[n]:0}}Promise.resolve(g).catch((t=>({value:t,[n]:0}))).then((t=>{const[e,n]=h(t);r.postMessage(Object.assign(Object.assign({},e),{id:c}),n),5===s&&(r.removeEventListener("message",a),u(r))}))})),r.start&&r.start()}function u(t){(function(t){return"MessagePort"===t.constructor.name})(t)&&t.close()}function c(t){if(t)throw new Error("Proxy has been released and is not useable")}function s(t,n=[],a=function(){}){let o=!1;const i=new Proxy(a,{get(e,a){if(c(o),a===r)return()=>m(t,{type:5,path:n.map((t=>t.toString()))}).then((()=>{u(t),o=!0}));if("then"===a){if(0===n.length)return{then:()=>i};const e=m(t,{type:0,path:n.map((t=>t.toString()))}).then(p);return e.then.bind(e)}return s(t,[...n,a])},set(e,r,a){c(o);const[i,u]=h(a);return m(t,{type:1,path:[...n,r].map((t=>t.toString())),value:i},u).then(p)},apply(r,a,i){c(o);const u=n[n.length-1];if(u===e)return m(t,{type:4}).then(p);if("bind"===u)return s(t,n.slice(0,-1));const[f,h]=l(i);return m(t,{type:2,path:n.map((t=>t.toString())),argumentList:f},h).then(p)},construct(e,r){c(o);const[a,i]=l(r);return m(t,{type:3,path:n.map((t=>t.toString())),argumentList:a},i).then(p)}});return i}function l(t){const e=t.map(h);return[e.map((t=>t[0])),(r=e.map((t=>t[1])),Array.prototype.concat.apply([],r))];var r}const f=new WeakMap;function h(t){for(const[e,r]of o)if(r.canHandle(t)){const[n,a]=r.serialize(t);return[{type:3,name:e,value:n},a]}return[{type:0,value:t},f.get(t)||[]]}function p(t){switch(t.type){case 3:return o.get(t.name).deserialize(t.value);case 0:return t.value}}function m(t,e,r){return new Promise((n=>{const a=new Array(4).fill(0).map((()=>Math.floor(Math.random()*Number.MAX_SAFE_INTEGER).toString(16))).join("-");t.addEventListener("message",(function e(r){r.data&&r.data.id&&r.data.id===a&&(t.removeEventListener("message",e),n(r.data))})),t.start&&t.start(),t.postMessage(Object.assign({id:a},e),r)}))}var g=[[0,1,0],[1,-4,1],[0,1,0]];function v(t,e,r,n){return t[4*(r*e+n)]}function d(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function b(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(t)))return;var r=[],n=!0,a=!1,o=void 0;try{for(var i,u=t[Symbol.iterator]();!(n=(i=u.next()).done)&&(r.push(i.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{n||null==u.return||u.return()}finally{if(a)throw o}}return r}(t,e)||function(t,e){if(!t)return;if("string"==typeof t)return y(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return y(t,e)}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance. In order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function y(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,n=new Array(e);r<e;r++)n[r]=t[r];return n}var w="frontal",M="left",S="right",k="up",_="down",E=0,j=1,A=2;function F(t,e){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0,n=b(t,2),a=n[0],o=n[1],i=b(e,2),u=i[0],c=i[1],s=[a[0],o[0]],l=[a[1],o[1]];return s[0]+r<=u[0]&&c[0]<=s[1]-r&&l[0]+r<=u[1]&&c[1]<=l[1]-.8*r?A:s[0]<=u[0]||c[0]<=s[1]||l[0]<=u[1]||c[1]<=l[1]?j:E}var x={code:"no_face",msg:{en:"Face not found",vi:"Không tìm thấy khuôn mặt"}},O={code:"partial_face",msg:{en:"Face out of the box",vi:"Không tìm thấy toàn bộ khuôn mặt"}},I={code:"multiple_faces",msg:{en:"Too many faces",vi:"Quá nhiều khuôn mặt"}},L={code:"face_too_small",msg:{en:"Face too small",vi:"Khuôn mặt quá nhỏ"}},P={code:"face_too_large",msg:{en:"Face too large",vi:"Khuôn mặt quá to"}},C={code:"face_out_of_box",msg:{en:"Face is out of box",vi:"Khuôn mặt không nằm trọn vẹn trong khung ảnh"}};function R(t){return Math.pow(Math.pow(t[0],2)+Math.pow(t[1],2),.5)}function N(t,e){return[t[0]-e[0],t[1]-e[1]]}function z(t,e,r,n){var a=r*(4*e)+4*n;return{r:t[a],g:t[a+1],b:t[a+2]}}i({calculateBlurScoreFunc:function(t){for(var e=t.data,r=t.reducedWidth,n=t.reducedHeight,a=0;a<e.length;a+=4){var o=(e[a]+e[a+1]+e[a+2])/3;e[a]=o}for(var i=0,u=0,c=n-1,s=r-1,l=1;l<c;l++)for(var f=1;f<s;f++){var h=g[0][0]*v(e,r,f-1,l-1)+g[0][1]*v(e,r,f,l-1)+g[0][2]*v(e,r,f+1,l-1)+g[1][0]*v(e,r,f-1,l)+g[1][1]*v(e,r,f,l)+g[1][2]*v(e,r,f+1,l)+g[2][0]*v(e,r,f-1,l+1)+g[2][1]*v(e,r,f,l+1)+g[2][2]*v(e,r,f+1,l+1);(h=Math.abs(h))>25&&i++,h>15&&h<25&&u++}var p=0;return i+u!==0&&(p=i/(i+u)),p},calculateFaceDirectionFunc:function(t){var e=t.landmarks,r=t.getPerfectFrontal,n=function(t){var e,r,n,a,o,i,u,c=b(t,4),s=c[0],l=c[1],f=c[2],h=c[3],p=N(l,s),m=R(p),g=(a=l,e=[(n=s)[0]+a[0],n[1]+a[1]],r=2,[e[0]/r,e[1]/r]),v=N(f,g),d=R(N(h,f)),y=N(h,g),w=R(y),M=(v[0]*y[0]+v[1]*y[1])/w,S=d/w;if(m>.5*w)o=(v[0]*p[0]+v[1]*p[1])/m/m;else{var k=R(N(v,function(t,e){return[t[0]*e,t[1]*e]}(y,M/w)));u=y,o=((i=v)[0]*u[1]-u[0]*i[1]>=0?1:-1)*k/m}return{left_right_score:o,up_down_score:S}}(e),a=n.left_right_score,o=n.up_down_score,i=b(e,3),u=i[0],c=i[1],s=i[2],l=c[0]-s[0],f=u[0]-s[0],h=r?.1:.3,p=o>.7,m=o<.42,g=a>=.35&&a<=.6,v=a<=-.35&&a>=-.6;return o>=.42&&o<=.7&&a>-h&&a<h&&l*f<0?{gesture:w,leftRightScore:a}:p&&!v&&!g?{gesture:k,leftRightScore:a}:m&&!v&&!g?{gesture:_,leftRightScore:a}:g&&!p&&!m?{gesture:S,leftRightScore:a}:v&&!p&&!m?{gesture:M,leftRightScore:a}:null},validatePredictionsFunc:function(t){var e,r,n,a,o,i,u,c,s,l,f,h,p,m,g,v,y,w,M,S,k,_,R,N,z,K,H,q,T,B,G,W,D=t.predictions,Q=t.width,U=[[0,0],[Q,t.height]],X=D.reduce((function(t,e){var r,n,a,o,i,u,c,s=e.topLeft,l=e.bottomRight,f=e.probability,h=e.landmarks;f<.9||h.length<6||(r=U,n=b([s,l],2),a=n[0],o=n[1],i=b(r,2),u=i[0],c=i[1],(o[0]-a[0])*(o[1]-a[1])/((c[0]-u[0])*(c[1]-u[1]))<=.025)?t[E].push(e):t[F(U,[s,l])].push(e);return t}),(d(e={},j,[]),d(e,A,[]),d(e,E,[]),e)),$=X[A].length,J=X[j].length;if(0===$)r=J>0?O:x;else if($+J>1)r=I;else{var V=n=X[A][0],Y=V.topLeft,Z=V.bottomRight,tt=(R=U,N=b([Y,Z],2),z=N[0],K=N[1],H=b(R,2),q=H[0],T=H[1],B=K[0]-z[0],G=K[1]-z[1],W=T[0]-q[0],B/W<G/W?B/W:G/W);tt<.4&&(r=L),tt>.61&&(r=P),F(U,(a=n.landmarks,u=a[0],c=a[1],s=a[2],l=a[3],f=a[4],h=a[5],p=.5*(u[1]+c[1]),m=p+1.5*(p-l[1]),g=l[1]-1.2*(s[1]-l[1]),v=[u[0],c[0],s[0],l[0],f[0],h[0]],y=Math.min.apply(Math,v),w=Math.min(m,g),M=Math.max.apply(Math,v),S=Math.max(m,g),k=Math.abs(l[0]-f[0])/Math.abs(l[0]-h[0]),_=l[0]-f[0]<0&&h[0]-l[0]>.05*(M-y),l[0]-f[0]>0&&h[0]-l[0]<-.05*(M-y)?(o=.2,i=.1):_?(o=.1,i=.2):k>2||k<.5?(o=.15,i=.15):(o=.05,i=.05),[[y-o*(M-y),w],[M+i*(M-y),S]]),.05*Q)!==A&&(r=C)}return{error:r,fullFace:n}},checkCardBlur:function(t){var e=t.data,r=t.width,n=t.height,a=function(t,e,r){for(var n=0,a=[],o=1;o<r-1;o++)for(var i=1;i<e-1;i++){var u=t[o-1][i-1],c=t[o][i-1],s=t[o+1][i-1],l=t[o-1][i],f=t[o][i],h=t[o+1][i],p=t[o-1][i+1],m=t[o][i+1],g=t[o+1][i+1],v=Number.parseInt(0*u+1*c+0*s,10),d=Number.parseInt(1*l+-4*f+1*h,10),b=Number.parseInt(0*p+1*m+0*g,10),y=Number.parseInt(Math.abs(v+d+b),10);a.push(y),n+=y}var w=a.length,M=n/w,S=0;a.forEach((function(t){S+=(t-M)*(t-M)}));var k=Math.sqrt(S/w);return{lapAvg:M,lapStd:k}}(function(t,e,r){for(var n=[],a=0;a<r+2;a++)for(var o=0;o<e+2;o++){n[a]||(n[a]=[]),0!==o&&0!==a&&o!==e+1&&a!==r+1||(n[a][o]=1);var i=z(t,e,a-1,o-1),u=i.r,c=i.g,s=i.b,l=Number.parseInt(Math.round(.299*u+.587*c+.114*s),10);n[a][o]=l}n[0]=n[2],n[r+1]=n[r-1];for(var f=0;f<r+2;f++)n[f][0]=n[f][2],n[f][e+1]=n[f][e-1];return n}(e,r,n),r+2,n+2);return function(t,e){return e<=18.553622245788574?e<=11.523502826690674?t<=-.05309182405471802?1:.5:t<=.2395537868142128?.29069767441860467:.8333333333333334:e<=23.69584369659424?e<=23.6335506439209?.10606060606060606:1:e<=33.88881301879883?.03896103896103896:0}(a.lapAvg,a.lapStd)},detectGlare:function(t,e,r){return function(t,e,r){for(var n=0,a=r[1],o=r[3],i=r[0],u=r[2],c=a;c<o;c++)for(var s=i;s<u;s++){var l=z(t,e,c,s),f=l.r,h=l.g,p=l.b;f>=245&&p>=245&&h>245&&(n+=1)}return n}(t,e,function(t,e){var r=Math.floor(.025*t),n=t-r,a=Math.floor(.025*e);return[r,a,n,e-a]}(e,r))/(e*r)>=.001}});']),
 	      t = URL.createObjectURL(e);
 	  return Q$1(new Worker(t));
 	}(),
@@ -66496,115 +66496,119 @@
 	      V = e.setRemainingTime,
 	      U = void 0 === V ? function () {} : V,
 	      H = e.onApiCheck,
-	      j = react.useState(!1),
-	      G = _$2(j, 2),
-	      q = G[0],
-	      K = G[1],
-	      X = react.useState(),
-	      Y = _$2(X, 2),
-	      Q = Y[0],
-	      Z = Y[1],
-	      J = react.useState(!1),
-	      ee = _$2(J, 2),
-	      te = ee[0],
-	      ne = ee[1],
-	      re = react.useState(!1),
-	      ae = _$2(re, 2),
-	      oe = ae[0],
-	      se = ae[1],
-	      ie = react.useRef(null),
-	      ue = l$1.useSDKSettings(),
-	      le = ue.lang,
-	      ce = ue.assetRoot,
-	      de$1 = ue.apiClient,
-	      pe = u === SI.ACTIVE,
-	      fe = react.useReducer(function (e) {
+	      j = e.customErrors,
+	      G = react.useState(!1),
+	      q = _$2(G, 2),
+	      K = q[0],
+	      X = q[1],
+	      Y = react.useState(),
+	      Q = _$2(Y, 2),
+	      Z = Q[0],
+	      J = Q[1],
+	      ee = react.useState(!1),
+	      te = _$2(ee, 2),
+	      ne = te[0],
+	      re = te[1],
+	      ae = react.useState(!1),
+	      oe = _$2(ae, 2),
+	      se = oe[0],
+	      ie = oe[1],
+	      ue = react.useRef(null),
+	      le = l$1.useSDKSettings(),
+	      ce = le.lang,
+	      de$1 = le.assetRoot,
+	      pe = le.apiClient,
+	      fe = u === SI.ACTIVE,
+	      he = react.useReducer(function (e) {
 	    return e + 1;
 	  }, 0),
-	      he = _$2(fe, 2),
-	      me$1 = (he[0], he[1]),
-	      ge = react.useRef(null),
-	      ye = react.useRef(!1),
-	      be = react.useRef(null);
+	      me$1 = _$2(he, 2),
+	      ge = (me$1[0], me$1[1]),
+	      ye = react.useRef(null),
+	      be = react.useRef(!1),
+	      xe = react.useRef(null);
 
-	  null === be.current && (be.current = de.initFaceVerificationData({
-	    assetRoot: ce,
+	  null === xe.current && (xe.current = de.initFaceVerificationData({
+	    assetRoot: de$1,
 	    customInstructions: I,
 	    customIcon: E,
 	    customDirectionIcon: C,
 	    customStepTimeConstraints: $
 	  }));
 
-	  var xe = react.useState(""),
-	      ve = _$2(xe, 2),
-	      we = ve[0],
-	      ke = ve[1],
-	      Ie = react.useMemo(function () {
-	    return Hv(ke, 500);
-	  }, [ke]),
-	      Ee = react.useRef([]),
-	      Te = react.useRef(),
-	      Ce = react.useRef([]),
-	      _e = react.useRef(-1),
-	      Ne = react.useRef(),
-	      Se = EI({
+	  var ve = react.useState(""),
+	      we = _$2(ve, 2),
+	      ke = we[0],
+	      Ie = we[1],
+	      Ee = react.useMemo(function () {
+	    return Hv(Ie, 500);
+	  }, [Ie]),
+	      Te = react.useRef([]),
+	      Ce = react.useRef(),
+	      _e = react.useRef([]),
+	      Ne = react.useRef(-1),
+	      Se = react.useRef(),
+	      $e = EI({
 	    livenessSettings: W,
-	    apiClient: de$1,
+	    apiClient: pe,
 	    apiCheck: i,
 	    onError: A
 	  }),
-	      $e = Se.face_tracking_setting,
-	      Re = Se.flow_interval_time_ms,
-	      Ae = Se.limit_time_liveness_check,
-	      Fe = Se.terminate_if_no_face,
-	      Oe = react.useRef(0),
-	      De = react.useRef(),
-	      Me = react.useCallback(function () {
-	    U(""), be.current.curStepIndex = be.current.steps.length, setTimeout(function () {
-	      be.current = de.initFaceVerificationData({
-	        assetRoot: ce,
+	      Re = $e.face_tracking_setting,
+	      Ae = $e.flow_interval_time_ms,
+	      Fe = $e.limit_time_liveness_check,
+	      Oe = $e.terminate_if_no_face,
+	      De = react.useRef(0),
+	      Me = react.useRef(),
+	      Pe = react.useCallback(function () {
+	    U(""), xe.current.curStepIndex = xe.current.steps.length, re(!1), setTimeout(function () {
+	      xe.current = de.initFaceVerificationData({
+	        assetRoot: de$1,
 	        customInstructions: I,
 	        customIcon: E,
 	        customDirectionIcon: C
-	      }), Ne.current = Date.now(), Oe.current = 0, De.current = null, Ce.current = [], _e.current = 0, se(!1), me$1();
-	    }, Re);
-	  }, [ce, I, E, C, Re, U]),
-	      Pe = react.useRef(null);
+	      }), Se.current = Date.now(), De.current = 0, Me.current = null, _e.current = [], Ne.current = 0, ie(!1), ge();
+	    }, Ae);
+	  }, [de$1, I, E, C, Ae, U]),
+	      Le = react.useRef(null),
+	      Be = react.useMemo(function () {
+	    return T$3(T$3({}, RI), j);
+	  }, [j]);
 
 	  react.useEffect(function () {
-	    if (q && Ae.enable && oe) {
-	      Ne.current = Date.now();
-	      var e = Ae.limit_time_second + 1;
-	      Pe.current = setInterval(function () {
-	        var t = Math.round((1e3 * e - (Date.now() - Ne.current)) / 1e3);
+	    if (K && Fe.enable && se) {
+	      Se.current = Date.now();
+	      var e = Fe.limit_time_second + 1;
+	      Le.current = setInterval(function () {
+	        var t = Math.round((1e3 * e - (Date.now() - Se.current)) / 1e3);
 
-	        if (be.current.curStepIndex < be.current.steps.length) {
+	        if (xe.current.curStepIndex < xe.current.steps.length) {
 	          if (t <= 10 && t >= 1) {
-	            var n = Dk(AI.REMAIN_TIME[le]);
+	            var n = Dk(AI.REMAIN_TIME[ce]);
 	            U(n({
 	              x: t
 	            }));
 	          }
 
-	          if (Math.round((Date.now() - Ne.current) / 1e3) === e) {
-	            var r = Dk(RI.liveness_terminated_time_out.msg[le]);
-	            ke({
+	          if (Math.round((Date.now() - Se.current) / 1e3) === e) {
+	            var r = Dk(Be.liveness_terminated_time_out.msg[ce]);
+	            Ie({
 	              error: r({
-	                x: Ae.limit_time_second
+	                x: Fe.limit_time_second
 	              }),
-	              duration: Re
-	            }), Me();
+	              duration: Ae
+	            }), Pe();
 	          }
 	        }
 	      }, 1e3);
 	    }
 
 	    return function () {
-	      clearInterval(Pe.current);
+	      clearInterval(Le.current);
 	    };
-	  }, [Me, U, q, le, Re, Ae.enable, Ae.limit_time_second, oe]);
+	  }, [Pe, U, K, ce, Ae, Fe.enable, Fe.limit_time_second, se, Be.liveness_terminated_time_out]);
 
-	  var Le = react.useCallback(function (e) {
+	  var ze = react.useCallback(function (e) {
 	    var t,
 	        n,
 	        r = e.clientWidth,
@@ -66617,14 +66621,15 @@
 	    var c = Math.floor((o - t) / 2) + i,
 	        d = 5 + u,
 	        p = l;
-	    ge.current = {
+	    ye.current = {
 	      x: c,
 	      y: d,
 	      width: t,
 	      height: n,
 	      image: p,
 	      surroundStyle: f
-	    }, "object" === x$6(v) ? ge.current = T$3(T$3({}, ge.current), v) : "function" == typeof v && (ge.current = T$3(T$3({}, ge.current), v({
+	    }, "object" === x$6(v) ? ye.current = T$3(T$3({}, ye.current), v) : "function" == typeof v && (ye.current = T$3(T$3({}, ye.current), v({
+	      x: c,
 	      clientWidth: r,
 	      clientHeight: a,
 	      videoAreaWidth: o,
@@ -66634,35 +66639,35 @@
 	      isMobile: D$3.isMobile,
 	      width: t,
 	      height: n
-	    }))), me$1(), K(!0);
+	    }))), ge(), X(!0);
 	  }, [l, f, v]),
-	      Be = react.useState(3),
-	      ze = _$2(Be, 2),
-	      We = ze[0],
-	      Ve = ze[1],
-	      Ue = react.useState(!1),
-	      He = _$2(Ue, 2),
-	      je = He[0],
-	      Ge = He[1],
-	      qe = react.useRef(!1),
-	      Ke = react.useCallback(function (e) {
-	    Ge(e), qe.current = e;
+	      We = react.useState(3),
+	      Ve = _$2(We, 2),
+	      Ue = Ve[0],
+	      He = Ve[1],
+	      je = react.useState(!1),
+	      Ge = _$2(je, 2),
+	      qe = Ge[0],
+	      Ke = Ge[1],
+	      Xe = react.useRef(!1),
+	      Ye = react.useCallback(function (e) {
+	    Ke(e), Xe.current = e;
 	  }, []),
-	      Xe = react.useRef(null),
-	      Ye = react.useRef([]),
-	      Qe = react.useCallback(function () {
-	    Ve(3), clearInterval(Xe.current), Ke(!0), Xe.current = setInterval(function () {
-	      Ve(function (e) {
+	      Qe = react.useRef(null),
+	      Je = react.useRef([]),
+	      et = react.useCallback(function () {
+	    He(3), clearInterval(Qe.current), Ye(!0), Qe.current = setInterval(function () {
+	      He(function (e) {
 	        if (e - 1 == 0) {
-	          clearInterval(Xe.current);
-	          var t = Ye.current,
-	              n = Ee.current.map(function (e) {
+	          clearInterval(Qe.current);
+	          var t = Je.current,
+	              n = Te.current.map(function (e) {
 	            return e.blob;
 	          });
 
 	          if (i) {
 	            var r = t.map(function (e) {
-	              return de$1.uploadImage({
+	              return pe.uploadImage({
 	                file: e.blob,
 	                label: "portrait",
 	                metadata: JSON.stringify({
@@ -66671,7 +66676,7 @@
 	                })
 	              });
 	            }).concat(n.map(function (e) {
-	              return de$1.uploadFile({
+	              return pe.uploadFile({
 	                file: e,
 	                label: "video"
 	              });
@@ -66683,7 +66688,7 @@
 	                  r = e.filter(function (e, n) {
 	                return n >= t.length;
 	              });
-	              return de$1.verifyFaceLiveness({
+	              return pe.verifyFaceLiveness({
 	                images: n.map(function (e) {
 	                  return {
 	                    id: e.data.image_id
@@ -66714,11 +66719,11 @@
 	        return e - 1;
 	      });
 	    }, 1e3);
-	  }, [Ke, i, R, de$1, A]);
+	  }, [Ye, i, R, pe, A]);
 
 	  react.useEffect(function () {
-	    we && (clearInterval(Xe.current), Ke(!1));
-	  }, [we, Ke]), react.useEffect(function () {
+	    ke && (clearInterval(Qe.current), Ye(!1));
+	  }, [ke, Ye]), react.useEffect(function () {
 	    var e = !1;
 	    (function () {
 	      var t = w$6(regeneratorRuntime.mark(function t() {
@@ -66770,14 +66775,14 @@
 	                break;
 	              }
 
-	              ke(RI.unable_to_load_model.msg[le]), A(RI.unable_to_load_model), t.next = 9;
+	              Ie(Be.unable_to_load_model.msg[ce]), A(Be.unable_to_load_model), t.next = 9;
 	              break;
 
 	            case 5:
 	              return t.next = 7, Td();
 
 	            case 7:
-	              n = t.sent, Z(n);
+	              n = t.sent, J(n);
 
 	            case 9:
 	            case "end":
@@ -66786,9 +66791,9 @@
 	        }
 	      }, t);
 	    })));
-	  }, [le, A]), react.useEffect(function () {
+	  }, [ce, A, Be.unable_to_load_model]), react.useEffect(function () {
 	    var e,
-	        t = ie.current,
+	        t = ue.current,
 	        n = function () {
 	      var e = w$6(regeneratorRuntime.mark(function e() {
 	        var t, n, r;
@@ -66796,11 +66801,11 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                return t = be.current.steps, n = [], t.forEach(function (e) {
+	                return t = xe.current.steps, n = [], t.forEach(function (e) {
 	                  var t = e.name,
 	                      r = e.image,
 	                      a = e.frontalFaceImage;
-	                  t !== $I.FRONTAL ? n.push(de$1.uploadImage({
+	                  t !== $I.FRONTAL ? n.push(pe.uploadImage({
 	                    file: r.blob,
 	                    label: "portrait",
 	                    metadata: JSON.stringify({
@@ -66811,7 +66816,7 @@
 	                    data: {
 	                      image_id: null
 	                    }
-	                  })), a.blob ? n.push(de$1.uploadImage({
+	                  })), a.blob ? n.push(pe.uploadImage({
 	                    file: a.blob,
 	                    label: "portrait",
 	                    metadata: JSON.stringify({
@@ -66851,11 +66856,11 @@
 	                return e.prev = 0, e.next = 3, n();
 
 	              case 3:
-	                t = be.current.steps, 0 === (r = t.filter(function (e) {
+	                t = xe.current.steps, 0 === (r = t.filter(function (e) {
 	                  return e.frontalFaceImage.imageId;
 	                })).length ? R({
 	                  error: "wrong_face_movement"
-	                }) : de$1.verifyFaceLiveness({
+	                }) : pe.verifyFaceLiveness({
 	                  images: r.map(function (e) {
 	                    return {
 	                      id: e.frontalFaceImage.imageId
@@ -66872,11 +66877,11 @@
 	                    };
 	                  }),
 	                  videos: [{
-	                    frames: Ce.current
+	                    frames: _e.current
 	                  }],
 	                  metadata: z ? {
 	                    sdk_logs: {
-	                      tracking_frames: Ce.current.map(function (e) {
+	                      tracking_frames: _e.current.map(function (e) {
 	                        return {
 	                          index: e.index,
 	                          landmarks: e.landmarks,
@@ -66921,7 +66926,7 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                if (t = be.current.steps, be.current.curStepIndex++, $e.enable && "each_gesture" === $e.limit_for && (Oe.current = 0), be.current.curStepIndex !== t.length) {
+	                if (t = xe.current.steps, xe.current.curStepIndex++, Re.enable && "each_gesture" === Re.limit_for && (De.current = 0), xe.current.curStepIndex !== t.length) {
 	                  e.next = 28;
 	                  break;
 	                }
@@ -66931,10 +66936,10 @@
 	                  break;
 	                }
 
-	                return e.next = 7, Te.current.stopVideoRecording();
+	                return e.next = 7, Ce.current.stopVideoRecording();
 
 	              case 7:
-	                if (Ae.enable && U(""), !R) {
+	                if (Fe.enable && U(""), !R) {
 	                  e.next = 28;
 	                  break;
 	                }
@@ -66983,7 +66988,7 @@
 	                  frontalFaces: s,
 	                  videoRecord: [],
 	                  frontalScaledImage: l,
-	                  capturedFrames: Ce.current
+	                  capturedFrames: _e.current
 	                }), e.next = 28;
 	                break;
 
@@ -66991,7 +66996,7 @@
 	                return H(), e.next = 28, r();
 
 	              case 28:
-	                me$1();
+	                ge();
 
 	              case 29:
 	              case "end":
@@ -67005,17 +67010,17 @@
 	      };
 	    }(),
 	        o = Ze$1(function () {
-	      var e = be.current,
+	      var e = xe.current,
 	          t = e.curStepIndex,
 	          n = e.steps,
 	          r = n[t],
-	          o = null !== r.image.blob,
-	          s = null !== r.frontalFaceImage.blob,
+	          o = null !== (null == r ? void 0 : r.image.blob),
+	          s = null !== (null == r ? void 0 : r.frontalFaceImage.blob),
 	          i = n.filter(function (e) {
 	        return e.frontalFaceImage.blob;
 	      }).length,
 	          u = !1;
-	      return o && (s || ![1].includes(t) || i >= 1) ? (ye.current = !1, a(), u = !0) : ye.current = !(!o || s), ne(!1), u;
+	      return o && (s || ![1].includes(t) || i >= 1) ? (be.current = !1, a(), u = !0) : be.current = !(!o || s), re(!1), u;
 	    }, L);
 
 	    function s(e, t, n, r) {
@@ -67029,7 +67034,7 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                if (i = be.current, u = i.curStepIndex, l = i.steps, !(u < l.length)) {
+	                if (i = xe.current, u = i.curStepIndex, l = i.steps, !(u < l.length)) {
 	                  e.next = 24;
 	                  break;
 	                }
@@ -67055,7 +67060,7 @@
 	                });
 
 	              case 9:
-	                d = e.sent, c.frontalFaceImage.blob = d, c.frontalFaceImage.leftRightScore = s, ye.current && (ye.current = !1, a());
+	                d = e.sent, c.frontalFaceImage.blob = d, c.frontalFaceImage.leftRightScore = s, be.current && (be.current = !1, a());
 
 	              case 13:
 	                if (c.name !== t || null !== c.image.blurScore && !X$1.hasBetterBlurScore(r, c.image.blurScore)) {
@@ -67063,7 +67068,7 @@
 	                  break;
 	                }
 
-	                return ne(!0), c.image.blurScore = r, e.next = 18, Z$1.takePicture({
+	                return re(!0), c.image.blurScore = r, e.next = 18, Z$1.takePicture({
 	                  canvas: n
 	                });
 
@@ -67089,14 +67094,14 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                !0 === qe.current && t === $I.FRONTAL && Ye.current.length < 3 && (Z$1.takePicture({
+	                !0 === Xe.current && t === $I.FRONTAL && Je.current.length < 3 && (Z$1.takePicture({
 	                  canvas: n
 	                }).then(function (e) {
-	                  Ye.current.push({
+	                  Je.current.push({
 	                    blob: e,
 	                    leftRightScore: r
 	                  });
-	                }), 2 === Ye.current.length && M && Te.current.stopVideoRecording());
+	                }), 2 === Je.current.length && M && Ce.current.stopVideoRecording());
 
 	              case 1:
 	              case "end":
@@ -67108,7 +67113,7 @@
 	    }
 
 	    function f(e, t, n, r) {
-	      if (_e.current++, z && !r) {
+	      if (Ne.current++, z && !r) {
 	        var a = e.topLeft,
 	            o = e.bottomRight,
 	            s = [].concat(N$3(a), N$3(o)),
@@ -67116,11 +67121,11 @@
 	        [a, o].forEach(function (e) {
 	          i = [].concat(N$3(i), [e[0] / me.SIZE * t.width, e[1] / me.SIZE * t.height]);
 	        });
-	        var u = NI(e, 0 === Ce.current.length),
+	        var u = NI(e, 0 === _e.current.length),
 	            l = u.score,
 	            c = u.time,
 	            d = t.toDataURL("image/jpeg", .8);
-	        return Ce.current.push({
+	        return _e.current.push({
 	          label: "portrait",
 	          base64: d.split(",")[1],
 	          landmarks: n,
@@ -67129,7 +67134,7 @@
 	          }),
 	          score: l,
 	          time: c,
-	          index: Ce.current.length,
+	          index: _e.current.length,
 	          bbox: s,
 	          original_bbox: i
 	        }), l;
@@ -67139,34 +67144,34 @@
 	    }
 
 	    function x(e) {
-	      if (!$e.enable || null === e || !oe) return !0;
-	      var t = $e.web_warning_threshold,
-	          n = $e.web_terminate_threshold,
-	          r = $e.max_warning_time;
-	      return e < t || (e < n && Oe.current < r ? (Oe.current++, Oe.current === r ? ke({
-	        error: RI.liveness_terminated_face_tracking.msg[le],
-	        duration: Re
-	      }) : ke({
-	        error: RI.liveness_too_fast.msg[le],
+	      if (!Re.enable || null === e || !se) return !0;
+	      var t = Re.web_warning_threshold,
+	          n = Re.web_terminate_threshold,
+	          r = Re.max_warning_time;
+	      return e < t || (e < n && De.current < r ? (De.current++, De.current === r ? Ie({
+	        error: Be.liveness_terminated_face_tracking.msg[ce],
+	        duration: Ae
+	      }) : Ie({
+	        error: Be.liveness_too_fast.msg[ce],
 	        duration: 1500
-	      }), !0) : (ke({
-	        error: RI.liveness_terminated.msg[le],
-	        duration: Re
-	      }), Me(), !1));
+	      }), !0) : (Ie({
+	        error: Be.liveness_terminated.msg[ce],
+	        duration: Ae
+	      }), Pe(), !1));
 	    }
 
 	    function v(e) {
-	      if (Fe.enable && oe) {
-	        var t = Fe.max_time_ms;
-	        De.current && e || (De.current = {
+	      if (Oe.enable && se) {
+	        var t = Oe.max_time_ms;
+	        Me.current && e || (Me.current = {
 	          time: Date.now(),
 	          frame: 0
-	        }), e && De.current.frame++;
-	        var n = De.current.time;
-	        e && Date.now() - n >= t && (ke({
-	          error: RI.liveness_terminated_no_face.msg[le],
-	          duration: Re
-	        }), Me());
+	        }), e && Me.current.frame++;
+	        var n = Me.current.time;
+	        e && Date.now() - n >= t && (Ie({
+	          error: Be.liveness_terminated_no_face.msg[ce],
+	          duration: Ae
+	        }), Pe());
 	      }
 	    }
 
@@ -67176,7 +67181,7 @@
 
 	    function I() {
 	      return (I = w$6(regeneratorRuntime.mark(function n(r, a) {
-	        var o, i, u, p, h, g, w, I, E, T, C, _, N, S, $, R, A, F, O, D;
+	        var o, i, u, p, h, g, w, I, E, T, C, _, N, S, $, R, A, F, O, D, M;
 
 	        return regeneratorRuntime.wrap(function (n) {
 	          for (;;) {
@@ -67186,7 +67191,7 @@
 
 	              case 5:
 	                return h = n.sent, n.next = 8, me.getModelPredictions({
-	                  model: Q,
+	                  model: Z,
 	                  sCanvas: a
 	                });
 
@@ -67198,7 +67203,7 @@
 	                });
 
 	              case 11:
-	                if (w = n.sent, I = w.error, E = w.fullFace, T = "", ge.current.image = l, C = null, _ = null, N = null, S = be.current, $ = S.curStepIndex, R = S.steps, !E) {
+	                if (w = n.sent, I = w.error, E = w.fullFace, T = "", ye.current.image = l, C = null, _ = null, N = null, S = xe.current, $ = S.curStepIndex, R = S.steps, !E) {
 	                  n.next = 27;
 	                  break;
 	                }
@@ -67217,12 +67222,12 @@
 	                  break;
 	                }
 
-	                if (!pe) {
+	                if (!fe) {
 	                  n.next = 39;
 	                  break;
 	                }
 
-	                if (oe || se(!0), !x(f(g[0], a, N, $ >= R.length))) {
+	                if (se || ie(!0), !x(f(g[0], a, N, $ >= R.length))) {
 	                  n.next = 37;
 	                  break;
 	                }
@@ -67241,10 +67246,10 @@
 	                break;
 
 	              case 43:
-	                $ < R.length && (T = I.msg[le], ge.current.image = c);
+	                $ < R.length && (T = null === (M = Be[I.code]) || void 0 === M ? void 0 : M.msg[ce], ye.current.image = c);
 
 	              case 44:
-	                Ie(T), -1 !== e && (e = requestAnimationFrame(function () {
+	                Ee(T), -1 !== e && (e = requestAnimationFrame(function () {
 	                  return k(r, a);
 	                }));
 
@@ -67264,10 +67269,10 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                Q && (n = Z$1.analyzeVideoAndWindowSizes(t, ge.current), r = n.cropWidth, a = n.cropHeight, (o = document.createElement("canvas")).width = r, o.height = a, (s = o.getContext("2d")).translate(r, 0), s.scale(-1, 1), i = M ? TI({
+	                Z && (n = Z$1.analyzeVideoAndWindowSizes(t, ye.current), r = n.cropWidth, a = n.cropHeight, (o = document.createElement("canvas")).width = r, o.height = a, (s = o.getContext("2d")).translate(r, 0), s.scale(-1, 1), i = M ? TI({
 	                  canvas: o,
-	                  resultsOutput: Ee.current
-	                }) : {}, u = i.mediaRecorder, Te.current = u, Te.current && Te.current.start(), k(n, o));
+	                  resultsOutput: Te.current
+	                }) : {}, u = i.mediaRecorder, Ce.current = u, Ce.current && Ce.current.start(), k(n, o));
 
 	              case 1:
 	              case "end":
@@ -67278,42 +67283,43 @@
 	      }))).apply(this, arguments);
 	    }
 
-	    return q && setTimeout(function () {
+	    return K && setTimeout(function () {
 	      !function () {
 	        E.apply(this, arguments);
 	      }();
 	    }, 2e3), function () {
 	      cancelAnimationFrame(e), e = -1;
 	    };
-	  }, [q, le, pe, de$1, i, l, c, R, A, M, F, L, z, H, $e, Ae.enable, U, Ie, Re, Me, Fe, Q, oe]);
-	  var Je = be.current,
-	      et = Je.curStepIndex,
-	      tt = Je.steps,
-	      nt = react.useMemo(function () {
-	    return tt.find(function (e) {
+	  }, [K, ce, fe, pe, i, l, c, R, A, M, F, L, z, H, Re, Fe.enable, U, Ee, Ae, Pe, Oe, Z, se, Be]);
+	  var tt = xe.current,
+	      nt = tt.curStepIndex,
+	      rt = tt.steps,
+	      at = react.useMemo(function () {
+	    return rt.find(function (e) {
 	      return e.name === o.FaceDirection.FRONTAL;
 	    });
-	  }, [tt]),
-	      rt = ye.current ? nt : tt[et],
-	      at = rt && oe ? rt.instructions[le] : null,
-	      ot = rt && oe ? rt.directionIcon : "",
-	      st = rt ? rt.directionIconAnimation : "";
+	  }, [rt]),
+	      ot = be.current ? at : rt[nt],
+	      st = ot && se ? ot.instructions[ce] : null,
+	      it = ot && se ? ot.directionIcon : "",
+	      ut = ot ? ot.directionIconAnimation : "";
 	  return {
-	    countdownToTakePicture: We,
-	    cropArea: ge,
-	    curStepIndex: et,
-	    directionIcon: ot,
-	    directionIconAnimation: st,
-	    faceDetectionError: we,
-	    handleTriggerPassiveMode: Qe,
-	    handleVideoPlayed: Le,
-	    instructions: at,
-	    isActiveMode: pe,
-	    refVideo: ie,
-	    showCountdown: je,
-	    steps: tt,
-	    videoPlayed: q,
-	    activeCapturing: te
+	    countdownToTakePicture: Ue,
+	    cropArea: ye,
+	    curStepIndex: nt,
+	    directionIcon: it,
+	    directionIconAnimation: ut,
+	    faceDetectionError: ke,
+	    handleTriggerPassiveMode: et,
+	    handleVideoPlayed: ze,
+	    instructions: st,
+	    isActiveMode: fe,
+	    refVideo: ue,
+	    showCountdown: qe,
+	    steps: rt,
+	    videoPlayed: K,
+	    activeCapturing: ne,
+	    isFirstValidFrameFound: se
 	  };
 	}
 
@@ -67567,112 +67573,121 @@
 	      h = n.customStepTimeConstraints,
 	      m = n.onApiCheck,
 	      g = n.livenessSettings,
-	      y = d$1.useAsset("bg_camera_mask.png"),
-	      b = d$1.useAsset("bg_camera_mask_red.png"),
-	      x = _$2(react.useState({}), 2),
-	      v = x[0],
-	      w = x[1],
-	      k = v.yFaceDetectionError,
-	      I = v.yFaceVerificationStepsWrapper,
-	      E = _$2(react.useState(!1), 2),
-	      T = E[0],
-	      C = E[1],
-	      N = _$2(react.useState(""), 2),
-	      S = N[0],
-	      $ = N[1],
-	      R = react.useCallback(function (e) {
-	    var t = e.lostY,
-	        n = e.height,
-	        r = t + 25,
-	        a = r + 30;
-	    return w({
-	      yFaceDetectionError: r,
-	      yFaceVerificationStepsWrapper: a + n + 30
+	      y = n.customErrors,
+	      b = d$1.useAsset("bg_camera_mask.png"),
+	      x = d$1.useAsset("bg_camera_mask_red.png"),
+	      v = _$2(react.useState({}), 2),
+	      w = v[0],
+	      k = v[1],
+	      I = w.yFaceDetectionError,
+	      E = w.yFaceVerificationStepsWrapper,
+	      T = _$2(react.useState(!1), 2),
+	      C = T[0],
+	      N = T[1],
+	      S = _$2(react.useState(""), 2),
+	      $ = S[0],
+	      R = S[1],
+	      A = react.useCallback(function (e) {
+	    var t = e.x,
+	        n = e.lostY,
+	        r = e.width,
+	        a = e.height,
+	        o = D$3.isMobile ? .9 : 1,
+	        s = n + 25,
+	        i = s + 30;
+	    return k({
+	      yFaceDetectionError: s,
+	      yFaceVerificationStepsWrapper: i + a * o + 30
 	    }), {
-	      y: a
+	      x: t + r * (1 - o) / 2,
+	      y: i,
+	      width: r * o,
+	      height: a * o
 	    };
 	  }, []),
-	      A = FI({
+	      F = FI({
 	    apiCheck: o,
 	    mode: s,
-	    bgCameraMask: y,
-	    bgCameraMaskRed: b,
+	    bgCameraMask: b,
+	    bgCameraMaskRed: x,
 	    surroundStyle: IE,
 	    onLivenessDetectionDone: i,
 	    onError: l,
-	    cropAreaDimension: R,
+	    cropAreaDimension: A,
 	    customDirectionIcon: p,
 	    captureFrameData: c,
 	    livenessSettings: g,
-	    setRemainingTime: $,
+	    setRemainingTime: R,
 	    customStepTimeConstraints: h,
-	    onApiCheck: m
+	    onApiCheck: m,
+	    customErrors: y
 	  }),
-	      F = A.countdownToTakePicture,
-	      O = A.cropArea,
-	      D = A.curStepIndex,
-	      M = A.directionIcon,
-	      P = A.faceDetectionError,
-	      L = A.handleTriggerPassiveMode,
-	      B = A.handleVideoPlayed,
-	      z = A.instructions,
-	      W = A.isActiveMode,
-	      V = A.refVideo,
-	      U = A.showCountdown,
-	      H = A.steps,
-	      j = A.videoPlayed,
-	      G = A.activeCapturing;
+	      O = F.countdownToTakePicture,
+	      M = F.cropArea,
+	      P = F.curStepIndex,
+	      L = F.directionIcon,
+	      B = F.faceDetectionError,
+	      z = F.handleTriggerPassiveMode,
+	      W = F.handleVideoPlayed,
+	      V = F.instructions,
+	      U = F.isActiveMode,
+	      H = F.refVideo,
+	      j = F.showCountdown,
+	      G = F.steps,
+	      q = F.videoPlayed,
+	      K = F.activeCapturing,
+	      X = F.isFirstValidFrameFound;
 
 	  return react.useEffect(function () {
-	    Promise.all(H.map(function (e) {
+	    Promise.all(G.map(function (e) {
 	      return t = e.directionIcon, new Promise(function (e) {
 	        var n = new Image();
 	        n.onload = e, n.onerror = e, n.src = t;
 	      });
 	      var t;
 	    })).then(function () {
-	      return C(!0);
+	      return N(!0);
 	    });
-	  }, [H]), /*#__PURE__*/react.createElement(he$2, {
+	  }, [G]), /*#__PURE__*/react.createElement(he$2, {
 	    frontCamera: d,
-	    onVideoPlayed: B,
+	    onVideoPlayed: W,
 	    onClose: u,
 	    flipHorizontal: d,
-	    ref: V,
+	    ref: H,
 	    videoSettings: kE,
 	    onError: l
-	  }, j && T ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(dE, {
-	    top: k - 15,
+	  }, q && C ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(dE, {
+	    top: I - 15,
 	    className: "face-detection-error"
-	  }, P), O.current ? /*#__PURE__*/react.createElement(Ee$2, {
-	    x: "".concat(O.current.x, "px"),
-	    y: "".concat(O.current.y, "px"),
-	    width: "".concat(O.current.width, "px"),
-	    height: "".concat(O.current.height, "px"),
-	    surroundStyle: O.current.surroundStyle
+	  }, B), M.current ? /*#__PURE__*/react.createElement(Ee$2, {
+	    x: "".concat(M.current.x, "px"),
+	    y: "".concat(M.current.y, "px"),
+	    width: "".concat(M.current.width, "px"),
+	    height: "".concat(M.current.height, "px"),
+	    surroundStyle: M.current.surroundStyle
 	  }, /*#__PURE__*/react.createElement(Te$2, {
-	    src: O.current.image,
-	    width: O.current.width
-	  }), U ? /*#__PURE__*/react.createElement(bE, null, F) : null, W ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(xE, null, M), G && /*#__PURE__*/react.createElement(wE, null)) : null) : null, W ? /*#__PURE__*/react.createElement(react.Fragment, null, S && /*#__PURE__*/react.createElement(pE, {
-	    top: I - 30
-	  }, S), z ? /*#__PURE__*/react.createElement(fE, {
-	    top: I + 5,
+	    src: M.current.image,
+	    width: M.current.width
+	  }), j ? /*#__PURE__*/react.createElement(bE, null, O) : null, U ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(xE, null, L), K && /*#__PURE__*/react.createElement(wE, null)) : null) : null, U ? /*#__PURE__*/react.createElement(react.Fragment, null, $ && /*#__PURE__*/react.createElement(pE, {
+	    top: E - 30
+	  }, $), V ? /*#__PURE__*/react.createElement(fE, {
+	    top: E + 5,
 	    className: "instructions"
-	  }, z) : null, /*#__PURE__*/react.createElement(hE, {
-	    top: I + 35
-	  }, H.map(function (t, n) {
+	  }, V) : null, X && /*#__PURE__*/react.createElement(hE, {
+	    top: E + 35
+	  }, G.map(function (t, n) {
 	    var r = t.name,
 	        a = t.image.objUrl;
 	    return /*#__PURE__*/react.createElement(mE, {
 	      key: r,
-	      active: D >= n,
+	      active: P >= n,
 	      className: "step-item"
 	    }, a ? /*#__PURE__*/react.createElement("img", {
 	      src: a,
 	      alt: ""
 	    }) : /*#__PURE__*/react.createElement("span", null, n + 1));
-	  }))) : /*#__PURE__*/react.createElement(react.Fragment, null, P ? null : /*#__PURE__*/react.createElement(gE, null, /*#__PURE__*/react.createElement(yE, {
-	    onClick: L
+	  }))) : /*#__PURE__*/react.createElement(react.Fragment, null, B ? null : /*#__PURE__*/react.createElement(gE, null, /*#__PURE__*/react.createElement(yE, {
+	    onClick: z
 	  }, /*#__PURE__*/react.createElement(Ce$1, null))))) : null);
 	}
 
@@ -67687,7 +67702,8 @@
 	  customDirectionIcon: propTypes.shape({}),
 	  customStepTimeConstraints: propTypes.shape({}),
 	  onApiCheck: propTypes.func,
-	  livenessSettings: propTypes.shape({})
+	  livenessSettings: propTypes.shape({}),
+	  customErrors: propTypes.shape({})
 	}, EE.defaultProps = {
 	  apiCheck: !1,
 	  mode: null,
@@ -67709,7 +67725,8 @@
 	    delayTime: 2e3
 	  }),
 	  onApiCheck: function onApiCheck() {},
-	  livenessSettings: null
+	  livenessSettings: null,
+	  customErrors: null
 	};
 	var TE = Object.freeze({
 	  __proto__: null,
