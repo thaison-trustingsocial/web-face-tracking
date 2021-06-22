@@ -66629,7 +66629,6 @@
 	      image: p,
 	      surroundStyle: f
 	    }, "object" === x$6(v) ? ye.current = T$3(T$3({}, ye.current), v) : "function" == typeof v && (ye.current = T$3(T$3({}, ye.current), v({
-	      x: c,
 	      clientWidth: r,
 	      clientHeight: a,
 	      videoAreaWidth: o,
@@ -67605,7 +67604,7 @@
 	}
 
 	function rE() {
-	  var e = C$3(["\n  position: absolute;\n  z-index: -1;\n  background: rgba(223, 0, 0, 0.2);\n  border-radius: 50%;\n  width: 90%;\n  height: 90%;\n  top: 5%;\n  left: 5%;\n"]);
+	  var e = C$3(["\n  position: absolute;\n  z-index: -1;\n  background: rgba(223, 0, 0, 0.2);\n  border-radius: 50%;\n  width: 86%;\n  height: 86%;\n  top: 7%;\n  left: 7%;\n"]);
 	  return rE = function rE() {
 	    return e;
 	  }, e;
@@ -67654,21 +67653,21 @@
 	}
 
 	function cE() {
-	  var e = C$3(["\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #ffffff;\n  font-size: 16px;\n  color: #fff;\n  font-weight: 700;\n\n  & + & {\n    margin-left: 10px;\n  }\n\n  ", "\n  img {\n    width: 100%;\n    margin: 0;\n    border-radius: 50%;\n  }\n"]);
+	  var e = C$3(["\n  width: ", ";\n  height: ", ";\n  border-radius: 50%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 2px solid #ffffff;\n  font-size: 16px;\n  color: #fff;\n  font-weight: 700;\n\n  & + & {\n    margin-left: 10px;\n  }\n\n  ", "\n  img {\n    width: 100%;\n    margin: 0;\n    border-radius: 50%;\n  }\n"]);
 	  return cE = function cE() {
 	    return e;
 	  }, e;
 	}
 
 	function dE() {
-	  var e = C$3(["\n  height: 70px;\n  position: absolute;\n  ", "\n  ", "\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: ", ";\n"]);
+	  var e = C$3(["\n  height: ", ";\n  position: absolute;\n  ", "\n  ", "\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: ", ";\n"]);
 	  return dE = function dE() {
 	    return e;
 	  }, e;
 	}
 
 	function pE() {
-	  var e = C$3(["\n  position: absolute;\n  ", "\n  ", "\n  font-size: 22px;\n  text-shadow: 2px 2px 4px #000000;\n"]);
+	  var e = C$3(["\n  position: absolute;\n  ", "\n  ", "\n  font-size: ", ";\n  text-shadow: 2px 2px 4px #000000;\n"]);
 	  return pE = function pE() {
 	    return e;
 	  }, e;
@@ -67772,15 +67771,23 @@
 	}, function (e) {
 	  var t = e.bottom;
 	  return t && Ae$1(["bottom:", "px;"], t);
+	}, function () {
+	  return D$3.isMobile ? "20px" : "22px";
 	}),
-	    wE = qe$1.div(dE(), function (e) {
+	    wE = qe$1.div(dE(), function () {
+	  return D$3.isMobile ? "50px" : "70px";
+	}, function (e) {
 	  var t = e.top;
 	  return t && Ae$1(["top:", "px;"], t);
 	}, function (e) {
 	  var t = e.bottom;
 	  return t && Ae$1(["bottom:", "px;"], t);
 	}, 1020),
-	    kE = qe$1.div(cE(), function (e) {
+	    kE = qe$1.div(cE(), function () {
+	  return D$3.isMobile ? "40px" : "50px";
+	}, function () {
+	  return D$3.isMobile ? "40px" : "50px";
+	}, function (e) {
 	  return !e.active && Ae$1(["opacity:0.6;"]);
 	}),
 	    IE = qe$1.div(lE(), 1020),
@@ -67827,21 +67834,15 @@
 	      T = E[0],
 	      C = E[1],
 	      N = react.useCallback(function (e) {
-	    var t = e.x,
-	        n = e.lostY,
-	        r = e.width,
-	        a = e.height,
-	        o = D$3.isMobile ? .9 : 1,
-	        s = n + 25,
-	        i = s + 30;
+	    var t = e.lostY,
+	        n = e.height,
+	        r = t + 25,
+	        a = r + 30;
 	    return w({
-	      yFaceDetectionError: s,
-	      yFaceVerificationStepsWrapper: i + a * o + 30
+	      yFaceDetectionError: r,
+	      yFaceVerificationStepsWrapper: a + n + 20
 	    }), {
-	      x: Math.floor(t + r * (1 - o) / 2),
-	      y: Math.floor(i),
-	      width: Math.floor(r * o),
-	      height: Math.floor(a * o)
+	      y: Math.floor(a)
 	    };
 	  }, []),
 	      S = FI({
@@ -67866,26 +67867,26 @@
 	      A = S.curStepIndex,
 	      F = S.directionIcon,
 	      O = S.faceDetectionError,
-	      M = S.handleTriggerPassiveMode,
-	      P = S.handleVideoPlayed,
-	      L = S.instructions,
-	      B = S.isActiveMode,
-	      z = S.refVideo,
-	      W = S.showCountdown,
-	      V = S.steps,
-	      U = S.videoPlayed,
-	      H = S.activeCapturing,
-	      j = S.isFirstValidFrameFound;
+	      D = S.handleTriggerPassiveMode,
+	      M = S.handleVideoPlayed,
+	      P = S.instructions,
+	      L = S.isActiveMode,
+	      B = S.refVideo,
+	      z = S.showCountdown,
+	      W = S.steps,
+	      V = S.videoPlayed,
+	      U = S.activeCapturing,
+	      H = S.isFirstValidFrameFound;
 
 	  return /*#__PURE__*/react.createElement(he$2, {
 	    frontCamera: c,
-	    onVideoPlayed: P,
+	    onVideoPlayed: M,
 	    onClose: i,
 	    flipHorizontal: c,
-	    ref: z,
+	    ref: B,
 	    videoSettings: AE,
 	    onError: u
-	  }, U ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(bE, {
+	  }, V ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(bE, {
 	    top: k - 15,
 	    className: "face-detection-error"
 	  }, O), R.current ? /*#__PURE__*/react.createElement(Ee$2, {
@@ -67895,21 +67896,21 @@
 	    height: "".concat(R.current.height, "px"),
 	    surroundStyle: R.current.surroundStyle
 	  }, /*#__PURE__*/react.createElement(NE, null), /*#__PURE__*/react.createElement(_E, {
-	    progress: A / V.length * 100,
-	    hasError: O,
+	    progress: A / W.length * 100,
+	    hasError: !!O,
 	    showDashedRing: !1,
 	    showOutsideRing: !1,
 	    insideRingWidth: 1,
 	    errorRingWidth: 1,
 	    insideRingStrokeDash: "2"
-	  }), W ? /*#__PURE__*/react.createElement(TE, null, $) : null, B ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(CE, null, F), H && /*#__PURE__*/react.createElement(RE$1, null)) : null, O && /*#__PURE__*/react.createElement(SE, null)) : null, B ? /*#__PURE__*/react.createElement(react.Fragment, null, T && /*#__PURE__*/react.createElement(xE, {
+	  }), z ? /*#__PURE__*/react.createElement(TE, null, $) : null, L ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(CE, null, F), U && /*#__PURE__*/react.createElement(RE$1, null)) : null, O && /*#__PURE__*/react.createElement(SE, null)) : null, L ? /*#__PURE__*/react.createElement(react.Fragment, null, T && /*#__PURE__*/react.createElement(xE, {
 	    top: I - 30
-	  }, T), L ? /*#__PURE__*/react.createElement(vE, {
+	  }, T), P ? /*#__PURE__*/react.createElement(vE, {
 	    top: I + 5,
 	    className: "instructions"
-	  }, L) : null, j && /*#__PURE__*/react.createElement(wE, {
+	  }, P) : null, H && /*#__PURE__*/react.createElement(wE, {
 	    top: I + 35
-	  }, V.map(function (t, n) {
+	  }, W.map(function (t, n) {
 	    var r = t.name,
 	        a = t.image.objUrl;
 	    return /*#__PURE__*/react.createElement(kE, {
@@ -67921,7 +67922,7 @@
 	      alt: ""
 	    }) : /*#__PURE__*/react.createElement("span", null, n + 1));
 	  }))) : /*#__PURE__*/react.createElement(react.Fragment, null, O ? null : /*#__PURE__*/react.createElement(IE, null, /*#__PURE__*/react.createElement(EE, {
-	    onClick: M
+	    onClick: D
 	  }, /*#__PURE__*/react.createElement(Ce$1, null))))) : null);
 	}
 

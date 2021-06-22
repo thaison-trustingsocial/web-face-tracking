@@ -146,8 +146,11 @@
         const apiCheck = selectApiCheckEl.value === "true";
         const cameraSelected = document.getElementById("select-camera");
 
+        // clear previous result
+        resultLivenessDetectionEl.innerHTML = "";
+
         const settings = document.getElementById('client-settings').value;
-        console.log(JSON.parse(settings));
+
         tv.livenessDetection({
           apiCheck: apiCheck,
           mode: livenessDetectionMode,
@@ -198,7 +201,7 @@
       function handleLivenessDetectionDone(result) {
         const { frontalFaces, apiCheckPassed, steps, videoRecord } = result;
         const apiCheck = selectApiCheckEl.value === "true";
-        resultLivenessDetectionEl.innerHTML = "";
+
         if (apiCheck === false) {
           setTimeout(function () {
             tv.destroyView();
