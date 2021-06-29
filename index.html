@@ -199,7 +199,7 @@
       }
 
       function handleLivenessDetectionDone(result) {
-        const { frontalFaces, apiCheckPassed, steps, videoRecord } = result;
+        const { frontalFaces, apiCheckPassed, steps, capturedFrames } = result;
         const apiCheck = selectApiCheckEl.value === "true";
 
         if (apiCheck === false) {
@@ -220,24 +220,24 @@
             resultLivenessDetectionEl.appendChild(
               document.createTextNode("Directional faces:")
             );
-            steps.forEach((s) => {
-              const imgEl = document.createElement("img");
-              imgEl.width = "200";
-              imgEl.style.marginRight = "5px";
-              imgEl.src = URL.createObjectURL(s.image.blob);
-              resultLivenessDetectionEl.appendChild(imgEl);
-            });
+
+            if (steps) {
+              steps.forEach((s) => {
+                const imgEl = document.createElement("img");
+                imgEl.width = "200";
+                imgEl.style.marginRight = "5px";
+                imgEl.src = URL.createObjectURL(s.image.blob);
+                resultLivenessDetectionEl.appendChild(imgEl);
+              });
+            }
+            
             resultLivenessDetectionEl.appendChild(document.createElement("br"));
             resultLivenessDetectionEl.appendChild(document.createElement("br"));
             resultLivenessDetectionEl.appendChild(
-              document.createTextNode("Video:")
+              document.createTextNode("Video: ")
             );
-            if (videoRecord.length) {
-              const videoEl = document.createElement("video");
-              videoEl.width = "200";
-              videoEl.controls = "controls";
-              videoEl.src = URL.createObjectURL(videoRecord[0]);
-              resultLivenessDetectionEl.appendChild(videoEl);
+            if (capturedFrames.length) {
+              resultLivenessDetectionEl.appendChild(document.createTextNode(capturedFrames.length + ' frames'));
             }
           }, 500);
         } else {
