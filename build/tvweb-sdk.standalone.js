@@ -66697,6 +66697,7 @@
 	          var t = Je.current;
 
 	          if (i) {
+	            H();
 	            var n = N$3(_e.current),
 	                r = t.map(function (e) {
 	              return pe.uploadImage({
