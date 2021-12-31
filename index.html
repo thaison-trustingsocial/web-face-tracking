@@ -42,15 +42,16 @@
     <div>
       Api check:
       <select id="select-api-check">
-        <option value="false" selected>false</option>
-        <option value="true">true</option>
+        <option value="false">false</option>
+        <option value="true" selected>true</option>
       </select>
     </div>
 
     <hr />
     <h4>Liveness detection</h4>
     <div>
-      <textarea id="client-settings" rows="20" style="width: 400px;"></textarea>
+      <textarea id="client-settings" rows="20" style="width: 400px; display: none;"></textarea>
+      <textarea id="capture-frames-settings" rows="20" style="width: 400px;"></textarea>
     </div>
     <div>
       Mode:
@@ -65,6 +66,7 @@
     </div>
     <div id="result-liveness-detection"></div>
     <script src="/web-face-tracking/build/tvweb-sdk.standalone.min.js"></script>
+    <!-- <script src="/build/tvweb-sdk.standalone.min.js"></script> -->
     <script>
       const settings = {
         face_tracking_setting: {
@@ -85,8 +87,14 @@
           max_time_ms: 1000,
         },
       };
+      const captureFrameSettings = {
+        enable: true,
+        framesIntervalTime: 180,
+        framesBatchLength: 15,
+      };
       window.onload = function(){
         document.getElementById('client-settings').value = JSON.stringify(settings, null, '\t');
+        document.getElementById('capture-frames-settings').value = JSON.stringify(captureFrameSettings, null, '\t');
       };
     </script>
     <script>
@@ -150,15 +158,19 @@
         resultLivenessDetectionEl.innerHTML = "";
 
         const settings = document.getElementById('client-settings').value;
+        const captureFrameSettings = document.getElementById('capture-frames-settings').value;
 
         tv.livenessDetection({
           apiCheck: apiCheck,
           mode: livenessDetectionMode,
-          accessKey: inputAccessKey.value,
-          secretKey: inputSecretKey.value,
-          apiUrl: inputApiUrl.value,
+          apiCredentials: {
+            accessKey: inputAccessKey.value,
+            secretKey: inputSecretKey.value,
+            apiUrl: inputApiUrl.value,
+          },
           onLivenessDetectionDone: handleLivenessDetectionDone,
-          captureFrameData: true,
+          captureFrameSettings: JSON.parse(captureFrameSettings),
+          onFramesCaptured: (fr) => console.log(fr),
           enableFaceTracking: true,
           livenessSettings: JSON.parse(settings),
           onError: (e) => {
@@ -234,10 +246,17 @@
             resultLivenessDetectionEl.appendChild(document.createElement("br"));
             resultLivenessDetectionEl.appendChild(document.createElement("br"));
             resultLivenessDetectionEl.appendChild(
-              document.createTextNode("Video: ")
+              document.createTextNode("Sequence frames: ")
             );
             if (capturedFrames.length) {
+              const captureFrameSettingsRaw = document.getElementById('capture-frames-settings').value;
+              const captureFrameSettings = JSON.parse(captureFrameSettingsRaw);
+
+              const batchRecoredCount =
+              Math.floor(capturedFrames.length / captureFrameSettings.framesBatchLength) +
+              Math.ceil((capturedFrames.length / captureFrameSettings.framesBatchLength) % 1);
               resultLivenessDetectionEl.appendChild(document.createTextNode(capturedFrames.length + ' frames'));
+              resultLivenessDetectionEl.appendChild(document.createTextNode(', ' + batchRecoredCount + ' batch'));
             }
           }, 500);
         } else {
@@ -246,6 +265,16 @@
           resultLivenessDetectionEl.appendChild(
             document.createTextNode(`apiCheckPassed: ${apiCheckPassed}`)
           );
+          if (capturedFrames.length) {
+            const captureFrameSettingsRaw = document.getElementById('capture-frames-settings').value;
+            const captureFrameSettings = JSON.parse(captureFrameSettingsRaw);
+
+            const batchRecoredCount =
+            Math.floor(capturedFrames.length / captureFrameSettings.framesBatchLength) +
+            Math.ceil((capturedFrames.length / captureFrameSettings.framesBatchLength) % 1);
+            resultLivenessDetectionEl.appendChild(document.createTextNode(capturedFrames.length + ' frames'));
+            resultLivenessDetectionEl.appendChild(document.createTextNode(', ' + batchRecoredCount + ' batch'));
+          }
         }
       }
     </script>
