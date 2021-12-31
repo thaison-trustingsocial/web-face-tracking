@@ -30623,8 +30623,8 @@
 	        w = k.getBrowser(),
 	        b = k.getDevice(),
 	        y = k.getEngine(),
-	        C = k.getOS(),
-	        B = k.getUA(),
+	        B = k.getOS(),
+	        C = k.getUA(),
 	        x = i.CHROME,
 	        _ = i.CHROMIUM,
 	        P = i.IE,
@@ -30647,7 +30647,7 @@
 	        W = s.WINDOWS,
 	        Q = s.MAC_OS,
 	        q = function q() {
-	      return C.name === s.WINDOWS && "10" === C.version && "string" == typeof B && -1 !== B.indexOf("Edg/");
+	      return B.name === s.WINDOWS && "10" === B.version && "string" == typeof C && -1 !== C.indexOf("Edg/");
 	    },
 	        X = function X() {
 	      return w.name === I;
@@ -30673,16 +30673,16 @@
 	        ee = b.type === N,
 	        te = b.type === A || H(),
 	        re = b.type === L,
-	        ne = C.name === z,
-	        oe = C.name === U,
-	        ae = C.name === V || H(),
+	        ne = B.name === z,
+	        oe = B.name === U,
+	        ae = B.name === V || H(),
 	        ie = w.name === x,
 	        se = w.name === R,
 	        ce = w.name === T || w.name === M,
 	        le = w.name === S,
 	        ue = w.name === E || w.name === P,
-	        de = C.version ? C.version : "none",
-	        fe = C.name ? C.name : "none",
+	        de = B.version ? B.version : "none",
+	        fe = B.name ? B.name : "none",
 	        me = w.major,
 	        pe = w.version,
 	        he = w.name,
@@ -30690,10 +30690,10 @@
 	        ve = b.model ? b.model : "none",
 	        ke = y.name,
 	        we = y.version,
-	        be = B,
+	        be = C,
 	        ye = X() || q(),
-	        Ce = w.name === O,
-	        Be = b.type,
+	        Be = w.name === O,
+	        Ce = b.type,
 	        xe = (n = g()) && (/iPad|iPhone|iPod/.test(n.platform) || "MacIntel" === n.platform && n.maxTouchPoints > 1) && !window.MSStream,
 	        _e = H(),
 	        Pe = v("iPhone"),
@@ -30705,8 +30705,8 @@
 	    }(),
 	        Re = q(),
 	        Te = X(),
-	        Ie = C.name === W,
-	        Oe = C.name === Q,
+	        Ie = B.name === W,
+	        Oe = B.name === Q,
 	        Me = u(b.type);
 
 	    e.exports = {
@@ -30717,7 +30717,7 @@
 	            n = Me.isSmartTV,
 	            o = Me.isConsole,
 	            a = Me.isWearable;
-	        return e ? d(e, w, y, C, B) : n ? h(n, y, C, B) : o ? p(o, y, C, B) : t || r ? f(Me, b, C, B) : a ? m(a, y, C, B) : void 0;
+	        return e ? d(e, w, y, B, C) : n ? h(n, y, B, C) : o ? p(o, y, B, C) : t || r ? f(Me, b, B, C) : a ? m(a, y, B, C) : void 0;
 	      },
 	      isSmartTV: K,
 	      isConsole: G,
@@ -30747,8 +30747,8 @@
 	      engineVersion: we,
 	      getUA: be,
 	      isEdge: ye,
-	      isYandex: Ce,
-	      deviceType: Be,
+	      isYandex: Be,
+	      deviceType: Ce,
 	      isIOS13: xe,
 	      isIPad13: _e,
 	      isIPhone13: Pe,
@@ -30835,7 +30835,7 @@
 	          return e;
 	        }
 	      },
-	          C = {
+	          B = {
 	        browser: {
 	          oldsafari: {
 	            version: {
@@ -30884,17 +30884,17 @@
 	          }
 	        }
 	      },
-	          B = {
-	        browser: [[/(opera\smini)\/([\w\.-]+)/i, /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i, /(opera).+version\/([\w\.]+)/i, /(opera)[\/\s]+([\w\.]+)/i], [u, m], [/(opios)[\/\s]+([\w\.]+)/i], [[u, "Opera Mini"], m], [/\s(opr)\/([\w\.]+)/i], [[u, "Opera"], m], [/(kindle)\/([\w\.]+)/i, /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i, /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i, /(?:ms|\()(ie)\s([\w\.]+)/i, /(rekonq)\/([\w\.]*)/i, /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark)\/([\w\.-]+)/i], [u, m], [/(trident).+rv[:\s]([\w\.]+).+like\sgecko/i], [[u, "IE"], m], [/(edge|edgios|edgea)\/((\d+)?[\w\.]+)/i], [[u, "Edge"], m], [/(yabrowser)\/([\w\.]+)/i], [[u, "Yandex"], m], [/(puffin)\/([\w\.]+)/i], [[u, "Puffin"], m], [/((?:[\s\/])uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i], [[u, "UCBrowser"], m], [/(comodo_dragon)\/([\w\.]+)/i], [[u, /_/g, " "], m], [/(micromessenger)\/([\w\.]+)/i], [[u, "WeChat"], m], [/(qqbrowserlite)\/([\w\.]+)/i], [u, m], [/(QQ)\/([\d\.]+)/i], [u, m], [/m?(qqbrowser)[\/\s]?([\w\.]+)/i], [u, m], [/(BIDUBrowser)[\/\s]?([\w\.]+)/i], [u, m], [/(2345Explorer)[\/\s]?([\w\.]+)/i], [u, m], [/(MetaSr)[\/\s]?([\w\.]+)/i], [u], [/(LBBROWSER)/i], [u], [/xiaomi\/miuibrowser\/([\w\.]+)/i], [m, [u, "MIUI Browser"]], [/;fbav\/([\w\.]+);/i], [m, [u, "Facebook"]], [/headlesschrome(?:\/([\w\.]+)|\s)/i], [m, [u, "Chrome Headless"]], [/\swv\).+(chrome)\/([\w\.]+)/i], [[u, /(.+)/, "$1 WebView"], m], [/((?:oculus|samsung)browser)\/([\w\.]+)/i], [[u, /(.+(?:g|us))(.+)/, "$1 $2"], m], [/android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)*/i], [m, [u, "Android Browser"]], [/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i], [u, m], [/(dolfin)\/([\w\.]+)/i], [[u, "Dolphin"], m], [/((?:android.+)crmo|crios)\/([\w\.]+)/i], [[u, "Chrome"], m], [/(coast)\/([\w\.]+)/i], [[u, "Opera Coast"], m], [/fxios\/([\w\.-]+)/i], [m, [u, "Firefox"]], [/version\/([\w\.]+).+?mobile\/\w+\s(safari)/i], [m, [u, "Mobile Safari"]], [/version\/([\w\.]+).+?(mobile\s?safari|safari)/i], [m, u], [/webkit.+?(gsa)\/([\w\.]+).+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [[u, "GSA"], m], [/webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [u, [m, y.str, C.browser.oldsafari.version]], [/(konqueror)\/([\w\.]+)/i, /(webkit|khtml)\/([\w\.]+)/i], [u, m], [/(navigator|netscape)\/([\w\.-]+)/i], [[u, "Netscape"], m], [/(swiftfox)/i, /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i, /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i, /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i, /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i, /(links)\s\(([\w\.]+)/i, /(gobrowser)\/?([\w\.]*)/i, /(ice\s?browser)\/v?([\w\._]+)/i, /(mosaic)[\/\s]([\w\.]+)/i], [u, m]],
+	          C = {
+	        browser: [[/(opera\smini)\/([\w\.-]+)/i, /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i, /(opera).+version\/([\w\.]+)/i, /(opera)[\/\s]+([\w\.]+)/i], [u, m], [/(opios)[\/\s]+([\w\.]+)/i], [[u, "Opera Mini"], m], [/\s(opr)\/([\w\.]+)/i], [[u, "Opera"], m], [/(kindle)\/([\w\.]+)/i, /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i, /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i, /(?:ms|\()(ie)\s([\w\.]+)/i, /(rekonq)\/([\w\.]*)/i, /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark)\/([\w\.-]+)/i], [u, m], [/(trident).+rv[:\s]([\w\.]+).+like\sgecko/i], [[u, "IE"], m], [/(edge|edgios|edgea)\/((\d+)?[\w\.]+)/i], [[u, "Edge"], m], [/(yabrowser)\/([\w\.]+)/i], [[u, "Yandex"], m], [/(puffin)\/([\w\.]+)/i], [[u, "Puffin"], m], [/((?:[\s\/])uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i], [[u, "UCBrowser"], m], [/(comodo_dragon)\/([\w\.]+)/i], [[u, /_/g, " "], m], [/(micromessenger)\/([\w\.]+)/i], [[u, "WeChat"], m], [/(qqbrowserlite)\/([\w\.]+)/i], [u, m], [/(QQ)\/([\d\.]+)/i], [u, m], [/m?(qqbrowser)[\/\s]?([\w\.]+)/i], [u, m], [/(BIDUBrowser)[\/\s]?([\w\.]+)/i], [u, m], [/(2345Explorer)[\/\s]?([\w\.]+)/i], [u, m], [/(MetaSr)[\/\s]?([\w\.]+)/i], [u], [/(LBBROWSER)/i], [u], [/xiaomi\/miuibrowser\/([\w\.]+)/i], [m, [u, "MIUI Browser"]], [/;fbav\/([\w\.]+);/i], [m, [u, "Facebook"]], [/headlesschrome(?:\/([\w\.]+)|\s)/i], [m, [u, "Chrome Headless"]], [/\swv\).+(chrome)\/([\w\.]+)/i], [[u, /(.+)/, "$1 WebView"], m], [/((?:oculus|samsung)browser)\/([\w\.]+)/i], [[u, /(.+(?:g|us))(.+)/, "$1 $2"], m], [/android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)*/i], [m, [u, "Android Browser"]], [/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i], [u, m], [/(dolfin)\/([\w\.]+)/i], [[u, "Dolphin"], m], [/((?:android.+)crmo|crios)\/([\w\.]+)/i], [[u, "Chrome"], m], [/(coast)\/([\w\.]+)/i], [[u, "Opera Coast"], m], [/fxios\/([\w\.-]+)/i], [m, [u, "Firefox"]], [/version\/([\w\.]+).+?mobile\/\w+\s(safari)/i], [m, [u, "Mobile Safari"]], [/version\/([\w\.]+).+?(mobile\s?safari|safari)/i], [m, u], [/webkit.+?(gsa)\/([\w\.]+).+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [[u, "GSA"], m], [/webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i], [u, [m, y.str, B.browser.oldsafari.version]], [/(konqueror)\/([\w\.]+)/i, /(webkit|khtml)\/([\w\.]+)/i], [u, m], [/(navigator|netscape)\/([\w\.-]+)/i], [[u, "Netscape"], m], [/(swiftfox)/i, /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i, /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i, /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i, /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i, /(links)\s\(([\w\.]+)/i, /(gobrowser)\/?([\w\.]*)/i, /(ice\s?browser)\/v?([\w\._]+)/i, /(mosaic)[\/\s]([\w\.]+)/i], [u, m]],
 	        cpu: [[/(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i], [[p, "amd64"]], [/(ia32(?=;))/i], [[p, b.lowerize]], [/((?:i[346]|x)86)[;\)]/i], [[p, "ia32"]], [/windows\s(ce|mobile);\sppc;/i], [[p, "arm"]], [/((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i], [[p, /ower/, "", b.lowerize]], [/(sun4\w)[;\)]/i], [[p, "sparc"]], [/((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i], [[p, b.lowerize]]],
-	        device: [[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i], [l, f, [d, v]], [/applecoremedia\/[\w\.]+ \((ipad)/], [l, [f, "Apple"], [d, v]], [/(apple\s{0,1}tv)/i], [[l, "Apple TV"], [f, "Apple"]], [/(archos)\s(gamepad2?)/i, /(hp).+(touchpad)/i, /(hp).+(tablet)/i, /(kindle)\/([\w\.]+)/i, /\s(nook)[\w\s]+build\/(\w+)/i, /(dell)\s(strea[kpr\s\d]*[\dko])/i], [f, l, [d, v]], [/(kf[A-z]+)\sbuild\/.+silk\//i], [l, [f, "Amazon"], [d, v]], [/(sd|kf)[0349hijorstuw]+\sbuild\/.+silk\//i], [[l, y.str, C.device.amazon.model], [f, "Amazon"], [d, g]], [/\((ip[honed|\s\w*]+);.+(apple)/i], [l, f, [d, g]], [/\((ip[honed|\s\w*]+);/i], [l, [f, "Apple"], [d, g]], [/(blackberry)[\s-]?(\w+)/i, /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i, /(hp)\s([\w\s]+\w)/i, /(asus)-?(\w+)/i], [f, l, [d, g]], [/\(bb10;\s(\w+)/i], [l, [f, "BlackBerry"], [d, g]], [/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7|padfone)/i], [l, [f, "Asus"], [d, v]], [/(sony)\s(tablet\s[ps])\sbuild\//i, /(sony)?(?:sgp.+)\sbuild\//i], [[f, "Sony"], [l, "Xperia Tablet"], [d, v]], [/android.+\s([c-g]\d{4}|so[-l]\w+)\sbuild\//i], [l, [f, "Sony"], [d, g]], [/\s(ouya)\s/i, /(nintendo)\s([wids3u]+)/i], [f, l, [d, h]], [/android.+;\s(shield)\sbuild/i], [l, [f, "Nvidia"], [d, h]], [/(playstation\s[34portablevi]+)/i], [l, [f, "Sony"], [d, h]], [/(sprint\s(\w+))/i], [[f, y.str, C.device.sprint.vendor], [l, y.str, C.device.sprint.model], [d, g]], [/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i], [f, l, [d, v]], [/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, /(zte)-(\w*)/i, /(alcatel|geeksphone|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i], [f, [l, /_/g, " "], [d, g]], [/(nexus\s9)/i], [l, [f, "HTC"], [d, v]], [/d\/huawei([\w\s-]+)[;\)]/i, /(nexus\s6p)/i], [l, [f, "Huawei"], [d, g]], [/(microsoft);\s(lumia[\s\w]+)/i], [f, l, [d, g]], [/[\s\(;](xbox(?:\sone)?)[\s\);]/i], [l, [f, "Microsoft"], [d, h]], [/(kin\.[onetw]{3})/i], [[l, /\./g, " "], [f, "Microsoft"], [d, g]], [/\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)[\w\s]+build\//i, /mot[\s-]?(\w*)/i, /(XT\d{3,4}) build\//i, /(nexus\s6)/i], [l, [f, "Motorola"], [d, g]], [/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i], [l, [f, "Motorola"], [d, v]], [/hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i], [[f, b.trim], [l, b.trim], [d, k]], [/hbbtv.+maple;(\d+)/i], [[l, /^/, "SmartTV"], [f, "Samsung"], [d, k]], [/\(dtv[\);].+(aquos)/i], [l, [f, "Sharp"], [d, k]], [/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n\d+|sgh-t8[56]9|nexus 10))/i, /((SM-T\w+))/i], [[f, "Samsung"], l, [d, v]], [/smart-tv.+(samsung)/i], [f, [d, k], l], [/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-\w[\w\d]+))/i, /(sam[sung]*)[\s-]*(\w+-?[\w-]*)/i, /sec-((sgh\w+))/i], [[f, "Samsung"], l, [d, g]], [/sie-(\w*)/i], [l, [f, "Siemens"], [d, g]], [/(maemo|nokia).*(n900|lumia\s\d+)/i, /(nokia)[\s_-]?([\w-]*)/i], [[f, "Nokia"], l, [d, g]], [/android\s3\.[\s\w;-]{10}(a\d{3})/i], [l, [f, "Acer"], [d, v]], [/android.+([vl]k\-?\d{3})\s+build/i], [l, [f, "LG"], [d, v]], [/android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i], [[f, "LG"], l, [d, v]], [/(lg) netcast\.tv/i], [f, l, [d, k]], [/(nexus\s[45])/i, /lg[e;\s\/-]+(\w*)/i, /android.+lg(\-?[\d\w]+)\s+build/i], [l, [f, "LG"], [d, g]], [/android.+(ideatab[a-z0-9\-\s]+)/i], [l, [f, "Lenovo"], [d, v]], [/linux;.+((jolla));/i], [f, l, [d, g]], [/((pebble))app\/[\d\.]+\s/i], [f, l, [d, w]], [/android.+;\s(oppo)\s?([\w\s]+)\sbuild/i], [f, l, [d, g]], [/crkey/i], [[l, "Chromecast"], [f, "Google"]], [/android.+;\s(glass)\s\d/i], [l, [f, "Google"], [d, w]], [/android.+;\s(pixel c)\s/i], [l, [f, "Google"], [d, v]], [/android.+;\s(pixel xl|pixel)\s/i], [l, [f, "Google"], [d, g]], [/android.+;\s(\w+)\s+build\/hm\1/i, /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i, /android.+(mi[\s\-_]*(?:one|one[\s_]plus|note lte)?[\s_]*(?:\d?\w?)[\s_]*(?:plus)?)\s+build/i, /android.+(redmi[\s\-_]*(?:note)?(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [f, "Xiaomi"], [d, g]], [/android.+(mi[\s\-_]*(?:pad)(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [f, "Xiaomi"], [d, v]], [/android.+;\s(m[1-5]\snote)\sbuild/i], [l, [f, "Meizu"], [d, v]], [/android.+a000(1)\s+build/i, /android.+oneplus\s(a\d{4})\s+build/i], [l, [f, "OnePlus"], [d, g]], [/android.+[;\/]\s*(RCT[\d\w]+)\s+build/i], [l, [f, "RCA"], [d, v]], [/android.+[;\/\s]+(Venue[\d\s]{2,7})\s+build/i], [l, [f, "Dell"], [d, v]], [/android.+[;\/]\s*(Q[T|M][\d\w]+)\s+build/i], [l, [f, "Verizon"], [d, v]], [/android.+[;\/]\s+(Barnes[&\s]+Noble\s+|BN[RT])(V?.*)\s+build/i], [[f, "Barnes & Noble"], l, [d, v]], [/android.+[;\/]\s+(TM\d{3}.*\b)\s+build/i], [l, [f, "NuVision"], [d, v]], [/android.+;\s(k88)\sbuild/i], [l, [f, "ZTE"], [d, v]], [/android.+[;\/]\s*(gen\d{3})\s+build.*49h/i], [l, [f, "Swiss"], [d, g]], [/android.+[;\/]\s*(zur\d{3})\s+build/i], [l, [f, "Swiss"], [d, v]], [/android.+[;\/]\s*((Zeki)?TB.*\b)\s+build/i], [l, [f, "Zeki"], [d, v]], [/(android).+[;\/]\s+([YR]\d{2})\s+build/i, /android.+[;\/]\s+(Dragon[\-\s]+Touch\s+|DT)(\w{5})\sbuild/i], [[f, "Dragon Touch"], l, [d, v]], [/android.+[;\/]\s*(NS-?\w{0,9})\sbuild/i], [l, [f, "Insignia"], [d, v]], [/android.+[;\/]\s*((NX|Next)-?\w{0,9})\s+build/i], [l, [f, "NextBook"], [d, v]], [/android.+[;\/]\s*(Xtreme\_)?(V(1[045]|2[015]|30|40|60|7[05]|90))\s+build/i], [[f, "Voice"], l, [d, g]], [/android.+[;\/]\s*(LVTEL\-)?(V1[12])\s+build/i], [[f, "LvTel"], l, [d, g]], [/android.+[;\/]\s*(V(100MD|700NA|7011|917G).*\b)\s+build/i], [l, [f, "Envizen"], [d, v]], [/android.+[;\/]\s*(Le[\s\-]+Pan)[\s\-]+(\w{1,9})\s+build/i], [f, l, [d, v]], [/android.+[;\/]\s*(Trio[\s\-]*.*)\s+build/i], [l, [f, "MachSpeed"], [d, v]], [/android.+[;\/]\s*(Trinity)[\-\s]*(T\d{3})\s+build/i], [f, l, [d, v]], [/android.+[;\/]\s*TU_(1491)\s+build/i], [l, [f, "Rotor"], [d, v]], [/android.+(KS(.+))\s+build/i], [l, [f, "Amazon"], [d, v]], [/android.+(Gigaset)[\s\-]+(Q\w{1,9})\s+build/i], [f, l, [d, v]], [/\s(tablet|tab)[;\/]/i, /\s(mobile)(?:[;\/]|\ssafari)/i], [[d, b.lowerize], f, l], [/(android[\w\.\s\-]{0,9});.+build/i], [l, [f, "Generic"]]],
+	        device: [[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i], [l, f, [d, v]], [/applecoremedia\/[\w\.]+ \((ipad)/], [l, [f, "Apple"], [d, v]], [/(apple\s{0,1}tv)/i], [[l, "Apple TV"], [f, "Apple"]], [/(archos)\s(gamepad2?)/i, /(hp).+(touchpad)/i, /(hp).+(tablet)/i, /(kindle)\/([\w\.]+)/i, /\s(nook)[\w\s]+build\/(\w+)/i, /(dell)\s(strea[kpr\s\d]*[\dko])/i], [f, l, [d, v]], [/(kf[A-z]+)\sbuild\/.+silk\//i], [l, [f, "Amazon"], [d, v]], [/(sd|kf)[0349hijorstuw]+\sbuild\/.+silk\//i], [[l, y.str, B.device.amazon.model], [f, "Amazon"], [d, g]], [/\((ip[honed|\s\w*]+);.+(apple)/i], [l, f, [d, g]], [/\((ip[honed|\s\w*]+);/i], [l, [f, "Apple"], [d, g]], [/(blackberry)[\s-]?(\w+)/i, /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i, /(hp)\s([\w\s]+\w)/i, /(asus)-?(\w+)/i], [f, l, [d, g]], [/\(bb10;\s(\w+)/i], [l, [f, "BlackBerry"], [d, g]], [/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7|padfone)/i], [l, [f, "Asus"], [d, v]], [/(sony)\s(tablet\s[ps])\sbuild\//i, /(sony)?(?:sgp.+)\sbuild\//i], [[f, "Sony"], [l, "Xperia Tablet"], [d, v]], [/android.+\s([c-g]\d{4}|so[-l]\w+)\sbuild\//i], [l, [f, "Sony"], [d, g]], [/\s(ouya)\s/i, /(nintendo)\s([wids3u]+)/i], [f, l, [d, h]], [/android.+;\s(shield)\sbuild/i], [l, [f, "Nvidia"], [d, h]], [/(playstation\s[34portablevi]+)/i], [l, [f, "Sony"], [d, h]], [/(sprint\s(\w+))/i], [[f, y.str, B.device.sprint.vendor], [l, y.str, B.device.sprint.model], [d, g]], [/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i], [f, l, [d, v]], [/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, /(zte)-(\w*)/i, /(alcatel|geeksphone|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i], [f, [l, /_/g, " "], [d, g]], [/(nexus\s9)/i], [l, [f, "HTC"], [d, v]], [/d\/huawei([\w\s-]+)[;\)]/i, /(nexus\s6p)/i], [l, [f, "Huawei"], [d, g]], [/(microsoft);\s(lumia[\s\w]+)/i], [f, l, [d, g]], [/[\s\(;](xbox(?:\sone)?)[\s\);]/i], [l, [f, "Microsoft"], [d, h]], [/(kin\.[onetw]{3})/i], [[l, /\./g, " "], [f, "Microsoft"], [d, g]], [/\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)[\w\s]+build\//i, /mot[\s-]?(\w*)/i, /(XT\d{3,4}) build\//i, /(nexus\s6)/i], [l, [f, "Motorola"], [d, g]], [/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i], [l, [f, "Motorola"], [d, v]], [/hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i], [[f, b.trim], [l, b.trim], [d, k]], [/hbbtv.+maple;(\d+)/i], [[l, /^/, "SmartTV"], [f, "Samsung"], [d, k]], [/\(dtv[\);].+(aquos)/i], [l, [f, "Sharp"], [d, k]], [/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n\d+|sgh-t8[56]9|nexus 10))/i, /((SM-T\w+))/i], [[f, "Samsung"], l, [d, v]], [/smart-tv.+(samsung)/i], [f, [d, k], l], [/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-\w[\w\d]+))/i, /(sam[sung]*)[\s-]*(\w+-?[\w-]*)/i, /sec-((sgh\w+))/i], [[f, "Samsung"], l, [d, g]], [/sie-(\w*)/i], [l, [f, "Siemens"], [d, g]], [/(maemo|nokia).*(n900|lumia\s\d+)/i, /(nokia)[\s_-]?([\w-]*)/i], [[f, "Nokia"], l, [d, g]], [/android\s3\.[\s\w;-]{10}(a\d{3})/i], [l, [f, "Acer"], [d, v]], [/android.+([vl]k\-?\d{3})\s+build/i], [l, [f, "LG"], [d, v]], [/android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i], [[f, "LG"], l, [d, v]], [/(lg) netcast\.tv/i], [f, l, [d, k]], [/(nexus\s[45])/i, /lg[e;\s\/-]+(\w*)/i, /android.+lg(\-?[\d\w]+)\s+build/i], [l, [f, "LG"], [d, g]], [/android.+(ideatab[a-z0-9\-\s]+)/i], [l, [f, "Lenovo"], [d, v]], [/linux;.+((jolla));/i], [f, l, [d, g]], [/((pebble))app\/[\d\.]+\s/i], [f, l, [d, w]], [/android.+;\s(oppo)\s?([\w\s]+)\sbuild/i], [f, l, [d, g]], [/crkey/i], [[l, "Chromecast"], [f, "Google"]], [/android.+;\s(glass)\s\d/i], [l, [f, "Google"], [d, w]], [/android.+;\s(pixel c)\s/i], [l, [f, "Google"], [d, v]], [/android.+;\s(pixel xl|pixel)\s/i], [l, [f, "Google"], [d, g]], [/android.+;\s(\w+)\s+build\/hm\1/i, /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i, /android.+(mi[\s\-_]*(?:one|one[\s_]plus|note lte)?[\s_]*(?:\d?\w?)[\s_]*(?:plus)?)\s+build/i, /android.+(redmi[\s\-_]*(?:note)?(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [f, "Xiaomi"], [d, g]], [/android.+(mi[\s\-_]*(?:pad)(?:[\s_]*[\w\s]+))\s+build/i], [[l, /_/g, " "], [f, "Xiaomi"], [d, v]], [/android.+;\s(m[1-5]\snote)\sbuild/i], [l, [f, "Meizu"], [d, v]], [/android.+a000(1)\s+build/i, /android.+oneplus\s(a\d{4})\s+build/i], [l, [f, "OnePlus"], [d, g]], [/android.+[;\/]\s*(RCT[\d\w]+)\s+build/i], [l, [f, "RCA"], [d, v]], [/android.+[;\/\s]+(Venue[\d\s]{2,7})\s+build/i], [l, [f, "Dell"], [d, v]], [/android.+[;\/]\s*(Q[T|M][\d\w]+)\s+build/i], [l, [f, "Verizon"], [d, v]], [/android.+[;\/]\s+(Barnes[&\s]+Noble\s+|BN[RT])(V?.*)\s+build/i], [[f, "Barnes & Noble"], l, [d, v]], [/android.+[;\/]\s+(TM\d{3}.*\b)\s+build/i], [l, [f, "NuVision"], [d, v]], [/android.+;\s(k88)\sbuild/i], [l, [f, "ZTE"], [d, v]], [/android.+[;\/]\s*(gen\d{3})\s+build.*49h/i], [l, [f, "Swiss"], [d, g]], [/android.+[;\/]\s*(zur\d{3})\s+build/i], [l, [f, "Swiss"], [d, v]], [/android.+[;\/]\s*((Zeki)?TB.*\b)\s+build/i], [l, [f, "Zeki"], [d, v]], [/(android).+[;\/]\s+([YR]\d{2})\s+build/i, /android.+[;\/]\s+(Dragon[\-\s]+Touch\s+|DT)(\w{5})\sbuild/i], [[f, "Dragon Touch"], l, [d, v]], [/android.+[;\/]\s*(NS-?\w{0,9})\sbuild/i], [l, [f, "Insignia"], [d, v]], [/android.+[;\/]\s*((NX|Next)-?\w{0,9})\s+build/i], [l, [f, "NextBook"], [d, v]], [/android.+[;\/]\s*(Xtreme\_)?(V(1[045]|2[015]|30|40|60|7[05]|90))\s+build/i], [[f, "Voice"], l, [d, g]], [/android.+[;\/]\s*(LVTEL\-)?(V1[12])\s+build/i], [[f, "LvTel"], l, [d, g]], [/android.+[;\/]\s*(V(100MD|700NA|7011|917G).*\b)\s+build/i], [l, [f, "Envizen"], [d, v]], [/android.+[;\/]\s*(Le[\s\-]+Pan)[\s\-]+(\w{1,9})\s+build/i], [f, l, [d, v]], [/android.+[;\/]\s*(Trio[\s\-]*.*)\s+build/i], [l, [f, "MachSpeed"], [d, v]], [/android.+[;\/]\s*(Trinity)[\-\s]*(T\d{3})\s+build/i], [f, l, [d, v]], [/android.+[;\/]\s*TU_(1491)\s+build/i], [l, [f, "Rotor"], [d, v]], [/android.+(KS(.+))\s+build/i], [l, [f, "Amazon"], [d, v]], [/android.+(Gigaset)[\s\-]+(Q\w{1,9})\s+build/i], [f, l, [d, v]], [/\s(tablet|tab)[;\/]/i, /\s(mobile)(?:[;\/]|\ssafari)/i], [[d, b.lowerize], f, l], [/(android[\w\.\s\-]{0,9});.+build/i], [l, [f, "Generic"]]],
 	        engine: [[/windows.+\sedge\/([\w\.]+)/i], [m, [u, "EdgeHTML"]], [/(presto)\/([\w\.]+)/i, /(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i, /(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i, /(icab)[\/\s]([23]\.[\d\.]+)/i], [u, m], [/rv\:([\w\.]{1,9}).+(gecko)/i], [m, u]],
-	        os: [[/microsoft\s(windows)\s(vista|xp)/i], [u, m], [/(windows)\snt\s6\.2;\s(arm)/i, /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i, /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i], [u, [m, y.str, C.os.windows.version]], [/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i], [[u, "Windows"], [m, y.str, C.os.windows.version]], [/\((bb)(10);/i], [[u, "BlackBerry"], m], [/(blackberry)\w*\/?([\w\.]*)/i, /(tizen)[\/\s]([\w\.]+)/i, /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]*)/i, /linux;.+(sailfish);/i], [u, m], [/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]*)/i], [[u, "Symbian"], m], [/\((series40);/i], [u], [/mozilla.+\(mobile;.+gecko.+firefox/i], [[u, "Firefox OS"], m], [/(nintendo|playstation)\s([wids34portablevu]+)/i, /(mint)[\/\s\(]?(\w*)/i, /(mageia|vectorlinux)[;\s]/i, /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?(?!chrom)([\w\.-]*)/i, /(hurd|linux)\s?([\w\.]*)/i, /(gnu)\s?([\w\.]*)/i], [u, m], [/(cros)\s[\w]+\s([\w\.]+\w)/i], [[u, "Chromium OS"], m], [/(sunos)\s?([\w\.\d]*)/i], [[u, "Solaris"], m], [/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]*)/i], [u, m], [/(haiku)\s(\w+)/i], [u, m], [/cfnetwork\/.+darwin/i, /ip[honead]{2,4}(?:.*os\s([\w]+)\slike\smac|;\sopera)/i], [[m, /_/g, "."], [u, "iOS"]], [/(mac\sos\sx)\s?([\w\s\.]*)/i, /(macintosh|mac(?=_powerpc)\s)/i], [[u, "Mac OS"], [m, /_/g, "."]], [/((?:open)?solaris)[\/\s-]?([\w\.]*)/i, /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i, /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i, /(unix)\s?([\w\.]*)/i], [u, m]]
+	        os: [[/microsoft\s(windows)\s(vista|xp)/i], [u, m], [/(windows)\snt\s6\.2;\s(arm)/i, /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i, /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i], [u, [m, y.str, B.os.windows.version]], [/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i], [[u, "Windows"], [m, y.str, B.os.windows.version]], [/\((bb)(10);/i], [[u, "BlackBerry"], m], [/(blackberry)\w*\/?([\w\.]*)/i, /(tizen)[\/\s]([\w\.]+)/i, /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]*)/i, /linux;.+(sailfish);/i], [u, m], [/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]*)/i], [[u, "Symbian"], m], [/\((series40);/i], [u], [/mozilla.+\(mobile;.+gecko.+firefox/i], [[u, "Firefox OS"], m], [/(nintendo|playstation)\s([wids34portablevu]+)/i, /(mint)[\/\s\(]?(\w*)/i, /(mageia|vectorlinux)[;\s]/i, /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?(?!chrom)([\w\.-]*)/i, /(hurd|linux)\s?([\w\.]*)/i, /(gnu)\s?([\w\.]*)/i], [u, m], [/(cros)\s[\w]+\s([\w\.]+\w)/i], [[u, "Chromium OS"], m], [/(sunos)\s?([\w\.\d]*)/i], [[u, "Solaris"], m], [/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]*)/i], [u, m], [/(haiku)\s(\w+)/i], [u, m], [/cfnetwork\/.+darwin/i, /ip[honead]{2,4}(?:.*os\s([\w]+)\slike\smac|;\sopera)/i], [[m, /_/g, "."], [u, "iOS"]], [/(mac\sos\sx)\s?([\w\s\.]*)/i, /(macintosh|mac(?=_powerpc)\s)/i], [[u, "Mac OS"], [m, /_/g, "."]], [/((?:open)?solaris)[\/\s-]?([\w\.]*)/i, /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i, /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i, /(unix)\s?([\w\.]*)/i], [u, m]]
 	      },
 	          x = function x(e, t) {
 	        if ("object" == _typeof(e) && (t = e, e = a), !(this instanceof x)) return new x(e, t).getResult();
 	        var r = e || (o && o.navigator && o.navigator.userAgent ? o.navigator.userAgent : ""),
-	            n = t ? b.extend(B, t) : B;
+	            n = t ? b.extend(C, t) : C;
 	        return this.getBrowser = function () {
 	          var e = {
 	            name: a,
@@ -31150,8 +31150,8 @@
 	    we$3 = qe(ke$3)(te$3 || (te$3 = Q$4(["\n  z-index: ", ";\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  width: 20px;\n"])), 1100),
 	    be$3 = qe.div(re$4 || (re$4 = Q$4(["\n  z-index: ", ";\n  position: absolute;\n  top: 40px;\n  color: red;\n"])), 1020),
 	    ye$2 = qe.div(ne$3 || (ne$3 = Q$4(["\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: ", ";\n"])), 1030),
-	    Ce$2 = qe.section(oe$3 || (oe$3 = Q$4(["\n  width: 260px;\n  margin: 1.25rem;\n  padding: 0.625rem 1.875rem;\n  background: #ffffff;\n  border-radius: 0.3125rem;\n  box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.15);\n"]))),
-	    Be$3 = qe.header(ae$3 || (ae$3 = Q$4(["\n  text-align: center;\n  padding: 0.625rem 0;\n  border-bottom: 1px solid #dddddd;\n"]))),
+	    Be$3 = qe.section(oe$3 || (oe$3 = Q$4(["\n  width: 260px;\n  margin: 1.25rem;\n  padding: 0.625rem 1.875rem;\n  background: #ffffff;\n  border-radius: 0.3125rem;\n  box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.15);\n"]))),
+	    Ce$2 = qe.header(ae$3 || (ae$3 = Q$4(["\n  text-align: center;\n  padding: 0.625rem 0;\n  border-bottom: 1px solid #dddddd;\n"]))),
 	    xe$3 = qe.h2(ie$3 || (ie$3 = Q$4(["\n  margin: 0.25rem auto;\n  padding: 0;\n  font-weight: 600;\n  font-size: 1.2rem;\n"]))),
 	    _e$2 = qe.p(se$3 || (se$3 = Q$4(["\n  padding: 0 0 0.3125rem;\n  margin: 0.25rem auto;\n  font-size: 0.8rem;\n"]))),
 	    Pe$2 = qe.ul(ce$3 || (ce$3 = Q$4(["\n  list-style: none;\n  padding: 0;\n"]))),
@@ -31182,8 +31182,8 @@
 	      h = e.closeButton,
 	      g = e.videoClassName,
 	      v = h$3.useSDKSettings().lang,
-	      C = nn.useSDKTracking().sendEvent,
-	      B = sn.useAsset("ic_close.png"),
+	      B = nn.useSDKTracking().sendEvent,
+	      C = sn.useAsset("ic_close.png"),
 	      x = q$6(react.useState(""), 2),
 	      _ = x[0],
 	      P = x[1],
@@ -31371,15 +31371,15 @@
 	    };
 	  }, [v, p]);
 	  var j = react.useCallback(function () {
-	    A(), c && c(), C({
+	    A(), c && c(), B({
 	      tag: "result",
 	      event: "user_activity.cancel",
 	      log: {}
 	    });
-	  }, [c, A, C]);
+	  }, [c, A, B]);
 	  return /*#__PURE__*/react.createElement(ge$3, {
 	    checkCameraMode: i
-	  }, I && null != S && S.length ? /*#__PURE__*/react.createElement(ye$2, null, /*#__PURE__*/react.createElement(Ce$2, null, /*#__PURE__*/react.createElement(Be$3, null, /*#__PURE__*/react.createElement(xe$3, null, "Không thể mở camera mặc định"), /*#__PURE__*/react.createElement(_e$2, null, "Vui lòng thử chọn camera khác trong danh sách dưới đây")), /*#__PURE__*/react.createElement(Pe$2, null, S.map(function (e, r) {
+	  }, I && null != S && S.length ? /*#__PURE__*/react.createElement(ye$2, null, /*#__PURE__*/react.createElement(Be$3, null, /*#__PURE__*/react.createElement(Ce$2, null, /*#__PURE__*/react.createElement(xe$3, null, "Không thể mở camera mặc định"), /*#__PURE__*/react.createElement(_e$2, null, "Vui lòng thử chọn camera khác trong danh sách dưới đây")), /*#__PURE__*/react.createElement(Pe$2, null, S.map(function (e, r) {
 	    return /*#__PURE__*/react.createElement(Ee$3, {
 	      key: e.deviceId,
 	      onClick: function onClick() {
@@ -31399,7 +31399,7 @@
 	    onClick: j,
 	    "data-testid": "close-camera"
 	  }, /*#__PURE__*/react.createElement("img", {
-	    src: B,
+	    src: C,
 	    alt: ""
 	  })));
 	}
@@ -31704,15 +31704,15 @@
 
 	  return "";
 	},
-	    Ct$1 = /^\[object .+?Constructor\]$/,
-	    Bt$1 = Function.prototype,
+	    Bt$1 = /^\[object .+?Constructor\]$/,
+	    Ct$1 = Function.prototype,
 	    xt$1 = Object.prototype,
-	    _t$1 = Bt$1.toString,
+	    _t$1 = Ct$1.toString,
 	    Pt$1 = xt$1.hasOwnProperty,
 	    Et$1 = RegExp("^" + _t$1.call(Pt$1).replace(/[\\^$.*+?()[\]{}|]/g, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
 
 	var St$1 = function St(e) {
-	  return !(!Ve$3(e) || wt$1(e)) && (gt$1(e) ? Et$1 : Ct$1).test(yt$1(e));
+	  return !(!Ve$3(e) || wt$1(e)) && (gt$1(e) ? Et$1 : Bt$1).test(yt$1(e));
 	};
 
 	var Rt$1 = function Rt(e, t) {
@@ -31986,12 +31986,12 @@
 	  Dt$1(t, br$1(t), e, n);
 	});
 
-	var Cr$1 = function Cr(e, t) {
+	var Br$1 = function Br(e, t) {
 	  return function (r) {
 	    return e(t(r));
 	  };
 	},
-	    Br$1 = Cr$1(Object.getPrototypeOf, Object),
+	    Cr$1 = Br$1(Object.getPrototypeOf, Object),
 	    xr$1 = Function.prototype,
 	    _r$1 = Object.prototype,
 	    Pr$1 = xr$1.toString,
@@ -32000,7 +32000,7 @@
 
 	var Rr$1 = function Rr(e) {
 	  if (!nt$1(e) || "[object Object]" != rt$1(e)) return !1;
-	  var t = Br$1(e);
+	  var t = Cr$1(e);
 	  if (null === t) return !0;
 	  var r = Er$1.call(t, "constructor") && t.constructor;
 	  return "function" == typeof r && r instanceof r && Pr$1.call(r) == Sr$1;
@@ -32050,7 +32050,7 @@
 	var Fr$1 = function Fr(e) {
 	  return "\\" + Lr$1[e];
 	},
-	    jr$1 = Cr$1(Object.keys, Object),
+	    jr$1 = Br$1(Object.keys, Object),
 	    zr$1 = Object.prototype.hasOwnProperty;
 
 	var Ur$1 = function Ur(e) {
@@ -32210,12 +32210,12 @@
 
 	  return -1;
 	},
-	    Cn$1 = Array.prototype.splice;
+	    Bn$1 = Array.prototype.splice;
 
-	var Bn$1 = function Bn(e) {
+	var Cn$1 = function Cn(e) {
 	  var t = this.__data__,
 	      r = yn$1(t, e);
-	  return !(r < 0) && (r == t.length - 1 ? t.pop() : Cn$1.call(t, r, 1), --this.size, !0);
+	  return !(r < 0) && (r == t.length - 1 ? t.pop() : Bn$1.call(t, r, 1), --this.size, !0);
 	};
 
 	var xn$1 = function xn(e) {
@@ -32244,7 +32244,7 @@
 	  }
 	}
 
-	En$1.prototype.clear = bn$1, En$1.prototype["delete"] = Bn$1, En$1.prototype.get = xn$1, En$1.prototype.has = _n$1, En$1.prototype.set = Pn$1;
+	En$1.prototype.clear = bn$1, En$1.prototype["delete"] = Cn$1, En$1.prototype.get = xn$1, En$1.prototype.has = _n$1, En$1.prototype.set = Pn$1;
 	var Sn$1 = En$1,
 	    Rn$1 = Tt$1(qe$3, "Map");
 
@@ -32413,24 +32413,27 @@
 	      n = Hn$1(t, "stepTimeConstraints.delayTime");
 	  return !!n && (null === t.firstFrameSpottedAt ? (t.name === r && (t.firstFrameSpottedAt = new Date().getTime()), !0) : new Date().getTime() - t.firstFrameSpottedAt < n);
 	},
-	    Zn$1 = function Zn(e, t) {
-	  t.httpClient.post("/v1/files", {
-	    frames: e
+	    Zn$1 = function Zn() {
+	  $n$1 = [];
+	},
+	    Jn$1 = function Jn(e, t, r) {
+	  r && Zn$1(), t.httpClient.post("/v1/files", {
+	    frames: e,
+	    metadata: JSON.stringify({
+	      type: "selfie"
+	    })
 	  }).then(function (e) {
 	    e.data && e.data.file_id && $n$1.push({
 	      id: e.data.file_id
 	    });
 	  });
 	},
-	    Jn$1 = function Jn(e, t) {
+	    eo = function eo(e, t) {
 	  if (!e.enable) return [];
 	  var r = Math.floor(t.current.length / e.framesBatchLength) + Math.ceil(t.current.length / e.framesBatchLength % 1);
 	  return $n$1.length < r ? [{
 	    frames: t.current
 	  }] : $n$1;
-	},
-	    eo = function eo() {
-	  $n$1 = [];
 	};
 
 	var to = function to(e) {
@@ -32521,7 +32524,7 @@
 	      h = t.customIcon,
 	      g = t.customDirectionIcon,
 	      b = t.customStepTimeConstraints,
-	      C = void 0 === b ? (j$4(e = {}, l$3.FaceDirection.UP, {
+	      B = void 0 === b ? (j$4(e = {}, l$3.FaceDirection.UP, {
 	    delayTime: 1e3
 	  }), j$4(e, l$3.FaceDirection.LEFT, {
 	    delayTime: 1e3
@@ -32579,8 +32582,8 @@
 	  }, 0),
 	      be = q$6(we, 2),
 	      ye = (be[0], be[1]),
-	      Ce = react.useRef(null),
-	      Be = react.useRef(!1),
+	      Be = react.useRef(null),
+	      Ce = react.useRef(!1),
 	      xe = react.useState(!1),
 	      _e = q$6(xe, 2),
 	      Pe = _e[0],
@@ -32595,7 +32598,7 @@
 	    customInstructions: p,
 	    customIcon: h,
 	    customDirectionIcon: g,
-	    customStepTimeConstraints: C
+	    customStepTimeConstraints: B
 	  }));
 	  var Oe = react.useState(),
 	      Me = q$6(Oe, 2),
@@ -32679,7 +32682,7 @@
 	        customInstructions: p,
 	        customIcon: h,
 	        customDirectionIcon: g
-	      }), Fe.current = Date.now(), He.current = 0, Ke.current = null, Le.current = [], le(!1), eo(), ye();
+	      }), Fe.current = Date.now(), He.current = 0, Ke.current = null, Le.current = [], le(!1), Zn$1(), ye();
 	    }, Ve);
 	  }, [pe, p, h, g, Ve, z]),
 	      $e = react.useRef(null),
@@ -32759,14 +32762,14 @@
 	    var l = Math.floor((a - t) / 2) + s,
 	        d = 5 + c,
 	        p = u;
-	    Ce.current = {
+	    Be.current = {
 	      x: l,
 	      y: d,
 	      width: t,
 	      height: r,
 	      image: p,
 	      surroundStyle: f
-	    }, "object" === A$6(m) ? Ce.current = V$4(V$4({}, Ce.current), m) : "function" == typeof m && (Ce.current = V$4(V$4({}, Ce.current), m({
+	    }, "object" === A$6(m) ? Be.current = V$4(V$4({}, Be.current), m) : "function" == typeof m && (Be.current = V$4(V$4({}, Be.current), m({
 	      clientWidth: n,
 	      clientHeight: o,
 	      videoAreaWidth: a,
@@ -32951,7 +32954,7 @@
 	                      }]
 	                    };
 	                  }),
-	                  videos: Jn$1(N, Le)
+	                  videos: eo(N, Le)
 	                }).then(function (e) {
 	                  var t = !0 === e.data.is_live;
 	                  S({
@@ -33049,7 +33052,7 @@
 	                    label: e.label,
 	                    index: e.index
 	                  };
-	                })), c && Zn$1(Le.current.slice(Le.current.length % N.framesBatchLength * -1), ve)) : Y(Le.current.map(function (e) {
+	                })), c && Jn$1(Le.current.slice(Le.current.length % N.framesBatchLength * -1), ve)) : Y(Le.current.map(function (e) {
 	                  return {
 	                    base64: e.base64,
 	                    label: e.label,
@@ -33149,7 +33152,7 @@
 	        return e.frontalFaceImage.blob;
 	      }).length,
 	          c = !1;
-	      return o && (i || ![1].includes(t) || s >= 1) ? (Be.current = !1, a(), c = !0) : Be.current = !(!o || i), ae(!1), c;
+	      return o && (i || ![1].includes(t) || s >= 1) ? (Ce.current = !1, a(), c = !0) : Ce.current = !(!o || i), ae(!1), c;
 	    }, O);
 
 	    function s(e, t, r, n) {
@@ -33189,7 +33192,7 @@
 	                });
 
 	              case 9:
-	                d = e.sent, u.frontalFaceImage.blob = d, u.frontalFaceImage.leftRightScore = o, Be.current && (Be.current = !1, a());
+	                d = e.sent, u.frontalFaceImage.blob = d, u.frontalFaceImage.leftRightScore = o, Ce.current && (Ce.current = !1, a());
 
 	              case 13:
 	                if (u.name !== t || null !== u.image.blurScore && !Ln.hasBetterBlurScore(n, u.image.blurScore)) {
@@ -33281,7 +33284,7 @@
 	            label: e.label,
 	            index: e.index
 	          };
-	        })), c && Zn$1(Le.current.slice(-N.framesBatchLength), ve)), u;
+	        })), c && Jn$1(Le.current.slice(-N.framesBatchLength), ve, Le.current.length === N.framesBatchLength)), u;
 	      }
 
 	      return null;
@@ -33339,7 +33342,7 @@
 
 	    function k() {
 	      return (k = L$4(regeneratorRuntime.mark(function r(n, o) {
-	        var a, i, c, l, m, k, w, b, y, C, x, _, S, R, T, I, O, M, N, A, D;
+	        var a, i, c, l, m, k, w, b, y, B, x, _, S, R, T, I, O, M, N, A, D;
 
 	        return regeneratorRuntime.wrap(function (r) {
 	          for (;;) {
@@ -33361,12 +33364,12 @@
 	                });
 
 	              case 12:
-	                if (b = r.sent, y = b.error, C = b.fullFace, Ce.current.image = u, _ = null, S = null, R = null, T = Ie.current, I = T.curStepIndex, O = T.steps, !C) {
+	                if (b = r.sent, y = b.error, B = b.fullFace, Be.current.image = u, _ = null, S = null, R = null, T = Ie.current, I = T.curStepIndex, O = T.steps, !B) {
 	                  r.next = 27;
 	                  break;
 	                }
 
-	                return M = O[I], R = C.landmarks, r.next = 25, Yn.calculateFaceDirection({
+	                return M = O[I], R = B.landmarks, r.next = 25, Yn.calculateFaceDirection({
 	                  landmarks: R,
 	                  getPerfectFrontal: M && M.name === vo.FRONTAL
 	                });
@@ -33408,7 +33411,7 @@
 	                  break;
 	                }
 
-	                x = Ye.not_frontal_face, Ce.current.image = d, r.next = 48;
+	                x = Ye.not_frontal_face, Be.current.image = d, r.next = 48;
 	                break;
 
 	              case 46:
@@ -33419,7 +33422,7 @@
 	                break;
 
 	              case 50:
-	                I < O.length && (x = Ye[y.code], Ce.current.image = d);
+	                I < O.length && (x = Ye[y.code], Be.current.image = d);
 
 	              case 51:
 	                De(x), -1 !== e && (e = requestAnimationFrame(function () {
@@ -33442,7 +33445,7 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                r = xn.analyzeVideoAndWindowSizes(t, Ce.current), n = r.cropWidth, o = r.cropHeight, (a = document.createElement("canvas")).width = n, a.height = o, (i = a.getContext("2d")).translate(n, 0), i.scale(-1, 1), v(r, a);
+	                r = xn.analyzeVideoAndWindowSizes(t, Be.current), n = r.cropWidth, o = r.cropHeight, (a = document.createElement("canvas")).width = n, a.height = o, (i = a.getContext("2d")).translate(n, 0), i.scale(-1, 1), v(r, a);
 
 	              case 9:
 	              case "end":
@@ -33469,16 +33472,16 @@
 	      return e.name === l$3.FaceDirection.FRONTAL;
 	    });
 	  }, [kt]),
-	      bt = Be.current ? wt : kt[vt],
+	      bt = Ce.current ? wt : kt[vt],
 	      yt = bt && ce ? bt.instructions[me] : null,
-	      Ct = bt && ce ? bt.directionIcon : "",
-	      Bt = bt ? bt.directionIconAnimation : "";
+	      Bt = bt && ce ? bt.directionIcon : "",
+	      Ct = bt ? bt.directionIconAnimation : "";
 	  return {
 	    countdownToTakePicture: nt,
-	    cropArea: Ce,
+	    cropArea: Be,
 	    curStepIndex: vt,
-	    directionIcon: Ct,
-	    directionIconAnimation: Bt,
+	    directionIcon: Bt,
+	    directionIconAnimation: Ct,
 	    faceDetectionError: Ne,
 	    handleTriggerPassiveMode: ht,
 	    handleVideoPlayed: et,
@@ -33495,14 +33498,14 @@
 	}
 
 	var yo = (j$4(io = {}, l$3.FaceDirection.LEFT, 90), j$4(io, l$3.FaceDirection.RIGHT, 270), j$4(io, l$3.FaceDirection.UP, 180), j$4(io, l$3.FaceDirection.DOWN, 0), io),
-	    Co = We(["0%{opacity:0.15;}50%{opacity:0.3;}100%{opacity:1;}"]),
-	    Bo = qe.div(so || (so = Q$4(["\n  width: 200px;\n  height: 200px;\n  position: relative;\n  transform: scale(0.48);\n\n  .top,\n  .right,\n  .bottom,\n  .left {\n    position: absolute;\n  }\n\n  .top {\n    top: 0;\n    left: 50%;\n    transform: rotate(", "deg) translateX(-50%);\n  }\n\n  .right {\n    right: 0;\n    top: 50%;\n    transform: rotate(", "deg) translateX(-50%);\n  }\n\n  .bottom {\n    bottom: 0;\n    left: 50%;\n    transform: rotate(", "deg) translateX(50%);\n  }\n\n  .left {\n    left: 0;\n    top: 50%;\n    transform: rotate(", "deg) translateX(50%);\n  }\n"])), yo[l$3.FaceDirection.DOWN], yo[l$3.FaceDirection.LEFT], yo[l$3.FaceDirection.UP], yo[l$3.FaceDirection.RIGHT]),
+	    Bo = We(["0%{opacity:0.15;}50%{opacity:0.3;}100%{opacity:1;}"]),
+	    Co = qe.div(so || (so = Q$4(["\n  width: 200px;\n  height: 200px;\n  position: relative;\n  transform: scale(0.48);\n\n  .top,\n  .right,\n  .bottom,\n  .left {\n    position: absolute;\n  }\n\n  .top {\n    top: 0;\n    left: 50%;\n    transform: rotate(", "deg) translateX(-50%);\n  }\n\n  .right {\n    right: 0;\n    top: 50%;\n    transform: rotate(", "deg) translateX(-50%);\n  }\n\n  .bottom {\n    bottom: 0;\n    left: 50%;\n    transform: rotate(", "deg) translateX(50%);\n  }\n\n  .left {\n    left: 0;\n    top: 50%;\n    transform: rotate(", "deg) translateX(50%);\n  }\n"])), yo[l$3.FaceDirection.DOWN], yo[l$3.FaceDirection.LEFT], yo[l$3.FaceDirection.UP], yo[l$3.FaceDirection.RIGHT]),
 	    xo = qe.div(co || (co = Q$4(["\n  width: 70px;\n  transform: rotate(", "deg);\n"])), function (e) {
 	  var t,
 	      r = e.direction;
 	  return null !== (t = yo[r]) && void 0 !== t ? t : 0;
 	}),
-	    _o = qe.span(lo || (lo = Q$4(["\n  display: flex;\n  margin: 4px 0;\n  width: 100%;\n  height: 15px;\n  animation: ", " 1s infinite;\n  animation-direction: alternate;\n\n  &::before,\n  &::after {\n    content: '';\n    height: 100%;\n    width: 50%;\n    background: rgba(255, 255, 255, 0.8);\n  }\n\n  &::before {\n    transform: skewY(32deg);\n  }\n\n  &::after {\n    width: 50%;\n    transform: skewY(-32deg);\n  }\n"])), Co),
+	    _o = qe.span(lo || (lo = Q$4(["\n  display: flex;\n  margin: 4px 0;\n  width: 100%;\n  height: 15px;\n  animation: ", " 1s infinite;\n  animation-direction: alternate;\n\n  &::before,\n  &::after {\n    content: '';\n    height: 100%;\n    width: 50%;\n    background: rgba(255, 255, 255, 0.8);\n  }\n\n  &::before {\n    transform: skewY(32deg);\n  }\n\n  &::after {\n    width: 50%;\n    transform: skewY(-32deg);\n  }\n"])), Bo),
 	    Po = qe(_o)(uo || (uo = Q$4(["\n  animation-delay: 0s;\n"]))),
 	    Eo = qe(_o)(fo || (fo = Q$4(["\n  animation-delay: 0.5s;\n"]))),
 	    So = qe(_o)(mo || (mo = Q$4(["\n  animation-delay: 1s;\n"])));
@@ -33511,7 +33514,7 @@
 	  var r = e.type;
 	  return r !== l$3.FaceDirection.FRONTAL ? /*#__PURE__*/react.createElement(xo, {
 	    direction: r
-	  }, /*#__PURE__*/react.createElement(Po, null), /*#__PURE__*/react.createElement(Eo, null), /*#__PURE__*/react.createElement(So, null)) : /*#__PURE__*/react.createElement(Bo, null, /*#__PURE__*/react.createElement(xo, {
+	  }, /*#__PURE__*/react.createElement(Po, null), /*#__PURE__*/react.createElement(Eo, null), /*#__PURE__*/react.createElement(So, null)) : /*#__PURE__*/react.createElement(Co, null, /*#__PURE__*/react.createElement(xo, {
 	    className: "top"
 	  }, /*#__PURE__*/react.createElement(Po, null), /*#__PURE__*/react.createElement(Eo, null), /*#__PURE__*/react.createElement(So, null)), /*#__PURE__*/react.createElement(xo, {
 	    className: "right"
@@ -33596,8 +33599,8 @@
 	      w = e.dashedRingWidth,
 	      b = e.dashedRingLineThick,
 	      y = e.dashedRingLineSpacing,
-	      C = e.dashedInsideRingColor,
-	      B = e.dashedInsideRingWidth,
+	      B = e.dashedInsideRingColor,
+	      C = e.dashedInsideRingWidth,
 	      x = e.showOutsideRing,
 	      _ = e.showInsideRing,
 	      P = e.showDashedRing,
@@ -33609,11 +33612,11 @@
 	      O = R - w / 2 - a / 2 - l,
 	      M = 2 * Math.PI * O,
 	      N = M - i / 100 * M,
-	      A = O - B / 2 - w / 2,
+	      A = O - C / 2 - w / 2,
 	      D = 2 * Math.PI * A,
 	      L = D - i / 100 * D,
-	      F = A - m / 2 - B / 2,
-	      j = A - h / 2 - B / 2;
+	      F = A - m / 2 - C / 2,
+	      j = A - h / 2 - C / 2;
 	  return /*#__PURE__*/react.createElement("svg", {
 	    className: r,
 	    style: n,
@@ -33680,15 +33683,15 @@
 	    cx: o,
 	    cy: o,
 	    r: A,
-	    stroke: C,
-	    strokeWidth: B
+	    stroke: B,
+	    strokeWidth: C
 	  }), /*#__PURE__*/react.createElement(No, {
 	    "data-testid": "dashedInsideAnimateRing",
 	    cx: o,
 	    cy: o,
 	    r: A,
 	    stroke: c,
-	    strokeWidth: B,
+	    strokeWidth: C,
 	    strokeLinecap: "round",
 	    strokeDasharray: "".concat(D, " ").concat(D),
 	    style: {
@@ -33963,9 +33966,9 @@
 	      w = e.nested,
 	      b = void 0 !== w && w,
 	      y = e.closeOnDocumentClick,
-	      C = void 0 === y || y,
-	      B = e.repositionOnResize,
-	      x = void 0 === B || B,
+	      B = void 0 === y || y,
+	      C = e.repositionOnResize,
+	      x = void 0 === C || C,
 	      _ = e.closeOnEscape,
 	      P = void 0 === _ || _,
 	      E = e.on,
@@ -34069,8 +34072,8 @@
 	    };
 	  });
 
-	  var Ce,
-	      Be,
+	  var Be,
+	      Ce,
 	      xe = function xe() {
 	    if (!de && oe && (null == ie ? void 0 : ie.current) && (null == ie ? void 0 : ie.current) && (null == se ? void 0 : se.current)) {
 	      var e,
@@ -34085,8 +34088,8 @@
 	    }
 	  };
 
-	  void 0 === (Be = P) && (Be = !0), react.useEffect(function () {
-	    if (Be) {
+	  void 0 === (Ce = P) && (Ce = !0), react.useEffect(function () {
+	    if (Ce) {
 	      var e = function (_e2) {
 	        function e(_x) {
 	          return _e2.apply(this, arguments);
@@ -34098,14 +34101,14 @@
 
 	        return e;
 	      }(function (e) {
-	        "Escape" === e.key && Ce(e);
+	        "Escape" === e.key && Be(e);
 	      });
 
 	      return document.addEventListener("keyup", e), function () {
-	        Be && document.removeEventListener("keyup", e);
+	        Ce && document.removeEventListener("keyup", e);
 	      };
 	    }
-	  }, [Ce = pe, Be]), function (e, t) {
+	  }, [Be = pe, Ce]), function (e, t) {
 	    void 0 === t && (t = !0), react.useEffect(function () {
 	      if (t) {
 	        var r = function r(t) {
@@ -34153,7 +34156,7 @@
 	        };
 	      }
 	    }, [e, t, r]);
-	  }(s ? [se, ie] : [se], pe, C && !b);
+	  }(s ? [se, ie] : [se], pe, B && !b);
 
 	  var _e,
 	      Pe = function Pe() {
@@ -34200,9 +34203,9 @@
 	      return e + "-overlay";
 	    }).join(" ") : ""),
 	    style: Lo({}, Se, A, {
-	      pointerEvents: C && b || de ? "auto" : "none"
+	      pointerEvents: B && b || de ? "auto" : "none"
 	    }),
-	    onClick: C && b ? pe : void 0,
+	    onClick: B && b ? pe : void 0,
 	    tabIndex: -1
 	  }, de && Pe()), !de && Pe()];
 
@@ -34346,8 +34349,8 @@
 	}, function (e) {
 	  return !e.active && Ae(["opacity:0.6;"]);
 	}),
-	    Ca$2 = qe.div(ra$2 || (ra$2 = Q$4(["\n  color: #ffffff;\n  height: 70px;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: ", ";\n"])), 1020),
-	    Ba$2 = qe.div(na$2 || (na$2 = Q$4(["\n  cursor: pointer;\n  text-align: center;\n  width: 50px;\n\n  img {\n    width: 100%;\n  }\n"]))),
+	    Ba$2 = qe.div(ra$2 || (ra$2 = Q$4(["\n  color: #ffffff;\n  height: 70px;\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: ", ";\n"])), 1020),
+	    Ca$2 = qe.div(na$2 || (na$2 = Q$4(["\n  cursor: pointer;\n  text-align: center;\n  width: 50px;\n\n  img {\n    width: 100%;\n  }\n"]))),
 	    xa$2 = qe.div(oa$2 || (oa$2 = Q$4(["\n  position: absolute;\n  width: 100%;\n  top: 0;\n  bottom: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  color: #ffffff;\n  font-size: 140px;\n  opacity: 0.6;\n"]))),
 	    _a$1 = qe.div(aa$2 || (aa$2 = Q$4(["\n  position: absolute;\n  width: 100%;\n  top: 0;\n  bottom: 0;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"]))),
 	    Pa$2 = qe(Ao)(ia$2 || (ia$2 = Q$4(["\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n"]))),
@@ -34384,10 +34387,10 @@
 	      k = sn.useAsset("bg_camera_mask.png"),
 	      w = sn.useAsset("bg_camera_mask_red.png"),
 	      y = q$6(react.useState({}), 2),
-	      C = y[0],
-	      B = y[1],
-	      x = C.yFaceDetectionError,
-	      _ = C.yFaceVerificationStepsWrapper,
+	      B = y[0],
+	      C = y[1],
+	      x = B.yFaceDetectionError,
+	      _ = B.yFaceVerificationStepsWrapper,
 	      P = q$6(react.useState(""), 2),
 	      E = P[0],
 	      S = P[1],
@@ -34396,7 +34399,7 @@
 	        r = e.height,
 	        n = t + 25,
 	        o = n + 30;
-	    return B({
+	    return C({
 	      yFaceDetectionError: n,
 	      yFaceVerificationStepsWrapper: o + r + 20
 	    }), {
@@ -34482,7 +34485,7 @@
 	      src: o,
 	      alt: ""
 	    }) : /*#__PURE__*/react.createElement("span", null, r + 1));
-	  }))) : /*#__PURE__*/react.createElement(react.Fragment, null, A ? null : /*#__PURE__*/react.createElement(Ca$2, null, /*#__PURE__*/react.createElement(Ba$2, {
+	  }))) : /*#__PURE__*/react.createElement(react.Fragment, null, A ? null : /*#__PURE__*/react.createElement(Ba$2, null, /*#__PURE__*/react.createElement(Ca$2, {
 	    onClick: D
 	  }, /*#__PURE__*/react.createElement(Ue$2, null))))) : null);
 	}
@@ -34556,8 +34559,8 @@
 	  FaceVerificationInstructions: wa$2,
 	  FaceVerificationStepsWrapper: ba$3,
 	  StepItem: ya$2,
-	  BottomButtonsOverlay: Ca$2,
-	  Button: Ba$2,
+	  BottomButtonsOverlay: Ba$2,
+	  Button: Ca$2,
 	  CountDownOverlay: xa$2,
 	  InstructionsOverlay: _a$1,
 	  "default": Ma$2,
@@ -35163,8 +35166,8 @@
 	    wi$2,
 	    bi$2,
 	    yi$2,
-	    Ci$2,
 	    Bi$2,
+	    Ci$2,
 	    xi$2,
 	    _i$1,
 	    Pi$2,
@@ -35239,8 +35242,8 @@
 	    is = qe.div(yi$2 || (yi$2 = Q$4(["\n  cursor: pointer;\n  text-align: center;\n  width: ", "px;\n\n  img {\n    width: 100%;\n  }\n\n  z-index: ", ";\n  position: fixed;\n\n  ", "\n"])), 60, 1020, ue$3.isMobile ? Ae(["top:", ";"], function (e) {
 	  return e.y;
 	}) : Ae(["bottom:", "px;"], 10)),
-	    ss = qe.div(Ci$2 || (Ci$2 = Q$4(["\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  position: absolute;\n  margin: auto;\n  width: ", "px;\n  height: ", "px;\n\n  img {\n    width: 100%;\n  }\n\n  z-index: ", ";\n"])), 100, 100, 1020),
-	    cs = qe.div(Bi$2 || (Bi$2 = Q$4(["\n  color: #fff;\n  text-align: center;\n"]))),
+	    ss = qe.div(Bi$2 || (Bi$2 = Q$4(["\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  position: absolute;\n  margin: auto;\n  width: ", "px;\n  height: ", "px;\n\n  img {\n    width: 100%;\n  }\n\n  z-index: ", ";\n"])), 100, 100, 1020),
+	    cs = qe.div(Ci$2 || (Ci$2 = Q$4(["\n  color: #fff;\n  text-align: center;\n"]))),
 	    ls = qe.div(xi$2 || (xi$2 = Q$4(["\n  transform: translateZ(1000px); // to fix rotating bug on safari\n  transform-style: preserve-3d;\n  position: absolute;\n  top: ", ";\n  z-index: ", ";\n"])), function (e) {
 	  return e.y;
 	}, 1020),
@@ -35291,7 +35294,7 @@
 	    ys = qe.button(Ai$2 || (Ai$2 = Q$4(["\n  margin-top: 20px;\n  width: 100%;\n  max-width: 160px;\n  height: 50px;\n  background-color: ", ";\n  border: 0;\n  outline: none;\n  border-radius: 0.25rem;\n  color: #fff;\n  font-weight: 400;\n  cursor: pointer;\n  font-size: 1rem;\n"])), function (e) {
 	  return e.theme.tsBlue;
 	}),
-	    Cs = function Cs(e) {
+	    Bs = function Bs(e) {
 	  var r = e.onOk,
 	      n = e.maxSessionTime,
 	      o = h$3.useSDKSettings().lang;
@@ -35305,15 +35308,15 @@
 	  }, vs.BTN_OK[o]));
 	};
 
-	Cs.propTypes = {
+	Bs.propTypes = {
 	  onOk: propTypes.func,
 	  maxSessionTime: propTypes.number
-	}, Cs.defaultProps = {
+	}, Bs.defaultProps = {
 	  onOk: function onOk() {},
 	  maxSessionTime: 30
 	};
 
-	var Bs = function Bs() {
+	var Cs = function Cs() {
 	  var e = q$6(react.useState(!1), 2),
 	      t = e[0],
 	      n = e[1],
@@ -35391,8 +35394,8 @@
 	      b = r.matFromArray(4, 1, r.CV_32FC2, h),
 	      y = r.getPerspectiveTransform(w, b);
 	  r.warpPerspective(g, v, y, k, r.INTER_LINEAR, r.BORDER_CONSTANT, new r.Scalar());
-	  var C = new ImageData(new Uint8ClampedArray(v.data), v.cols, v.rows);
-	  return g["delete"](), v["delete"](), w["delete"](), b["delete"](), C;
+	  var B = new ImageData(new Uint8ClampedArray(v.data), v.cols, v.rows);
+	  return g["delete"](), v["delete"](), w["delete"](), b["delete"](), B;
 	}
 
 	function Ms(e) {
@@ -35837,8 +35840,8 @@
 	          w,
 	          b,
 	          y,
-	          C,
 	          B,
+	          C,
 	          x,
 	          _,
 	          P,
@@ -35853,7 +35856,7 @@
 	              return r = R.length > 1 && void 0 !== R[1] ? R[1] : {}, n = r.imgMargin, o = void 0 === n ? .5 : n, a = r.detectThreshold, i = void 0 === a ? .3 : a, s = r.maxNumReturns, c = void 0 === s ? 100 : s, l = window, u = l.cv, d = {}, f = t.width, m = t.height, d.originalWidth = f, d.originalHeight = m, p = Is({
 	                canvas: t,
 	                imgMargin: o
-	              }), h = p.margin, g = p.mat, v = q$6(this.inputSize, 2), k = v[0], w = v[1], b = new u.Mat(), u.resize(g, b, new u.Size(k, w), 0, 0, u.INTER_AREA), y = g.cols / k, C = g.rows / w, (B = document.createElement("canvas")).width = k, B.height = w, B.getContext("2d").putImageData(new ImageData(new Uint8ClampedArray(b.data), b.cols, b.rows), 0, 0), g["delete"](), b["delete"](), d.canvas = B, d.margin = h, e.next = 24, this.detect(B, {
+	              }), h = p.margin, g = p.mat, v = q$6(this.inputSize, 2), k = v[0], w = v[1], b = new u.Mat(), u.resize(g, b, new u.Size(k, w), 0, 0, u.INTER_AREA), y = g.cols / k, B = g.rows / w, (C = document.createElement("canvas")).width = k, C.height = w, C.getContext("2d").putImageData(new ImageData(new Uint8ClampedArray(b.data), b.cols, b.rows), 0, 0), g["delete"](), b["delete"](), d.canvas = C, d.margin = h, e.next = 24, this.detect(C, {
 	                detectThreshold: i,
 	                maxNumReturns: c
 	              });
@@ -35874,16 +35877,16 @@
 	                  score: e.score,
 	                  location: {
 	                    x: zs(Math.floor((a + n) / 2 * y - h), 0, f),
-	                    y: zs(Math.floor((r + o) / 2 * C - h), 0, m)
+	                    y: zs(Math.floor((r + o) / 2 * B - h), 0, m)
 	                  },
 	                  scaledLocation: {
-	                    x: zs(Math.floor((a + n) / 2), 0, B.width),
-	                    y: zs(Math.floor((r + o) / 2), 0, B.height)
+	                    x: zs(Math.floor((a + n) / 2), 0, C.width),
+	                    y: zs(Math.floor((r + o) / 2), 0, C.height)
 	                  }
 	                }) : E.push({
 	                  label: e.label,
 	                  score: e.score,
-	                  box: [zs(Math.floor(r * C - h), 0, m), zs(Math.floor(n * y - h), 0, f), zs(Math.floor(o * C - h), 0, m), zs(Math.floor(a * y - h), 0, f)]
+	                  box: [zs(Math.floor(r * B - h), 0, m), zs(Math.floor(n * y - h), 0, f), zs(Math.floor(o * B - h), 0, m), zs(Math.floor(a * y - h), 0, f)]
 	                });
 	              }), P.sort(function (e, t) {
 	                return t.score - e.score;
@@ -35944,8 +35947,8 @@
 	          w,
 	          b,
 	          y,
-	          C,
 	          B,
+	          C,
 	          x,
 	          _ = this,
 	          P = arguments;
@@ -35961,11 +35964,11 @@
 
 	            case 7:
 	              for (u = e.sent, d = q$6(u, 3), f = d[0], m = d[1], p = q$6(d[2], 1), h = p[0], g = [], v = Math.min(f.length, o), k = 0; k < v; k++) {
-	                (w = f[k]) > n && (y = m[k], C = null !== (b = qs[Math.round(y)]) && void 0 !== b ? b : "NA", B = h[k], x = [B[0] * c, B[3] * s, B[2] * c, B[1] * s], g.push({
+	                (w = f[k]) > n && (y = m[k], B = null !== (b = qs[Math.round(y)]) && void 0 !== b ? b : "NA", C = h[k], x = [C[0] * c, C[3] * s, C[2] * c, C[1] * s], g.push({
 	                  score: w,
 	                  clazz: y,
 	                  box: x,
-	                  label: C
+	                  label: B
 	                }));
 	              }
 
@@ -36349,8 +36352,8 @@
 	      g = q$6(react.useState(!1), 2),
 	      v = g[0],
 	      b = g[1],
-	      C = react.useRef(function () {}),
-	      B = nn.useSDKTracking().sendEvent,
+	      B = react.useRef(function () {}),
+	      C = nn.useSDKTracking().sendEvent,
 	      x = react.useRef(),
 	      _ = react.useRef(),
 	      P = react.useRef(),
@@ -36369,11 +36372,11 @@
 	        for (;;) {
 	          switch (e.prev = e.next) {
 	            case 0:
-	              return B({
+	              return C({
 	                tag: u ? "id_front" : "id_back",
 	                event: "sdk_ui.auto_capture",
 	                log: {}
-	              }), e.next = 3, C.current({
+	              }), e.next = 3, B.current({
 	                imageBlob: t.imageBlob
 	              });
 
@@ -36387,7 +36390,7 @@
 	    return function (t) {
 	      return e.apply(this, arguments);
 	    };
-	  }(), [B, u]),
+	  }(), [C, u]),
 	      D = react.useCallback(function () {
 	    for (var e = arguments.length, t = new Array(e), r = 0; r < e; r++) {
 	      t[r] = arguments[r];
@@ -36395,14 +36398,14 @@
 
 	    l.apply(void 0, t);
 	    var n = Hn$1(t, "0.code");
-	    n && n !== x.current && B({
+	    n && n !== x.current && C({
 	      tag: u ? "id_front" : "id_back",
 	      event: "sdk_ui.show_alert",
 	      log: {
 	        alert: n
 	      }
 	    }), x.current = n;
-	  }, [l, u, B]),
+	  }, [l, u, C]),
 	      F = function (e) {
 	    var t = e.refVideo,
 	        i = e.shouldStart,
@@ -36429,8 +36432,8 @@
 	      blurScore: null,
 	      error: null
 	    }),
-	        C = react.useRef(!1),
 	        B = react.useRef(!1),
+	        C = react.useRef(!1),
 	        x = react.useRef(null),
 	        _ = react.useRef(!1),
 	        P = react.useRef({}),
@@ -36530,7 +36533,7 @@
 	          for (;;) {
 	            switch (e.prev = e.next) {
 	              case 0:
-	                if (r = t.blurScore, B.current = !0, n = b.current, !Ln.hasBetterCardBlurScore(r, n.blurScore)) {
+	                if (r = t.blurScore, C.current = !0, n = b.current, !Ln.hasBetterCardBlurScore(r, n.blurScore)) {
 	                  e.next = 9;
 	                  break;
 	                }
@@ -36543,7 +36546,7 @@
 	                n.imageBlob = e.sent, n.blurScore = r, _.current = !0;
 
 	              case 9:
-	                B.current = !1;
+	                C.current = !1;
 
 	              case 10:
 	              case "end":
@@ -36585,13 +36588,13 @@
 	      }, e);
 	    })), [d, c, T]),
 	        A = react.useCallback(function () {
-	      C.current = !0;
+	      B.current = !0;
 	    }, []),
 	        D = react.useCallback(function () {
 	      return new Promise(function (e) {
-	        C.current = !1;
+	        B.current = !1;
 	        var t = setInterval(function () {
-	          B.current || (clearInterval(t), e());
+	          C.current || (clearInterval(t), e());
 	        }, 150);
 	      });
 	    }, []),
@@ -36626,7 +36629,7 @@
 	      }, e);
 	    })), [c, A, D]),
 	        j = react.useCallback(L$4(regeneratorRuntime.mark(function e() {
-	      var r, n, o, a, i, s, d, h, v, k, y, B, x, S, T, A, D, L, F, j, z, U, V, W, Q;
+	      var r, n, o, a, i, s, d, h, v, k, y, C, x, S, T, A, D, L, F, j, z, U, V, W, Q;
 	      return regeneratorRuntime.wrap(function (e) {
 	        for (;;) {
 	          switch (e.prev = e.next) {
@@ -36647,10 +36650,10 @@
 	                imageBlob: null,
 	                blurScore: null,
 	                error: null
-	              }, r = c.enableAutoCapture, n = c.enableBlurCheck, o = c.enableIdDetection, a = P.current, i = a.idCardModel, s = a.blazefaceModel, d = a.ableToUseModel, h = p.current, v = t.current, m.current = !0, k = h.cropX, y = h.cropY, B = h.cropWidth, x = h.cropHeight, S = h.cropWidthWithoutPadding, T = h.cropHeightWithoutPadding, (A = f.current).width = B, A.height = x, D = A.getContext("2d"), L = document.createElement("canvas"), F = L.getContext("2d"), j = o && d ? 15 : 700;
+	              }, r = c.enableAutoCapture, n = c.enableBlurCheck, o = c.enableIdDetection, a = P.current, i = a.idCardModel, s = a.blazefaceModel, d = a.ableToUseModel, h = p.current, v = t.current, m.current = !0, k = h.cropX, y = h.cropY, C = h.cropWidth, x = h.cropHeight, S = h.cropWidthWithoutPadding, T = h.cropHeightWithoutPadding, (A = f.current).width = C, A.height = x, D = A.getContext("2d"), L = document.createElement("canvas"), F = L.getContext("2d"), j = o && d ? 15 : 700;
 
 	            case 17:
-	              if (D.drawImage(v, k, y, B, x, 0, 0, B, x), _.current = !1, !o || !d) {
+	              if (D.drawImage(v, k, y, C, x, 0, 0, C, x), _.current = !1, !o || !d) {
 	                e.next = 74;
 	                break;
 	              }
@@ -36667,7 +36670,7 @@
 
 	              if (!Ms({
 	                corners: U.card.corners,
-	                width: B,
+	                width: C,
 	                height: x
 	              })) {
 	                e.next = 67;
@@ -36737,7 +36740,7 @@
 
 	              if (Q = Ln.calculateIdCardBlurScore({
 	                canvas: L
-	              }), !C.current) {
+	              }), !B.current) {
 	                e.next = 59;
 	                break;
 	              }
@@ -36955,7 +36958,7 @@
 	              imageBlob: r,
 	              error: n,
 	              recordedVideos: Y.current
-	            }), b(!1), B({
+	            }), b(!1), C({
 	              tag: u ? "id_front" : "id_back",
 	              event: "user_activity",
 	              log: {
@@ -36969,8 +36972,8 @@
 	        }
 	      }
 	    }, e);
-	  })), [H, z, te, D, p, Y, u, B]);
-	  C.current = ae;
+	  })), [H, z, te, D, p, Y, u, C]);
+	  B.current = ae;
 	  var ie = react.useCallback(L$4(regeneratorRuntime.mark(function e() {
 	    var t, r, n;
 	    return regeneratorRuntime.wrap(function (e) {
@@ -36986,7 +36989,7 @@
 	            });
 
 	          case 11:
-	            b(!1), B({
+	            b(!1), C({
 	              tag: u ? "id_front" : "id_back",
 	              event: "user_activity.capture",
 	              log: {}
@@ -36998,19 +37001,19 @@
 	        }
 	      }
 	    }, e);
-	  })), [W, ae, te, Q, H, z, B, u]);
+	  })), [W, ae, te, Q, H, z, C, u]);
 	  return react.useEffect(function () {
-	    t && (B({
+	    t && (C({
 	      tag: u ? "id_front" : "id_back",
 	      event: "user_activity.start",
 	      log: {}
 	    }), _.current = performance.now());
-	  }, [B, u, t]), react.useEffect(function () {
-	    V && (B({
+	  }, [C, u, t]), react.useEffect(function () {
+	    V && (C({
 	      tag: u ? "id_front" : "id_back",
 	      event: "user_activity.show",
 	      log: {}
-	    }), B({
+	    }), C({
 	      tag: u ? "id_front" : "id_back",
 	      event: "sdk.load_model",
 	      log: {
@@ -37018,7 +37021,7 @@
 	        time_in_ms: performance.now() - _.current
 	      }
 	    }), P.current = performance.now());
-	  }, [B, u, V]), {
+	  }, [C, u, V]), {
 	    warmupDone: V,
 	    isProcessing: v,
 	    takePictureManually: ie,
@@ -37041,8 +37044,8 @@
 	      v = h[1],
 	      w = g.yDescription,
 	      y = g.yMessage,
-	      C = g.yCaptureButton,
-	      B = sn.useAsset("ic_camera.svg"),
+	      B = g.yCaptureButton,
+	      C = sn.useAsset("ic_camera.svg"),
 	      x = q$6(react.useState(""), 2),
 	      _ = x[0],
 	      P = x[1],
@@ -37058,7 +37061,7 @@
 	      D = q$6(react.useState(null), 2),
 	      F = D[0],
 	      j = D[1],
-	      z = Bs(),
+	      z = Cs(),
 	      U = z.showPopup,
 	      V = z.popupShown,
 	      W = z.popupType,
@@ -37192,9 +37195,9 @@
 	    y: "".concat(w, "px")
 	  }, N), !Y && (!(null != f && f.disableCaptureButtonIfAlert) || !N) && /*#__PURE__*/react.createElement(is, {
 	    onClick: oe,
-	    y: "".concat(C, "px")
+	    y: "".concat(B, "px")
 	  }, /*#__PURE__*/react.createElement("img", {
-	    src: B,
+	    src: C,
 	    alt: ""
 	  })), I && /*#__PURE__*/react.createElement(hs, {
 	    key: I,
@@ -37202,7 +37205,7 @@
 	    y: "".concat(y, "px")
 	  }, I), /*#__PURE__*/react.createElement(Go, {
 	    open: V
-	  }, W === xs && /*#__PURE__*/react.createElement(Cs, {
+	  }, W === xs && /*#__PURE__*/react.createElement(Bs, {
 	    onOk: re,
 	    maxSessionTime: null == f ? void 0 : f.idCardSessionTime
 	  })));
@@ -37363,8 +37366,8 @@
 	    wc$1,
 	    bc$1,
 	    yc$1,
-	    Cc$1,
-	    Bc$1 = qe.button(lc$1 || (lc$1 = Q$4(["\n  width: 100%;\n  max-width: 294px;\n  height: 66px;\n  background-color: ", ";\n  border: 0;\n  outline: none;\n  border-radius: 3px;\n  color: #fff;\n  font-weight: normal;\n  cursor: pointer;\n  font-size: 1rem;\n"])), function (e) {
+	    Bc$1,
+	    Cc$1 = qe.button(lc$1 || (lc$1 = Q$4(["\n  width: 100%;\n  max-width: 294px;\n  height: 66px;\n  background-color: ", ";\n  border: 0;\n  outline: none;\n  border-radius: 3px;\n  color: #fff;\n  font-weight: normal;\n  cursor: pointer;\n  font-size: 1rem;\n"])), function (e) {
 	  return e.theme.tsBlue;
 	}),
 	    xc$1 = qe.a(uc$1 || (uc$1 = Q$4(["\n  color: ", ";\n  cursor: pointer;\n"])), function (e) {
@@ -37387,7 +37390,7 @@
 	    mt: "30px"
 	  }, /*#__PURE__*/react.createElement(Ec$1, null, hc$1.QR_INVALID_POPUP_DESCRIPTION[o])), /*#__PURE__*/react.createElement(gc$1, {
 	    mt: "30px"
-	  }, /*#__PURE__*/react.createElement(Bc$1, {
+	  }, /*#__PURE__*/react.createElement(Cc$1, {
 	    onClick: r
 	  }, hc$1.QR_INVALID_POPUP_RETRY_BUTTON[o])), /*#__PURE__*/react.createElement(gc$1, {
 	    my: "20px"
@@ -37406,7 +37409,7 @@
 
 	var Rc$1 = qe.div(bc$1 || (bc$1 = Q$4(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 10px;\n"]))),
 	    Tc$1 = qe.div(yc$1 || (yc$1 = Q$4(["\n  background: #e7e6e6;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n"]))),
-	    Ic$1 = qe.div(Cc$1 || (Cc$1 = Q$4(["\n  color: ", ";\n  font-weight: normal;\n  font-size: 16px;\n  text-align: center;\n  line-height: 20px;\n"])), function (e) {
+	    Ic$1 = qe.div(Bc$1 || (Bc$1 = Q$4(["\n  color: ", ";\n  font-weight: normal;\n  font-size: 16px;\n  text-align: center;\n  line-height: 20px;\n"])), function (e) {
 	  return e.theme.tsSecondary;
 	}),
 	    Oc$1 = function Oc(e) {
@@ -37421,7 +37424,7 @@
 	    mt: "30px"
 	  }, /*#__PURE__*/react.createElement(Ic$1, null, hc$1.SESSION_TIMEOUT_POPUP_DESCRIPTION[o])), /*#__PURE__*/react.createElement(gc$1, {
 	    mt: "30px"
-	  }, /*#__PURE__*/react.createElement(Bc$1, {
+	  }, /*#__PURE__*/react.createElement(Cc$1, {
 	    onClick: r
 	  }, hc$1.SESSION_TIMEOUT_POPUP_RETRY_BUTTON[o])), /*#__PURE__*/react.createElement(gc$1, {
 	    my: "20px"
@@ -37517,7 +37520,7 @@
 	    mt: "30px"
 	  }, /*#__PURE__*/react.createElement(Xc, null, hc$1.QR_INSTRUCTIONS_TEXT[c])), /*#__PURE__*/react.createElement(gc$1, {
 	    mt: "30px"
-	  }, /*#__PURE__*/react.createElement(Bc$1, {
+	  }, /*#__PURE__*/react.createElement(Cc$1, {
 	    onClick: o
 	  }, hc$1.QR_INSTRUCTIONS_START_BUTTON[c])), /*#__PURE__*/react.createElement(gc$1, {
 	    my: "20px"
@@ -38362,14 +38365,14 @@
 	              }
 	            }
 
-	            var C = k / Math.pow(8, 2);
+	            var B = k / Math.pow(8, 2);
 
-	            if (b - w <= 24 && (C = w / 2, g > 0 && v > 0)) {
-	              var B = (h.get(v, g - 1) + 2 * h.get(v - 1, g) + h.get(v - 1, g - 1)) / 4;
-	              w < B && (C = B);
+	            if (b - w <= 24 && (B = w / 2, g > 0 && v > 0)) {
+	              var C = (h.get(v, g - 1) + 2 * h.get(v - 1, g) + h.get(v - 1, g - 1)) / 4;
+	              w < C && (B = C);
 	            }
 
-	            h.set(v, g, C);
+	            h.set(v, g, B);
 	          }
 	        }
 
@@ -47787,8 +47790,8 @@
 	          }
 	        }
 
-	        for (var y = [], C = 0; C < o; C++) {
-	          l[C] && l[C + 1] ? y.push(n(l[C], l[C + 1])) : y.push(0);
+	        for (var y = [], B = 0; B < o; B++) {
+	          l[B] && l[B + 1] ? y.push(n(l[B], l[B + 1])) : y.push(0);
 	        }
 
 	        return y;
@@ -48095,11 +48098,11 @@
 	        var w = l(e, p),
 	            b = l(e, h),
 	            y = l(e, g),
-	            C = u(e, a, w, b, y);
-	        return C && k.push({
+	            B = u(e, a, w, b, y);
+	        return B && k.push({
 	          alignmentPattern: {
-	            x: C.alignmentPattern.x,
-	            y: C.alignmentPattern.y
+	            x: B.alignmentPattern.x,
+	            y: B.alignmentPattern.y
 	          },
 	          bottomLeft: {
 	            x: y.x,
@@ -48113,7 +48116,7 @@
 	            x: w.x,
 	            y: w.y
 	          },
-	          dimension: C.dimension
+	          dimension: B.dimension
 	        }), 0 === k.length ? null : k;
 	      };
 	    }])["default"];
@@ -48340,7 +48343,7 @@
 	      !0 === d.current && (d.current = !1);
 	    }, []),
 	        b = react.useCallback(L$4(regeneratorRuntime.mark(function e() {
-	      var r, n, o, a, i, s, m, h, v, k, b, C, B, x;
+	      var r, n, o, a, i, s, m, h, v, k, b, B, C, x;
 	      return regeneratorRuntime.wrap(function (e) {
 	        for (;;) {
 	          switch (e.prev = e.next) {
@@ -48363,12 +48366,12 @@
 	              });
 
 	            case 15:
-	              if (!(C = e.sent)) {
+	              if (!(B = e.sent)) {
 	                e.next = 23;
 	                break;
 	              }
 
-	              return w(), _ = void 0, _ = C.match(Kc$1), B = {
+	              return w(), _ = void 0, _ = B.match(Kc$1), C = {
 	                valid: Boolean(_)
 	              }, e.next = 21, xn.takePicture({
 	                canvas: u.current
@@ -48376,8 +48379,8 @@
 
 	            case 21:
 	              x = e.sent, l({
-	                result: C,
-	                validateResult: B,
+	                result: B,
+	                validateResult: C,
 	                imageBlob: x
 	              });
 
@@ -48426,12 +48429,12 @@
 	        r.apply(this, arguments);
 	      }();
 	    }, [i, s, t, w, b, p]);
-	    var C = react.useCallback(function () {
+	    var B = react.useCallback(function () {
 	      w();
 	    }, [w]);
 	    return react.useEffect(function () {
-	      return C;
-	    }, [C]), {
+	      return B;
+	    }, [B]), {
 	      refWorkingCanvas: u,
 	      stopCheckFrame: w,
 	      checkFrame: b,
@@ -48447,11 +48450,11 @@
 	    }, [])
 	  }),
 	      b = w.stopCheckFrame,
-	      C = w.checkFrame,
-	      B = w.warmupDone,
+	      B = w.checkFrame,
+	      C = w.warmupDone,
 	      x = tc$1({
 	    refVideo: i,
-	    shouldStart: t && B,
+	    shouldStart: t && C,
 	    cropArea: s,
 	    settings: c
 	  }),
@@ -48478,7 +48481,7 @@
 	    onSessionTimeout: T,
 	    onVideoTimeLimitReached: I,
 	    settings: c,
-	    shouldStartTimers: t && B,
+	    shouldStartTimers: t && C,
 	    sessionTime: null == c ? void 0 : c.scanQrLimitTimeSecond
 	  }),
 	      M = O.stopTimers,
@@ -48490,7 +48493,7 @@
 	        for (;;) {
 	          switch (e.prev = e.next) {
 	            case 0:
-	              return N(), e.next = 3, Promise.all([R(), C()]);
+	              return N(), e.next = 3, Promise.all([R(), B()]);
 
 	            case 3:
 	            case "end":
@@ -48498,9 +48501,9 @@
 	          }
 	        }
 	      }, e);
-	    })), [R, C, N]),
+	    })), [R, B, N]),
 	    refRecordedVideos: P,
-	    warmupDone: B
+	    warmupDone: C
 	  };
 	};
 
@@ -48520,10 +48523,10 @@
 	      v = h.yTooltip,
 	      w = h.yMessage,
 	      y = h$3.useSDKSettings().lang,
-	      C = Bs(),
-	      B = C.showPopup,
-	      x = C.popupShown,
-	      _ = C.popupType,
+	      B = Cs(),
+	      C = B.showPopup,
+	      x = B.popupShown,
+	      _ = B.popupType,
 	      P = q$6(react.useState(!1), 2),
 	      E = P[0],
 	      S = P[1],
@@ -48532,10 +48535,10 @@
 	      I = R[1],
 	      O = sn.useAsset("ic_loading.png");
 	  react.useEffect(function () {
-	    B({
+	    C({
 	      popupType: Es
 	    });
-	  }, [B]), react.useEffect(function () {
+	  }, [C]), react.useEffect(function () {
 	    if (n) {
 	      var e = n.videoAreaWidth,
 	          t = n.lostX,
@@ -48570,10 +48573,10 @@
 	  }, [l]),
 	      N = react.useCallback(function (e) {
 	    var t = e.validateResult.valid;
-	    I(""), t ? l(e) : B({
+	    I(""), t ? l(e) : C({
 	      popupType: Ps
 	    });
-	  }, [B, l]),
+	  }, [C, l]),
 	      A = react.useCallback(function (e) {
 	    var t = e.curTimeLeft;
 	    I(an$1(hc$1.REMAINING_TIME[y])({
@@ -48593,10 +48596,10 @@
 	      j = D.restartSession,
 	      z = D.warmupDone,
 	      U = react.useCallback(function () {
-	    B({
+	    C({
 	      popupType: null
 	    });
-	  }, [B]),
+	  }, [C]),
 	      V = react.useCallback(L$4(regeneratorRuntime.mark(function e() {
 	    return regeneratorRuntime.wrap(function (e) {
 	      for (;;) {
@@ -48685,8 +48688,8 @@
 	  WARNING: "WARNING"
 	},
 	    yl = (j$4(sl = {}, bl.SUCCESS, "52,206,95"), j$4(sl, bl.WARNING, "255,148,50"), sl),
-	    Cl = (j$4(cl = {}, bl.SUCCESS, "✓"), j$4(cl, bl.WARNING, "!"), cl),
-	    Bl = qe.div(ll || (ll = Q$4(["\n  font-weight: normal;\n"]))),
+	    Bl = (j$4(cl = {}, bl.SUCCESS, "✓"), j$4(cl, bl.WARNING, "!"), cl),
+	    Cl = qe.div(ll || (ll = Q$4(["\n  font-weight: normal;\n"]))),
 	    xl = qe.div(ul || (ul = Q$4(["\n  height: 2px;\n  width: 100%;\n  background: ", ";\n"])), function (e) {
 	  return Ae(["linear-gradient(to right,rgba(", ",0),rgba(", ",1),rgba(", ",0));"], yl[e.type], yl[e.type], yl[e.type]);
 	}),
@@ -48698,13 +48701,13 @@
 	  var r = e.children,
 	      n = e.type,
 	      o = e.className;
-	  return /*#__PURE__*/react.createElement(Bl, {
+	  return /*#__PURE__*/react.createElement(Cl, {
 	    className: o
 	  }, /*#__PURE__*/react.createElement(xl, {
 	    type: n
 	  }), /*#__PURE__*/react.createElement(Pl, null, /*#__PURE__*/react.createElement(_l, {
 	    type: n
-	  }, Cl[n]), r), /*#__PURE__*/react.createElement(xl, {
+	  }, Bl[n]), r), /*#__PURE__*/react.createElement(xl, {
 	    type: n
 	  }));
 	};
@@ -48879,7 +48882,7 @@
 	}();
 
 	var Yl = function Yl(e) {
-	  return "function" != typeof e.constructor || gr$1(e) ? {} : $l(Br$1(e));
+	  return "function" != typeof e.constructor || gr$1(e) ? {} : $l(Cr$1(e));
 	};
 
 	var Zl = function Zl(e) {
@@ -49054,9 +49057,9 @@
 	      k = g[0],
 	      w = g[1],
 	      y = react.useRef(null),
-	      C = q$6(react.useState(null), 2),
-	      B = C[0],
-	      x = C[1],
+	      B = q$6(react.useState(null), 2),
+	      C = B[0],
+	      x = B[1],
 	      _ = q$6(react.useState(!1), 2),
 	      P = _[0],
 	      E = _[1],
@@ -49075,7 +49078,7 @@
 	      W = k.enableConfirmPopup,
 	      Q = D === cu.FRONT,
 	      H = sn.useAsset(A),
-	      K = Bs(),
+	      K = Cs(),
 	      G = K.showPopup,
 	      $ = K.popupShown,
 	      Y = K.popupType,
@@ -49247,7 +49250,7 @@
 	  }, P && /*#__PURE__*/react.createElement(react.Fragment, null, O === du.ID_CARD && /*#__PURE__*/react.createElement(cc$1, {
 	    key: m,
 	    ref: I,
-	    windowAndVideoInfo: B,
+	    windowAndVideoInfo: C,
 	    refVideo: y,
 	    settings: ie,
 	    onCaptureDone: we,
@@ -49258,7 +49261,7 @@
 	  }), O === du.QR_CODE && /*#__PURE__*/react.createElement(pl, {
 	    key: m,
 	    refVideo: y,
-	    windowAndVideoInfo: B,
+	    windowAndVideoInfo: C,
 	    settings: ie,
 	    onCaptureDone: be,
 	    onUISpacingChange: le
@@ -49366,11 +49369,11 @@
 	}
 
 	function yu(e) {
-	  return Cu.apply(this, arguments);
+	  return Bu.apply(this, arguments);
 	}
 
-	function Cu() {
-	  return (Cu = L$4(regeneratorRuntime.mark(function e(t) {
+	function Bu() {
+	  return (Bu = L$4(regeneratorRuntime.mark(function e(t) {
 	    var r, n, o;
 	    return regeneratorRuntime.wrap(function (e) {
 	      for (;;) {
@@ -49393,7 +49396,7 @@
 	  }))).apply(this, arguments);
 	}
 
-	function Bu(e) {
+	function Cu(e) {
 	  return xu.apply(this, arguments);
 	}
 
@@ -49509,7 +49512,7 @@
 
 	function Tu() {
 	  return (Tu = L$4(regeneratorRuntime.mark(function e(t) {
-	    var r, n, o, a, i, s, c, l, u, d, f, m, p, h, g, v, k, w, b, y, C, B, x;
+	    var r, n, o, a, i, s, c, l, u, d, f, m, p, h, g, v, k, w, b, y, B, C, x;
 	    return regeneratorRuntime.wrap(function (e) {
 	      for (;;) {
 	        switch (e.prev = e.next) {
@@ -49544,20 +49547,20 @@
 	            })), e.abrupt("return");
 
 	          case 15:
-	            return v = h.data.image_id, k = (null == g || null === (r = g.data) || void 0 === r ? void 0 : r.image_id) || a, (y = u === vu.FRONT) ? w = v : (w = o, b = v), e.next = 21, Bu({
+	            return v = h.data.image_id, k = (null == g || null === (r = g.data) || void 0 === r ? void 0 : r.image_id) || a, (y = u === vu.FRONT) ? w = v : (w = o, b = v), e.next = 21, Cu({
 	              imageId: v,
 	              cardType: l,
 	              apiClient: c
 	            });
 
 	          case 21:
-	            if (!(C = e.sent).errors) {
+	            if (!(B = e.sent).errors) {
 	              e.next = 25;
 	              break;
 	            }
 
 	            return i(V$4(V$4({}, ku.sanity_check_error), {}, {
-	              details: C.errors
+	              details: B.errors
 	            })), e.abrupt("return");
 
 	          case 25:
@@ -49571,13 +49574,13 @@
 	            });
 
 	          case 27:
-	            if (!(B = e.sent).errors) {
+	            if (!(C = e.sent).errors) {
 	              e.next = 31;
 	              break;
 	            }
 
 	            return i(V$4(V$4({}, ku.read_id_card_error), {}, {
-	              details: B.errors
+	              details: C.errors
 	            })), e.abrupt("return");
 
 	          case 31:
@@ -49603,9 +49606,9 @@
 
 	          case 37:
 	            return e.abrupt("return", {
-	              sanityResult: C.data,
+	              sanityResult: B.data,
 	              tamperingInfo: x.data,
-	              cardInfo: B.data,
+	              cardInfo: C.data,
 	              qrImageId: k
 	            });
 
@@ -49966,7 +49969,7 @@
 	exports.AsyncUtils = ln;
 	exports.BASE_Z_INDEX = he$3;
 	exports.BlurUtils = Ln;
-	exports.Button = Bc$1;
+	exports.Button = Cc$1;
 	exports.ButtonLink = xc$1;
 	exports.Camera = Ne$3;
 	exports.CameraUtils = xn;
@@ -50017,7 +50020,7 @@
 	exports.useMainProcessQRCodeScanner = ml;
 	exports.useMainProcessReadIdCard = ic$1;
 	exports.useSettingsReadIdCard = iu;
-	exports.useShowPopup = Bs;
+	exports.useShowPopup = Cs;
 	exports.warmUpQRCodeScanner = Jc$1;
 	exports.warmUpReadIdCard = Js;
 

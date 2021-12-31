@@ -180,7 +180,7 @@
               document.createTextNode(`${JSON.stringify(e, null, "\t")}`)
             );
           },
-          onApiCheck: () => {
+          onProcessing: () => {
             document.getElementById("liveness-loading").style.display = "block";
             document.getElementById("start-liveness").disabled = true;
 
@@ -214,6 +214,8 @@
         const { frontalFaces, apiCheckPassed, steps, capturedFrames } = result;
         const apiCheck = selectApiCheckEl.value === "true";
 
+        document.getElementById("liveness-loading").style.display = "none";
+        document.getElementById("start-liveness").disabled = false;
         if (apiCheck === false) {
           setTimeout(function () {
             tv.destroyView();
@@ -260,8 +262,6 @@
             }
           }, 500);
         } else {
-          document.getElementById("liveness-loading").style.display = "none";
-          document.getElementById("start-liveness").disabled = false;
           resultLivenessDetectionEl.appendChild(
             document.createTextNode(`apiCheckPassed: ${apiCheckPassed}`)
           );
