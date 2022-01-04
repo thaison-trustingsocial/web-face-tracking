@@ -34633,13 +34633,13 @@
 	  DESKTOP: "desktop"
 	},
 	    Va$2 = function Va() {
-	  var e = react.useRef(window.innerWidth > window.innerHeight ? Ua$2.LANDSCAPE : Ua$2.PORTRAIT),
+	  var e = react.useRef(screen.width > screen.height ? Ua$2.LANDSCAPE : Ua$2.PORTRAIT),
 	      t = q$6(react.useState(e.current), 2),
 	      o = t[0],
 	      i = t[1];
 	  return react.useEffect(function () {
 	    function e() {
-	      window.innerWidth > window.innerHeight ? i(Ua$2.LANDSCAPE) : i(Ua$2.PORTRAIT);
+	      screen.width > screen.heightt ? i(Ua$2.LANDSCAPE) : i(Ua$2.PORTRAIT);
 	    }
 
 	    return window.addEventListener("resize", e), function () {
