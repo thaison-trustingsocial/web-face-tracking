@@ -173,7 +173,7 @@
           },
           onLivenessDetectionDone: handleLivenessDetectionDone,
           captureFrameSettings: JSON.parse(captureFrameSettings),
-          onFramesCaptured: (fr) => console.log(fr),
+          onFramesCaptured: (fr) => { console.log(fr); },
           enableFaceTracking: true,
           livenessSettings: JSON.parse(settings),
           onError: (e) => {
@@ -214,11 +214,19 @@
       }
 
       function handleLivenessDetectionDone(result) {
-        const { frontalFaces, apiCheckPassed, steps, capturedFrames } = result;
+        const { frontalFaces, apiCheckPassed, steps, capturedFrames, error, batchCount } = result;
         const apiCheck = selectApiCheckEl.value === "true";
 
         document.getElementById("liveness-loading").style.display = "none";
         document.getElementById("start-liveness").disabled = false;
+
+        if (error && error === 'network_error') {
+          resultLivenessDetectionEl.appendChild(
+            document.createTextNode("PLEASE CHECK YOUR NETWORK CONNECTION AND TRY AGAIN!")
+          );
+          return;
+        }
+
         if (apiCheck === false) {
           setTimeout(function () {
             tv.destroyView();
@@ -253,31 +261,15 @@
             resultLivenessDetectionEl.appendChild(
               document.createTextNode("Sequence frames: ")
             );
-            if (capturedFrames.length) {
-              const captureFrameSettingsRaw = document.getElementById('capture-frames-settings').value;
-              const captureFrameSettings = JSON.parse(captureFrameSettingsRaw);
-
-              const batchRecoredCount =
-              Math.floor(capturedFrames.length / captureFrameSettings.framesBatchLength) +
-              Math.ceil((capturedFrames.length / captureFrameSettings.framesBatchLength) % 1);
-              resultLivenessDetectionEl.appendChild(document.createTextNode(capturedFrames.length + ' frames'));
-              resultLivenessDetectionEl.appendChild(document.createTextNode(', ' + batchRecoredCount + ' batch'));
-            }
           }, 500);
         } else {
           resultLivenessDetectionEl.appendChild(
             document.createTextNode(`apiCheckPassed: ${apiCheckPassed}`)
           );
-          if (capturedFrames.length) {
-            const captureFrameSettingsRaw = document.getElementById('capture-frames-settings').value;
-            const captureFrameSettings = JSON.parse(captureFrameSettingsRaw);
-
-            const batchRecoredCount =
-            Math.floor(capturedFrames.length / captureFrameSettings.framesBatchLength) +
-            Math.ceil((capturedFrames.length / captureFrameSettings.framesBatchLength) % 1);
-            resultLivenessDetectionEl.appendChild(document.createTextNode(capturedFrames.length + ' frames'));
-            resultLivenessDetectionEl.appendChild(document.createTextNode(', ' + batchRecoredCount + ' batch'));
-          }
+          resultLivenessDetectionEl.appendChild(document.createElement("br"));
+          resultLivenessDetectionEl.appendChild(
+            document.createTextNode("Sequence frames: " + batchCount + " batch")
+          );
         }
       }
     </script>
